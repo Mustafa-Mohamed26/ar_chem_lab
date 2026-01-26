@@ -1,7 +1,9 @@
+import 'package:ar_chem_lab/core/routes/app_routes.dart';
+import 'package:ar_chem_lab/presentation/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main(){
+void main() {
   runApp(const MyApp());
 }
 
@@ -17,12 +19,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Chem Lab',
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Chem Lab'),
-          ),
-          body: const Placeholder(),
-        ),
+        initialRoute: AppRoutes.onboarding,
+        routes: {AppRoutes.onboarding: (context) => const OnboardingScreen()},
       ),
     );
   }
