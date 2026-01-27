@@ -1,5 +1,5 @@
-import 'package:ar_chem_lab/core/constants/app_colors.dart';
-import 'package:ar_chem_lab/core/constants/app_styles.dart';
+import 'package:ar_chem_lab/core/theme/app_colors.dart';
+import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,12 +36,7 @@ class GradientButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
           ),
           padding: EdgeInsets.symmetric(horizontal: 48.w, vertical: 12.h),
-          child: Center(
-            child: Text(
-              text,
-              style: AppStyles.bold18white,
-            ),
-          ),
+          child: Center(child: Text(text, style: AppStyles.bold18white)),
         ),
       ),
     );

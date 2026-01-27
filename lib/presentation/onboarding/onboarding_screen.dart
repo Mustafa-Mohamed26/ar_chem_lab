@@ -1,8 +1,11 @@
+import 'package:ar_chem_lab/core/routes/app_routes.dart';
+import 'package:ar_chem_lab/core/theme/app_gradients.dart';
+import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
-import 'package:ar_chem_lab/core/constants/app_colors.dart';
-import 'package:ar_chem_lab/core/constants/app_styles.dart';
+import 'package:ar_chem_lab/core/theme/app_colors.dart';
+import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -52,7 +55,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       if (currentIndex < images.length - 1) {
         currentIndex++;
       } else {
-        print("Finished onboarding!");
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRoutes.homeScreen,
+          (_) => false,
+        );
         // Navigate to main app
       }
       _opacity = 1.0; // Fade in
@@ -78,9 +85,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
+      padding: AppPadding.screen,
+      decoration: BoxDecoration(
+        gradient: AppGradients.primary(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [AppColors.midnightBlue, AppColors.royalBlue],
@@ -88,7 +95,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Stack(
             children: [
