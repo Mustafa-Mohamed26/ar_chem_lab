@@ -21,6 +21,18 @@ class AppStyles {
     color: AppColors.white,
   );
 
+  static TextStyle bold14white = GoogleFonts.oswald(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle medium12white = GoogleFonts.oswald(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
+
   static TextStyle regular18white = GoogleFonts.cairo(
     fontSize: 18.sp,
     fontWeight: FontWeight.normal,

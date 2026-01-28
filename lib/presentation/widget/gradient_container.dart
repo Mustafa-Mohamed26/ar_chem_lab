@@ -1,4 +1,3 @@
-import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ class GradientContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(3.w),
+      padding: EdgeInsets.all(2.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -45,7 +44,7 @@ class GradientContainer extends StatelessWidget {
             color: AppColors.darkBlue,
             borderRadius: BorderRadius.circular(24),
           ),
-          padding: EdgeInsets.all(15.w),
+          padding: EdgeInsets.all(10.w),
           child: Row(
             children: [
               Expanded(

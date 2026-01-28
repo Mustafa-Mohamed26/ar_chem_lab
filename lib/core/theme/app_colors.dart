@@ -12,4 +12,5 @@ class AppColors {
   static const Color lightGrey = Color(0xFFE5E5E5);
   static const Color transparent = Colors.transparent;
   static const Color lowSaturationGray = Color.fromRGBO(80, 80, 80, 0.22);
+  static const Color lavender = Color(0xFF8583B2);
 }
