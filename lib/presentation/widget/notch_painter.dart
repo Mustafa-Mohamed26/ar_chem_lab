@@ -11,7 +11,8 @@ class NotchPainter extends CustomPainter {
       ..shader = const LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
-        colors: [AppColors.electricBlue, AppColors.skyBlue],
+        colors: [AppColors.electricBlue, AppColors.skyBlue, AppColors.skyBlue],
+        stops: [0.0, 0.62, 1.0],
       ).createShader(rect)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 7.0;

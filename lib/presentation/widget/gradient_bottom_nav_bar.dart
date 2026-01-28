@@ -1,3 +1,4 @@
+import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/circular_gradients_painter.dart';
@@ -27,7 +28,13 @@ class GradientBottomNavBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   navItem(icon: Icons.history, label: "History", onTap: () {}),
-                  navItem(icon: Icons.auto_awesome, label: "Chatbot", onTap: () {}),
+                  navItem(
+                    icon: Icons.auto_awesome,
+                    label: "Chatbot",
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.chatBotScreen);
+                    },
+                  ),
                 ],
               ),
             ),
@@ -63,7 +70,7 @@ class GradientBottomNavBar extends StatelessWidget {
           // Labels for the center button (optional)
           Positioned(
             bottom: 10,
-            child: Text("My Lab", style: AppStyles.bold14white),
+            child: Text("My Lab", style: AppStyles.bold14whitePrimary),
           ),
         ],
       ),
@@ -73,17 +80,18 @@ class GradientBottomNavBar extends StatelessWidget {
   Widget navItem({
     required IconData icon,
     required String label,
-    VoidCallback? onTap,
+    VoidCallback? onTap, // This is a function reference
   }) {
     return GestureDetector(
-      onTap: () => onTap,
+      behavior: HitTestBehavior.opaque, // Ensures the entire area is clickable
+      onTap: onTap, // PASS the function directly here
       child: SizedBox(
         width: 90.w,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, color: AppColors.white, size: 40.sp),
-            Text(label, style: AppStyles.medium12white),
+            Text(label, style: AppStyles.medium12whitePrimary),
           ],
         ),
       ),

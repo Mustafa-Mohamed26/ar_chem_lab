@@ -144,7 +144,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Text(
         titles[currentIndex],
         key: ValueKey<int>(currentIndex),
-        style: AppStyles.bold32white,
+        style: AppStyles.bold32whitePrimary,
         textAlign: TextAlign.center,
       ),
     );
@@ -160,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Text(
           subtitles[currentIndex],
-          style: AppStyles.regular18white,
+          style: AppStyles.regular18whiteSecondary,
           textAlign: TextAlign.center,
         ),
       ),
@@ -211,7 +211,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
               SizedBox(width: 8.w),
-              Text("Back", style: AppStyles.bold18white),
+              Text("Back", style: AppStyles.bold18whiteSecondary),
             ],
           ),
         ),

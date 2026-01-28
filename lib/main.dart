@@ -1,5 +1,6 @@
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_theme.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/chat_bot_screen.dart';
 import 'package:ar_chem_lab/presentation/home/home_screen.dart';
 import 'package:ar_chem_lab/presentation/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Chem Lab',
-        initialRoute: AppRoutes.homeScreen,
-        routes: {AppRoutes.onboarding: (context) => const OnboardingScreen(),
-          AppRoutes.homeScreen: (context) => const HomeScreen()},
+        initialRoute: AppRoutes.onboarding,
+        routes: {
+          AppRoutes.onboarding: (context) => const OnboardingScreen(),
+          AppRoutes.homeScreen: (context) => const HomeScreen(),
+          AppRoutes.chatBotScreen: (context) => const ChatBotScreen(),
+        },
         theme: AppTheme.darkTheme,
       ),
     );
