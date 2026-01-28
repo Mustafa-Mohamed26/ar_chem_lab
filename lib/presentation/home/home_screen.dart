@@ -25,35 +25,37 @@ class HomeScreen extends StatelessWidget {
       ),
       child: Scaffold(
         bottomNavigationBar: GradientBottomNavBar(),
-        body: Padding(
-          padding: AppPadding.screen,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              UserHeader(
-                imageUrl: AppAssets.userImage,
-                title: "HAY MARK",
-                subtitle: "Ready for today's experiment?",
-              ),
-              SizedBox(height: 20.h),
-              GradientContainer(
-                title: "Periodic Table",
-                subtitle: "Explore all chemical elements visually",
-                imagePath: AppAssets.atomImage,
-                subImagePath: AppAssets.rightArrowImage,
-                onTap: () {},
-              ),
-              SizedBox(height: 20.h),
-              GradientContainer(
-                title: "AI Suggestions",
-                subtitle: "Personalized chemistry recommendations",
-                imagePath: AppAssets.testTubeImage,
-                subImagePath: AppAssets.rightArrowImage,
-                onTap: () {},
-              ),
-              SizedBox(height: 20.h),
-              Text("Most Viewed Elements", style: AppStyles.bold32whitePrimary),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: AppPadding.screen,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UserHeader(
+                  imageUrl: AppAssets.userImage,
+                  title: "HAY MARK",
+                  subtitle: "Ready for today's experiment?",
+                ),
+                SizedBox(height: 20.h),
+                GradientContainer(
+                  title: "Periodic Table",
+                  subtitle: "Explore all chemical elements visually",
+                  imagePath: AppAssets.atomImage,
+                  subImagePath: AppAssets.rightArrowImage,
+                  onTap: () {},
+                ),
+                SizedBox(height: 20.h),
+                GradientContainer(
+                  title: "AI Suggestions",
+                  subtitle: "Personalized chemistry recommendations",
+                  imagePath: AppAssets.testTubeImage,
+                  subImagePath: AppAssets.rightArrowImage,
+                  onTap: () {},
+                ),
+                SizedBox(height: 20.h),
+                Text("Most Viewed Elements", style: AppStyles.bold32whitePrimary),
+              ],
+            ),
           ),
         ),
       ),
