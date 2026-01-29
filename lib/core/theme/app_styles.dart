@@ -40,6 +40,20 @@ class AppStyles {
     color: AppColors.white,
   );
 
+  static TextStyle bold12whitePrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle bold10whitePrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 10.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
   static TextStyle regular24whitePrimary = TextStyle(
     fontFamily: 'AgencyFB',
     fontSize: 24.sp,

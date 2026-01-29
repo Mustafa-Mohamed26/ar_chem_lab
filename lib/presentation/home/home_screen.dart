@@ -1,4 +1,5 @@
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
+import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
@@ -42,7 +43,9 @@ class HomeScreen extends StatelessWidget {
                   subtitle: "Explore all chemical elements visually",
                   imagePath: AppAssets.atomImage,
                   subImagePath: AppAssets.rightArrowImage,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.periodicTableScreen);
+                  },
                 ),
                 SizedBox(height: 20.h),
                 GradientContainer(
@@ -53,7 +56,10 @@ class HomeScreen extends StatelessWidget {
                   onTap: () {},
                 ),
                 SizedBox(height: 20.h),
-                Text("Most Viewed Elements", style: AppStyles.bold32whitePrimary),
+                Text(
+                  "Most Viewed Elements",
+                  style: AppStyles.bold32whitePrimary,
+                ),
               ],
             ),
           ),

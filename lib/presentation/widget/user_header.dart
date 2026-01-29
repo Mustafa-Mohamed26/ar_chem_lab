@@ -1,4 +1,3 @@
-import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
 import 'package:flutter/material.dart';
