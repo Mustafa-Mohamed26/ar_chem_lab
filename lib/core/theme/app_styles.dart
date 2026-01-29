@@ -4,6 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppStyles {
   // --- PRIMARY STYLES (Agency FB) ---
+
+  static TextStyle bold40whitePrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 40.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
   
   static TextStyle bold35whitePrimary = TextStyle(
     fontFamily: 'AgencyFB',
@@ -47,6 +54,13 @@ class AppStyles {
     color: AppColors.white,
   );
 
+  static TextStyle bold24cyanAccentPrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 24.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.cyanAccent
+  );
+
   // --- SECONDARY STYLES (Nirmala UI) ---
 
   static TextStyle regular18whiteSecondary = TextStyle(
@@ -68,6 +82,27 @@ class AppStyles {
     fontSize: 13.sp,
     fontWeight: FontWeight.normal,
     color: AppColors.skyBlue,
+  );
+
+  static TextStyle regular10whiteSecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 10.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.white,
+  );
+
+  static TextStyle regular12graySecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.grey,
+  );
+
+  static TextStyle regular12whiteSecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.white,
   );
 
   static TextStyle regular16WiteSecondary = TextStyle(

@@ -27,7 +27,13 @@ class GradientBottomNavBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  navItem(icon: Icons.history, label: "History", onTap: () {}),
+                  navItem(
+                    icon: Icons.history,
+                    label: "History",
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.historyScreen);
+                    },
+                  ),
                   navItem(
                     icon: Icons.auto_awesome,
                     label: "Chatbot",

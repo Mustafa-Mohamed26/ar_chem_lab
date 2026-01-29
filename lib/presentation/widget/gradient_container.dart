@@ -44,7 +44,7 @@ class GradientContainer extends StatelessWidget {
             color: AppColors.darkBlue,
             borderRadius: BorderRadius.circular(26),
           ),
-          padding: EdgeInsets.all(12.w),
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
           child: Row(
             children: [
               Expanded(
@@ -52,14 +52,15 @@ class GradientContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: .center,
                   children: [
-                    Text(title, style: AppStyles.bold35whitePrimary),
+                    Text(title, style: AppStyles.bold40whitePrimary),
                     Text(subtitle ?? "", style: AppStyles.regular18whiteSecondary),
                   ],
                 ),
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(imagePath ?? ""),
+                  Image.asset(imagePath ?? "",),
                   Image.asset(subImagePath ?? ""),
                 ],
               )

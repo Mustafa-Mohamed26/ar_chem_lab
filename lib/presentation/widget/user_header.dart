@@ -1,5 +1,6 @@
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
+import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // Assuming you're using screenutil for .w
 
@@ -40,24 +41,7 @@ class UserHeader extends StatelessWidget {
               ],
             ),
             Spacer(),
-            if (showBackButton)
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(18.r)),
-                  gradient: LinearGradient(
-                    colors: [ AppColors.royalBlue, AppColors.electricBlue,],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                ),
-                child: IconButton(
-                  icon: Icon(Icons.arrow_forward, color: Colors.white),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
+            if (showBackButton) const GradientBackButton(),
           ],
         ),
       ],
