@@ -11,7 +11,7 @@ class AppStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
-  
+
   static TextStyle bold35whitePrimary = TextStyle(
     fontFamily: 'AgencyFB',
     fontSize: 35.sp,
@@ -60,7 +60,14 @@ class AppStyles {
     fontWeight: FontWeight.normal,
     color: AppColors.white,
   );
-  
+
+  static TextStyle bold24whitePrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 24.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
   static TextStyle medium12whitePrimary = TextStyle(
     fontFamily: 'AgencyFB',
     fontSize: 12.sp,
@@ -72,7 +79,21 @@ class AppStyles {
     fontFamily: 'AgencyFB',
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
-    color: AppColors.cyanAccent
+    color: AppColors.cyanAccent,
+  );
+
+  static TextStyle bold16whitePrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle bold18whitePrimary = TextStyle(
+    fontFamily: 'AgencyFB',
+    fontSize: 18.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
   );
 
   // --- SECONDARY STYLES (Nirmala UI) ---
@@ -125,4 +146,27 @@ class AppStyles {
     fontWeight: FontWeight.normal,
     color: AppColors.white,
   );
+
+  static TextStyle bold14whiteSecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle bold16whiteSecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle regular14LightBlueSecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 14.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.skyBlue,
+  );
+
+  
 }

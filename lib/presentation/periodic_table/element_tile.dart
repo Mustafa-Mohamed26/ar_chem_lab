@@ -1,4 +1,5 @@
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
+import 'package:ar_chem_lab/core/services/view_history_service.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
@@ -15,6 +16,7 @@ class ElementTile extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
+        ViewHistoryService().addElement(element);
         Navigator.pushNamed(
           context,
           AppRoutes.elementDetailScreen,

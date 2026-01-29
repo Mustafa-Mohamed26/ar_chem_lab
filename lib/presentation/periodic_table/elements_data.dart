@@ -34,6 +34,13 @@ class ElementData {
       summary:
           "Hydrogen is a chemical element with symbol H and atomic number 1. With a standard atomic weight of 1.008, hydrogen is the lightest element on the periodic table.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Hydrogenium",
+      density: "0.0000899",
+      electrons: 1,
+      protons: 1,
+      neutrons: 0,
+      valence: "1",
+      model3DPath: "assets/3d/hydrogen.glb",
     ),
     ElementModel(
       atomicNumber: 2,
@@ -48,6 +55,12 @@ class ElementData {
       summary:
           "Helium is a chemical element with symbol He and atomic number 2. It is a colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas group in the periodic table.",
       color: getColor('noble gas'),
+      latinName: "Helium",
+      density: "0.0001786",
+      electrons: 2,
+      protons: 2,
+      neutrons: 2,
+      valence: "0",
     ),
     ElementModel(
       atomicNumber: 3,
@@ -62,6 +75,12 @@ class ElementData {
       summary:
           "Lithium is a chemical element with symbol Li and atomic number 3. It is a soft, silvery-white alkali metal. Under standard conditions, it is the lightest metal and the lightest solid element.",
       color: getColor('alkali metal'),
+      latinName: "Lithium",
+      density: "0.534",
+      electrons: 3,
+      protons: 3,
+      neutrons: 4,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 4,
@@ -76,6 +95,12 @@ class ElementData {
       summary:
           "Beryllium is a chemical element with symbol Be and atomic number 4. It is a relatively rare element in the universe, usually occurring as a product of the spallation of larger atomic nuclei that have collided with cosmic rays.",
       color: getColor('alkaline earth metal'),
+      latinName: "Beryllium",
+      density: "1.85",
+      electrons: 4,
+      protons: 4,
+      neutrons: 5,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 5,
@@ -90,6 +115,12 @@ class ElementData {
       summary:
           "Boron is a chemical element with symbol B and atomic number 5. Because boron is produced entirely by cosmic ray spallation and not by stellar nucleosynthesis, it is a low-abundance element in the Solar system and in the Earth's crust.",
       color: getColor('metalloid'),
+      latinName: "Borium",
+      density: "2.08",
+      electrons: 5,
+      protons: 5,
+      neutrons: 6,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 6,
@@ -104,6 +135,12 @@ class ElementData {
       summary:
           "Carbon is a chemical element with symbol C and atomic number 6. It is nonmetallic and tetravalent—making four electrons available to form covalent chemical bonds.",
       color: getColor('polyatomic nonmetal'),
+      latinName: "Carboneum",
+      density: "2.267",
+      electrons: 6,
+      protons: 6,
+      neutrons: 6,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 7,
@@ -118,6 +155,12 @@ class ElementData {
       summary:
           "Nitrogen is a chemical element with symbol N and atomic number 7. It was first discovered and isolated by Scottish physician Daniel Rutherford in 1772.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Nitrogenium",
+      density: "0.0012506",
+      electrons: 7,
+      protons: 7,
+      neutrons: 7,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 8,
@@ -132,6 +175,12 @@ class ElementData {
       summary:
           "Oxygen is a chemical element with symbol O and atomic number 8. It is a member of the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing agent that readily forms oxides with most elements as well as with other compounds.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Oxygenium",
+      density: "0.001429",
+      electrons: 8,
+      protons: 8,
+      neutrons: 8,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 9,
@@ -146,6 +195,12 @@ class ElementData {
       summary:
           "Fluorine is a chemical element with symbol F and atomic number 9. It is the lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard conditions.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Fluorum",
+      density: "0.001696",
+      electrons: 9,
+      protons: 9,
+      neutrons: 10,
+      valence: "7",
     ),
     ElementModel(
       atomicNumber: 10,
@@ -160,6 +215,12 @@ class ElementData {
       summary:
           "Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas. Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about two-thirds the density of air.",
       color: getColor('noble gas'),
+      latinName: "Neon",
+      density: "0.0009002",
+      electrons: 10,
+      protons: 10,
+      neutrons: 10,
+      valence: "0",
     ),
     ElementModel(
       atomicNumber: 11,
@@ -174,6 +235,12 @@ class ElementData {
       summary:
           "Sodium is a chemical element with symbol Na and atomic number 11. It is a soft, silvery-white, highly reactive metal.",
       color: getColor('alkali metal'),
+      latinName: "Natrium",
+      density: "0.968",
+      electrons: 11,
+      protons: 11,
+      neutrons: 12,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 12,
@@ -188,6 +255,12 @@ class ElementData {
       summary:
           "Magnesium is a chemical element with symbol Mg and atomic number 12. It is a shiny gray solid which bears a close physical resemblance to the other five elements in the second column (group 2, or alkaline earth metals) of the periodic table.",
       color: getColor('alkaline earth metal'),
+      latinName: "Magnesium",
+      density: "1.738",
+      electrons: 12,
+      protons: 12,
+      neutrons: 12,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 13,
@@ -202,6 +275,12 @@ class ElementData {
       summary:
           "Aluminium (or aluminum; see spelling differences) is a chemical element in the boron group with symbol Al and atomic number 13. It is a silvery-white, soft, nonmagnetic, ductile metal.",
       color: getColor('post-transition metal'),
+      latinName: "Aluminium",
+      density: "2.70",
+      electrons: 13,
+      protons: 13,
+      neutrons: 14,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 14,
@@ -216,6 +295,12 @@ class ElementData {
       summary:
           "Silicon is a chemical element with symbol Si and atomic number 14. Less reactive than its chemical analog carbon, the nonmetal is tetravalent in all stable compounds.",
       color: getColor('metalloid'),
+      latinName: "Silicium",
+      density: "2.3290",
+      electrons: 14,
+      protons: 14,
+      neutrons: 14,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 15,
@@ -230,6 +315,12 @@ class ElementData {
       summary:
           "Phosphorus is a chemical element with symbol P and atomic number 15. Elemental phosphorus exists in two major forms, white phosphorus and red phosphorus, but because it is highly reactive, phosphorus is never found as a free element on Earth.",
       color: getColor('polyatomic nonmetal'),
+      latinName: "Phosphorus",
+      density: "1.823",
+      electrons: 15,
+      protons: 15,
+      neutrons: 16,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 16,
@@ -244,6 +335,12 @@ class ElementData {
       summary:
           "Sulfur or sulphur is a chemical element with symbol S and atomic number 16. It is an abundant, multivalent and nonmetallic.",
       color: getColor('polyatomic nonmetal'),
+      latinName: "Sulfur",
+      density: "2.07",
+      electrons: 16,
+      protons: 16,
+      neutrons: 16,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 17,
@@ -258,6 +355,12 @@ class ElementData {
       summary:
           "Chlorine is a chemical element with symbol Cl and atomic number 17. The second-lightest of the halogens, it appears between fluorine and bromine in the periodic table and its properties are mostly intermediate between them.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Chlorum",
+      density: "0.0032",
+      electrons: 17,
+      protons: 17,
+      neutrons: 18,
+      valence: "7",
     ),
     ElementModel(
       atomicNumber: 18,
@@ -272,6 +375,12 @@ class ElementData {
       summary:
           "Argon is a chemical element with symbol Ar and atomic number 18. It is in the noble gas group of the periodic table. Argon is the third-most abundant gas in the Earth's atmosphere, at 0.934% (9340 ppmv).",
       color: getColor('noble gas'),
+      latinName: "Argon",
+      density: "0.00178",
+      electrons: 18,
+      protons: 18,
+      neutrons: 22,
+      valence: "0",
     ),
     ElementModel(
       atomicNumber: 19,
@@ -286,6 +395,12 @@ class ElementData {
       summary:
           "Potassium is a chemical element with symbol K and atomic number 19. It was first isolated from potash, the ashes of plants, from which its name derives.",
       color: getColor('alkali metal'),
+      latinName: "Kalium",
+      density: "0.862",
+      electrons: 19,
+      protons: 19,
+      neutrons: 20,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 20,
@@ -300,6 +415,12 @@ class ElementData {
       summary:
           "Calcium is a chemical element with symbol Ca and atomic number 20. Calcium is a soft gray alkaline earth metal, fifth-most-abundant element by mass in the Earth's crust.",
       color: getColor('alkaline earth metal'),
+      latinName: "Calx",
+      density: "1.55",
+      electrons: 20,
+      protons: 20,
+      neutrons: 20,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 21,
@@ -314,6 +435,12 @@ class ElementData {
       summary:
           "Scandium is a chemical element with symbol Sc and atomic number 21. A silvery-white metallic d-block element, it has historically been classified as a rare-earth element, together with yttrium and the lanthanides.",
       color: getColor('transition metal'),
+      latinName: "Scandia",
+      density: "2.99",
+      electrons: 21,
+      protons: 21,
+      neutrons: 24,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 22,
@@ -328,6 +455,12 @@ class ElementData {
       summary:
           "Titanium is a chemical element with symbol Ti and atomic number 22. It is a lustrous transition metal with a silver color, low density, and high strength.",
       color: getColor('transition metal'),
+      latinName: "Titanium",
+      density: "4.5",
+      electrons: 22,
+      protons: 22,
+      neutrons: 26,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 23,
@@ -342,6 +475,12 @@ class ElementData {
       summary:
           "Vanadium is a chemical element with symbol V and atomic number 23. It is a hard, silvery-grey, ductile, malleable transition metal.",
       color: getColor('transition metal'),
+      latinName: "Vanadium",
+      density: "6.11",
+      electrons: 23,
+      protons: 23,
+      neutrons: 28,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 24,
@@ -356,6 +495,12 @@ class ElementData {
       summary:
           "Chromium is a chemical element with symbol Cr and atomic number 24. It is the first element in group 6.",
       color: getColor('transition metal'),
+      latinName: "Chromium",
+      density: "7.15",
+      electrons: 24,
+      protons: 24,
+      neutrons: 28,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 25,
@@ -370,6 +515,12 @@ class ElementData {
       summary:
           "Manganese is a chemical element with symbol Mn and atomic number 25. It is not found as a free element in nature; it is often found in minerals in combination with iron.",
       color: getColor('transition metal'),
+      latinName: "Manganum",
+      density: "7.21",
+      electrons: 25,
+      protons: 25,
+      neutrons: 30,
+      valence: "7",
     ),
     ElementModel(
       atomicNumber: 26,
@@ -384,6 +535,12 @@ class ElementData {
       summary:
           "Iron is a chemical element with symbol Fe (from Latin: ferrum) and atomic number 26. It is a metal that belongs to the first transition series and group 8 of the periodic table.",
       color: getColor('transition metal'),
+      latinName: "Ferrum",
+      density: "7.874",
+      electrons: 26,
+      protons: 26,
+      neutrons: 30,
+      valence: "2,3",
     ),
     ElementModel(
       atomicNumber: 27,
@@ -398,6 +555,12 @@ class ElementData {
       summary:
           "Cobalt is a chemical element with symbol Co and atomic number 27. Like nickel, cobalt is found in the Earth's crust only in chemically combined form, save for small deposits found in alloys of natural meteoric iron.",
       color: getColor('transition metal'),
+      latinName: "Cobaltum",
+      density: "8.90",
+      electrons: 27,
+      protons: 27,
+      neutrons: 32,
+      valence: "2,3",
     ),
     ElementModel(
       atomicNumber: 28,
@@ -412,6 +575,12 @@ class ElementData {
       summary:
           "Nickel is a chemical element with symbol Ni and atomic number 28. It is a silvery-white lustrous metal with a slight golden tinge.",
       color: getColor('transition metal'),
+      latinName: "Niccolum",
+      density: "8.908",
+      electrons: 28,
+      protons: 28,
+      neutrons: 31,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 29,
@@ -426,6 +595,12 @@ class ElementData {
       summary:
           "Copper is a chemical element with symbol Cu (from Latin: cuprum) and atomic number 29. It is a soft, malleable, and ductile metal with very high thermal and electrical conductivity.",
       color: getColor('transition metal'),
+      latinName: "Cuprum",
+      density: "8.96",
+      electrons: 29,
+      protons: 29,
+      neutrons: 34,
+      valence: "1,2",
     ),
     ElementModel(
       atomicNumber: 30,
@@ -440,6 +615,12 @@ class ElementData {
       summary:
           "Zinc is a chemical element with symbol Zn and atomic number 30. It is the first element in group 12 of the periodic table.",
       color: getColor('transition metal'),
+      latinName: "Zincum",
+      density: "7.14",
+      electrons: 30,
+      protons: 30,
+      neutrons: 35,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 31,
@@ -454,6 +635,12 @@ class ElementData {
       summary:
           "Gallium is a chemical element with symbol Ga and atomic number 31. It is in the boron group.",
       color: getColor('post-transition metal'),
+      latinName: "Gallium",
+      density: "5.91",
+      electrons: 31,
+      protons: 31,
+      neutrons: 39,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 32,
@@ -468,6 +655,12 @@ class ElementData {
       summary:
           "Germanium is a chemical element with symbol Ge and atomic number 32. It is a lustrous, hard-brittle, grayish-white metalloid in the carbon group, chemically similar to its group neighbors silicon and tin.",
       color: getColor('metalloid'),
+      latinName: "Germanium",
+      density: "5.323",
+      electrons: 32,
+      protons: 32,
+      neutrons: 41,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 33,
@@ -482,6 +675,12 @@ class ElementData {
       summary:
           "Arsenic is a chemical element with symbol As and atomic number 33. Arsenic occurs in many minerals, usually in combination with sulfur and metals, but also as a pure elemental crystal.",
       color: getColor('metalloid'),
+      latinName: "Arsenicum",
+      density: "5.727",
+      electrons: 33,
+      protons: 33,
+      neutrons: 42,
+      valence: "3,5",
     ),
     ElementModel(
       atomicNumber: 34,
@@ -496,6 +695,12 @@ class ElementData {
       summary:
           "Selenium is a chemical element with symbol Se and atomic number 34. It is a nonmetal with properties that are intermediate between the elements above and below in the periodic table, sulfur and tellurium.",
       color: getColor('polyatomic nonmetal'),
+      latinName: "Selenium",
+      density: "4.81",
+      electrons: 34,
+      protons: 34,
+      neutrons: 45,
+      valence: "2,4,6",
     ),
     ElementModel(
       atomicNumber: 35,
@@ -510,6 +715,12 @@ class ElementData {
       summary:
           "Bromine is a chemical element with symbol Br and atomic number 35. It is the third-lightest halogen, and is a fuming red-brown liquid at room temperature that evaporates readily to form a similar-coloured gas.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Bromum",
+      density: "3.1028",
+      electrons: 35,
+      protons: 35,
+      neutrons: 45,
+      valence: "1,3,5,7",
     ),
     ElementModel(
       atomicNumber: 36,
@@ -524,6 +735,12 @@ class ElementData {
       summary:
           "Krypton is a chemical element with symbol Kr and atomic number 36. It is a member of group 18 (noble gases) elements.",
       color: getColor('noble gas'),
+      latinName: "Krypton",
+      density: "0.00375",
+      electrons: 36,
+      protons: 36,
+      neutrons: 48,
+      valence: "0",
     ),
     ElementModel(
       atomicNumber: 37,
@@ -538,6 +755,12 @@ class ElementData {
       summary:
           "Rubidium is a chemical element with symbol Rb and atomic number 37. Rubidium is a soft, silvery-white metallic element of the alkali metal group.",
       color: getColor('alkali metal'),
+      latinName: "Rubidium",
+      density: "1.532",
+      electrons: 37,
+      protons: 37,
+      neutrons: 48,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 38,
@@ -552,6 +775,12 @@ class ElementData {
       summary:
           "Strontium is a chemical element with symbol Sr and atomic number 38. An alkaline earth metal, strontium is a soft silver-white yellowish metallic element that is highly chemically reactive.",
       color: getColor('alkaline earth metal'),
+      latinName: "Strontium",
+      density: "2.64",
+      electrons: 38,
+      protons: 38,
+      neutrons: 50,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 39,
@@ -566,6 +795,12 @@ class ElementData {
       summary:
           "Yttrium is a chemical element with symbol Y and atomic number 39. It is a silvery-metallic transition metal chemically similar to the lanthanides and has often been classified as a \"rare-earth element\".",
       color: getColor('transition metal'),
+      latinName: "Yttrium",
+      density: "4.47",
+      electrons: 39,
+      protons: 39,
+      neutrons: 50,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 40,
@@ -580,6 +815,12 @@ class ElementData {
       summary:
           "Zirconium is a chemical element with symbol Zr and atomic number 40. The name zirconium is taken from the name of the mineral zircon, the most important source of zirconium.",
       color: getColor('transition metal'),
+      latinName: "Zirconium",
+      density: "6.52",
+      electrons: 40,
+      protons: 40,
+      neutrons: 51,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 41,
@@ -594,6 +835,12 @@ class ElementData {
       summary:
           "Niobium, formerly columbium, is a chemical element with symbol Nb (formerly Cb) and atomic number 41. It is a soft, grey, crystalline, ductile transition metal.",
       color: getColor('transition metal'),
+      latinName: "Niobium",
+      density: "8.57",
+      electrons: 41,
+      protons: 41,
+      neutrons: 52,
+      valence: "3,5",
     ),
     ElementModel(
       atomicNumber: 42,
@@ -608,6 +855,12 @@ class ElementData {
       summary:
           "Molybdenum is a chemical element with symbol Mo and atomic number 42. The name is from Neo-Latin molybdaenum, from Ancient Greek Μόλυβδος molybdos, meaning lead.",
       color: getColor('transition metal'),
+      latinName: "Molybdenum",
+      density: "10.2",
+      electrons: 42,
+      protons: 42,
+      neutrons: 56,
+      valence: "3,4,5,6",
     ),
     ElementModel(
       atomicNumber: 43,
@@ -622,6 +875,12 @@ class ElementData {
       summary:
           "Technetium is a chemical element with symbol Tc and atomic number 43. It is the lightest element whose isotopes are all radioactive, none of which is stable other than the fully ionized state of 97Tc.",
       color: getColor('transition metal'),
+      latinName: "Technetium",
+      density: "11.0",
+      electrons: 43,
+      protons: 43,
+      neutrons: 55,
+      valence: "4,7",
     ),
     ElementModel(
       atomicNumber: 44,
@@ -636,6 +895,12 @@ class ElementData {
       summary:
           "Ruthenium is a chemical element with symbol Ru and atomic number 44. It is a rare transition metal belonging to the platinum group of the periodic table.",
       color: getColor('transition metal'),
+      latinName: "Ruthenium",
+      density: "12.45",
+      electrons: 44,
+      protons: 44,
+      neutrons: 57,
+      valence: "3,4,8",
     ),
     ElementModel(
       atomicNumber: 45,
@@ -650,6 +915,12 @@ class ElementData {
       summary:
           "Rhodium is a chemical element with symbol Rh and atomic number 45. It is a rare, silvery-white, hard, and chemically inert transition metal.",
       color: getColor('transition metal'),
+      latinName: "Rhodium",
+      density: "12.41",
+      electrons: 45,
+      protons: 45,
+      neutrons: 58,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 46,
@@ -664,6 +935,12 @@ class ElementData {
       summary:
           "Palladium is a chemical element with symbol Pd and atomic number 46. It is a rare and lustrous silvery-white metal discovered in 1803 by the English chemist William Hyde Wollaston.",
       color: getColor('transition metal'),
+      latinName: "Palladium",
+      density: "12.02",
+      electrons: 46,
+      protons: 46,
+      neutrons: 60,
+      valence: "2,4",
     ),
     ElementModel(
       atomicNumber: 47,
@@ -678,6 +955,12 @@ class ElementData {
       summary:
           "Silver is a chemical element with symbol Ag and atomic number 47. A soft, white, lustrous transition metal, it exhibits the highest electrical conductivity, thermal conductivity, and reflectivity of any metal.",
       color: getColor('transition metal'),
+      latinName: "Argentum",
+      density: "10.49",
+      electrons: 47,
+      protons: 47,
+      neutrons: 61,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 48,
@@ -692,6 +975,12 @@ class ElementData {
       summary:
           "Cadmium is a chemical element with symbol Cd and atomic number 48. This soft, bluish-white metal is chemically similar to the two other stable metals in group 12, zinc and mercury.",
       color: getColor('transition metal'),
+      latinName: "Cadmium",
+      density: "8.65",
+      electrons: 48,
+      protons: 48,
+      neutrons: 64,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 49,
@@ -706,6 +995,12 @@ class ElementData {
       summary:
           "Indium is a chemical element with symbol In and atomic number 49. It is a post-transition metal that is more alkali than gallium and less alkali than thallium.",
       color: getColor('post-transition metal'),
+      latinName: "Indium",
+      density: "7.31",
+      electrons: 49,
+      protons: 49,
+      neutrons: 66,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 50,
@@ -720,6 +1015,12 @@ class ElementData {
       summary:
           "Tin is a chemical element with the symbol Sn (from Latin: stannum) and atomic number 50. It is a main group metal in group 14 of the periodic table.",
       color: getColor('post-transition metal'),
+      latinName: "Stannum",
+      density: "7.289",
+      electrons: 50,
+      protons: 50,
+      neutrons: 70,
+      valence: "2,4",
     ),
     ElementModel(
       atomicNumber: 51,
@@ -734,6 +1035,12 @@ class ElementData {
       summary:
           "Antimony is a chemical element with symbol Sb (from Latin: stibium) and atomic number 51. A lustrous gray metalloid, it is found in nature mainly as the sulfide mineral stibnite (Sb2S3).",
       color: getColor('metalloid'),
+      latinName: "Stibium",
+      density: "6.69",
+      electrons: 51,
+      protons: 51,
+      neutrons: 70,
+      valence: "3,5",
     ),
     ElementModel(
       atomicNumber: 52,
@@ -748,6 +1055,12 @@ class ElementData {
       summary:
           "Tellurium is a chemical element with symbol Te and atomic number 52. It is a brittle, mildly toxic, rare, silver-white metalloid.",
       color: getColor('metalloid'),
+      latinName: "Tellus",
+      density: "6.24",
+      electrons: 52,
+      protons: 52,
+      neutrons: 76,
+      valence: "2,4,6",
     ),
     ElementModel(
       atomicNumber: 53,
@@ -762,6 +1075,12 @@ class ElementData {
       summary:
           "Iodine is a chemical element with symbol I and atomic number 53. The heaviest of the stable halogens, it exists as a lustrous, purple-black non-metallic solid at standard conditions.",
       color: getColor('diatomic nonmetal'),
+      latinName: "Iodium",
+      density: "4.93",
+      electrons: 53,
+      protons: 53,
+      neutrons: 74,
+      valence: "-1,1,3,5,7",
     ),
     ElementModel(
       atomicNumber: 54,
@@ -776,6 +1095,12 @@ class ElementData {
       summary:
           "Xenon is a chemical element with symbol Xe and atomic number 54. It is a colorless, dense, odorless noble gas found in the Earth's atmosphere in trace amounts.",
       color: getColor('noble gas'),
+      latinName: "Xenon",
+      density: "0.00589",
+      electrons: 54,
+      protons: 54,
+      neutrons: 77,
+      valence: "0",
     ),
     ElementModel(
       atomicNumber: 55,
@@ -790,6 +1115,12 @@ class ElementData {
       summary:
           "Cesium is a chemical element with symbol Cs and atomic number 55. It is a soft, silvery-gold alkali metal with a melting point of 28.5 °C (83.3 °F), which makes it one of only five elemental metals that are liquid at or near room temperature.",
       color: getColor('alkali metal'),
+      latinName: "Caesium",
+      density: "1.879",
+      electrons: 55,
+      protons: 55,
+      neutrons: 78,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 56,
@@ -804,6 +1135,12 @@ class ElementData {
       summary:
           "Barium is a chemical element with symbol Ba and atomic number 56. It is the fifth element in group 2 and is a soft, silvery alkaline earth metal.",
       color: getColor('alkaline earth metal'),
+      latinName: "Barium",
+      density: "3.51",
+      electrons: 56,
+      protons: 56,
+      neutrons: 81,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 57,
@@ -818,6 +1155,12 @@ class ElementData {
       summary:
           "Lanthanum is a chemical element with symbol La and atomic number 57. It is a soft, ductile, silvery-white metal that tarnishes rapidly when exposed to air.",
       color: getColor('lanthanide'),
+      latinName: "Lanthanum",
+      density: "6.162",
+      electrons: 57,
+      protons: 57,
+      neutrons: 82,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 58,
@@ -832,6 +1175,12 @@ class ElementData {
       summary:
           "Cerium is a chemical element with symbol Ce and atomic number 58. Cerium is a soft, ductile, and silvery-white metal that tarnishes when exposed to air.",
       color: getColor('lanthanide'),
+      latinName: "Cerium",
+      density: "6.689",
+      electrons: 58,
+      protons: 58,
+      neutrons: 82,
+      valence: "3,4",
     ),
     ElementModel(
       atomicNumber: 59,
@@ -846,6 +1195,12 @@ class ElementData {
       summary:
           "Praseodymium is a chemical element with symbol Pr and atomic number 59. Praseodymium is a soft, silvery, malleable and ductile metal in the lanthanide group.",
       color: getColor('lanthanide'),
+      latinName: "Praseodymium",
+      density: "6.77",
+      electrons: 59,
+      protons: 59,
+      neutrons: 82,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 60,
@@ -860,6 +1215,12 @@ class ElementData {
       summary:
           "Neodymium is a chemical element with symbol Nd and atomic number 60. Neodymium is a soft, silvery metal that tarnishes in air.",
       color: getColor('lanthanide'),
+      latinName: "Neodymium",
+      density: "7.01",
+      electrons: 60,
+      protons: 60,
+      neutrons: 82,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 61,
@@ -874,6 +1235,12 @@ class ElementData {
       summary:
           "Promethium is a chemical element with symbol Pm and atomic number 61. All of its isotopes are radioactive; it is extremely rare, with only about 500-600 grams naturally occurring in Earth's crust at any given time.",
       color: getColor('lanthanide'),
+      latinName: "Promethium",
+      density: "6.475",
+      electrons: 61,
+      protons: 61,
+      neutrons: 84,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 62,
@@ -888,6 +1255,12 @@ class ElementData {
       summary:
           "Samarium is a chemical element with symbol Sm and atomic number 62. It is a moderately hard silvery metal that readily oxidizes in air.",
       color: getColor('lanthanide'),
+      latinName: "Samarium",
+      density: "7.353",
+      electrons: 62,
+      protons: 62,
+      neutrons: 90,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 63,
@@ -902,6 +1275,12 @@ class ElementData {
       summary:
           "Europium is a chemical element with symbol Eu and atomic number 63. It was isolated in 1901 and is named after the continent of Europe.",
       color: getColor('lanthanide'),
+      latinName: "Europium",
+      density: "5.24",
+      electrons: 63,
+      protons: 63,
+      neutrons: 90,
+      valence: "2,3",
     ),
     ElementModel(
       atomicNumber: 64,
@@ -916,6 +1295,12 @@ class ElementData {
       summary:
           "Gadolinium is a chemical element with symbol Gd and atomic number 64. Gadolinium is a silvery-white metal when oxidation is removed.",
       color: getColor('lanthanide'),
+      latinName: "Gadolinium",
+      density: "7.9",
+      electrons: 64,
+      protons: 64,
+      neutrons: 93,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 65,
@@ -930,6 +1315,12 @@ class ElementData {
       summary:
           "Terbium is a chemical element with symbol Tb and atomic number 65. It is a silvery-white, rare earth metal that is malleable, ductile, and soft enough to be cut with a knife.",
       color: getColor('lanthanide'),
+      latinName: "Terbium",
+      density: "8.23",
+      electrons: 65,
+      protons: 65,
+      neutrons: 94,
+      valence: "3,4",
     ),
     ElementModel(
       atomicNumber: 66,
@@ -944,6 +1335,12 @@ class ElementData {
       summary:
           "Dysprosium is a chemical element with symbol Dy and atomic number 66. It is a rare earth element with a metallic silver luster.",
       color: getColor('lanthanide'),
+      latinName: "Dysprosium",
+      density: "8.55",
+      electrons: 66,
+      protons: 66,
+      neutrons: 97,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 67,
@@ -958,6 +1355,12 @@ class ElementData {
       summary:
           "Holmium is a chemical element with symbol Ho and atomic number 67. Part of the lanthanide series, holmium is a rare earth element.",
       color: getColor('lanthanide'),
+      latinName: "Holmium",
+      density: "8.79",
+      electrons: 67,
+      protons: 67,
+      neutrons: 98,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 68,
@@ -972,6 +1375,12 @@ class ElementData {
       summary:
           "Erbium is a chemical element with symbol Er and atomic number 68. A silvery-white solid metal when artificially isolated, natural erbium is always found in chemical combination with other elements.",
       color: getColor('lanthanide'),
+      latinName: "Erbium",
+      density: "9.07",
+      electrons: 68,
+      protons: 68,
+      neutrons: 99,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 69,
@@ -986,6 +1395,12 @@ class ElementData {
       summary:
           "Thulium is a chemical element with symbol Tm and atomic number 69. It is the thirteenth and third-last element in the lanthanide series.",
       color: getColor('lanthanide'),
+      latinName: "Thulium",
+      density: "9.32",
+      electrons: 69,
+      protons: 69,
+      neutrons: 100,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 70,
@@ -1000,6 +1415,12 @@ class ElementData {
       summary:
           "Ytterbium is a chemical element with symbol Yb and atomic number 70. It is the fourteenth and penultimate element in the lanthanide series, which is the basis of the relative stability of its +2 oxidation state.",
       color: getColor('lanthanide'),
+      latinName: "Ytterbium",
+      density: "6.9",
+      electrons: 70,
+      protons: 70,
+      neutrons: 103,
+      valence: "2,3",
     ),
     ElementModel(
       atomicNumber: 71,
@@ -1014,6 +1435,12 @@ class ElementData {
       summary:
           "Lutetium is a chemical element with symbol Lu and atomic number 71. It is the last element in the lanthanide series, and arguably the first element of the 6th-period transition metals.",
       color: getColor('lanthanide'),
+      latinName: "Lutetium",
+      density: "9.7",
+      electrons: 71,
+      protons: 71,
+      neutrons: 104,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 72,
@@ -1028,6 +1455,12 @@ class ElementData {
       summary:
           "Hafnium is a chemical element with symbol Hf and atomic number 72. A lustrous, silvery gray, tetravalent transition metal, hafnium chemically resembles zirconium and is found in many zirconium minerals.",
       color: getColor('transition metal'),
+      latinName: "Hafnia",
+      density: "13.31",
+      electrons: 72,
+      protons: 72,
+      neutrons: 106,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 73,
@@ -1042,6 +1475,12 @@ class ElementData {
       summary:
           "Tantalum is a chemical element with symbol Ta and atomic number 73. Previously known as tantalium, it is named after Tantalus, a villain from Greek mythology.",
       color: getColor('transition metal'),
+      latinName: "Tantalum",
+      density: "16.65",
+      electrons: 73,
+      protons: 73,
+      neutrons: 108,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 74,
@@ -1056,6 +1495,12 @@ class ElementData {
       summary:
           "Tungsten is a chemical element with symbol W and atomic number 74. The name tungsten comes from the former Swedish name for the tungstate mineral scheelite, tungh sten, meaning \"heavy stone\".",
       color: getColor('transition metal'),
+      latinName: "Wolfram",
+      density: "19.3",
+      electrons: 74,
+      protons: 74,
+      neutrons: 110,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 75,
@@ -1070,6 +1515,12 @@ class ElementData {
       summary:
           "Rhenium is a chemical element with symbol Re and atomic number 75. It is a silvery-white, heavy, third-row transition metal in group 7 of the periodic table.",
       color: getColor('transition metal'),
+      latinName: "Rhenium",
+      density: "21.02",
+      electrons: 75,
+      protons: 75,
+      neutrons: 111,
+      valence: "7",
     ),
     ElementModel(
       atomicNumber: 76,
@@ -1084,6 +1535,12 @@ class ElementData {
       summary:
           "Osmium is a chemical element with symbol Os and atomic number 76. It is a hard, brittle, bluish-white transition metal in the platinum group that is found as a trace element in alloys, mostly in platinum ores.",
       color: getColor('transition metal'),
+      latinName: "Osmium",
+      density: "22.59",
+      electrons: 76,
+      protons: 76,
+      neutrons: 114,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 77,
@@ -1098,6 +1555,12 @@ class ElementData {
       summary:
           "Iridium is a chemical element with symbol Ir and atomic number 77. A very hard, brittle, silvery-white transition metal of the platinum group, iridium is considered to be the second-densest element.",
       color: getColor('transition metal'),
+      latinName: "Iridium",
+      density: "22.56",
+      electrons: 77,
+      protons: 77,
+      neutrons: 115,
+      valence: "3,4",
     ),
     ElementModel(
       atomicNumber: 78,
@@ -1112,6 +1575,12 @@ class ElementData {
       summary:
           "Platinum is a chemical element with symbol Pt and atomic number 78. It is a dense, malleable, ductile, highly unreactive, precious, silver-white transition metal.",
       color: getColor('transition metal'),
+      latinName: "Platinum",
+      density: "21.45",
+      electrons: 78,
+      protons: 78,
+      neutrons: 117,
+      valence: "2,4",
     ),
     ElementModel(
       atomicNumber: 79,
@@ -1126,6 +1595,12 @@ class ElementData {
       summary:
           "Gold is a chemical element with symbol Au and atomic number 79. In its purest form, it is a bright, slightly reddish yellow, dense, soft, malleable, and ductile metal.",
       color: getColor('transition metal'),
+      latinName: "Aurum",
+      density: "19.3",
+      electrons: 79,
+      protons: 79,
+      neutrons: 118,
+      valence: "1,3",
     ),
     ElementModel(
       atomicNumber: 80,
@@ -1140,6 +1615,12 @@ class ElementData {
       summary:
           "Mercury is a chemical element with symbol Hg and atomic number 80. It is commonly known as quicksilver and was formerly named hydrargyrum.",
       color: getColor('transition metal'),
+      latinName: "Hydrargyrum",
+      density: "13.53",
+      electrons: 80,
+      protons: 80,
+      neutrons: 121,
+      valence: "1,2",
     ),
     ElementModel(
       atomicNumber: 81,
@@ -1154,6 +1635,12 @@ class ElementData {
       summary:
           "Thallium is a chemical element with symbol Tl and atomic number 81. This soft gray post-transition metal is not found free in nature.",
       color: getColor('post-transition metal'),
+      latinName: "Thallium",
+      density: "11.85",
+      electrons: 81,
+      protons: 81,
+      neutrons: 124,
+      valence: "1,3",
     ),
     ElementModel(
       atomicNumber: 82,
@@ -1168,6 +1655,12 @@ class ElementData {
       summary:
           "Lead is a chemical element with symbol Pb and atomic number 82. It is a heavy metal that is denser than most common materials.",
       color: getColor('post-transition metal'),
+      latinName: "Plumbum",
+      density: "11.34",
+      electrons: 82,
+      protons: 82,
+      neutrons: 125,
+      valence: "2,4",
     ),
     ElementModel(
       atomicNumber: 83,
@@ -1182,6 +1675,12 @@ class ElementData {
       summary:
           "Bismuth is a chemical element with symbol Bi and atomic number 83. Bismuth, a pentavalent post-transition metal and one of the pnictogens, chemically resembles its lighter homologs arsenic and antimony.",
       color: getColor('post-transition metal'),
+      latinName: "Bisemutium",
+      density: "9.78",
+      electrons: 83,
+      protons: 83,
+      neutrons: 126,
+      valence: "3,5",
     ),
     ElementModel(
       atomicNumber: 84,
@@ -1196,6 +1695,12 @@ class ElementData {
       summary:
           "Polonium is a chemical element with symbol Po and atomic number 84. A rare and highly radioactive metal with no stable isotopes, polonium is chemically similar to selenium and tellurium.",
       color: getColor('post-transition metal'),
+      latinName: "Polonium",
+      density: "9.32",
+      electrons: 84,
+      protons: 84,
+      neutrons: 125,
+      valence: "2,4",
     ),
     ElementModel(
       atomicNumber: 85,
@@ -1210,6 +1715,12 @@ class ElementData {
       summary:
           "Astatine is a chemical element with symbol At and atomic number 85. It is the rarest naturally occurring element in the Earth's crust.",
       color: getColor('metalloid'),
+      latinName: "Astatine",
+      density: "7.0",
+      electrons: 85,
+      protons: 85,
+      neutrons: 125,
+      valence: "-1,1,3,5,7",
     ),
     ElementModel(
       atomicNumber: 86,
@@ -1224,6 +1735,12 @@ class ElementData {
       summary:
           "Radon is a chemical element with symbol Rn and atomic number 86. It is a radioactive, colorless, odorless, tasteless noble gas.",
       color: getColor('noble gas'),
+      latinName: "Radon",
+      density: "0.00973",
+      electrons: 86,
+      protons: 86,
+      neutrons: 136,
+      valence: "0",
     ),
     ElementModel(
       atomicNumber: 87,
@@ -1238,6 +1755,12 @@ class ElementData {
       summary:
           "Francium is a chemical element with symbol Fr and atomic number 87. It is extremely radioactive.",
       color: getColor('alkali metal'),
+      latinName: "Francium",
+      density: "1.87",
+      electrons: 87,
+      protons: 87,
+      neutrons: 136,
+      valence: "1",
     ),
     ElementModel(
       atomicNumber: 88,
@@ -1252,6 +1775,12 @@ class ElementData {
       summary:
           "Radium is a chemical element with symbol Ra and atomic number 88. It is the sixth element in group 2 of the periodic table, also known as the alkaline earth metals.",
       color: getColor('alkaline earth metal'),
+      latinName: "Radium",
+      density: "5.5",
+      electrons: 88,
+      protons: 88,
+      neutrons: 138,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 89,
@@ -1266,6 +1795,12 @@ class ElementData {
       summary:
           "Actinium is a chemical element with symbol Ac and atomic number 89. It was discovered in 1899 by French chemist André-Louis Debierne.",
       color: getColor('actinide'),
+      latinName: "Actinium",
+      density: "10.07",
+      electrons: 89,
+      protons: 89,
+      neutrons: 138,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 90,
@@ -1280,6 +1815,12 @@ class ElementData {
       summary:
           "Thorium is a chemical element with symbol Th and atomic number 90. A radioactive actinide metal, thorium is one of only two significantly radioactive elements that still occur naturally in large quantities as a primordial element.",
       color: getColor('actinide'),
+      latinName: "Thorium",
+      density: "11.72",
+      electrons: 90,
+      protons: 90,
+      neutrons: 142,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 91,
@@ -1294,6 +1835,12 @@ class ElementData {
       summary:
           "Protactinium is a chemical element with symbol Pa and atomic number 91. It is a dense, silvery-gray actinide metal which readily reacts with oxygen, water vapor and inorganic acids.",
       color: getColor('actinide'),
+      latinName: "Protactinium",
+      density: "15.37",
+      electrons: 91,
+      protons: 91,
+      neutrons: 140,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 92,
@@ -1308,6 +1855,12 @@ class ElementData {
       summary:
           "Uranium is a chemical element with symbol U and atomic number 92. It is a silvery-grey metal in the actinide series of the periodic table.",
       color: getColor('actinide'),
+      latinName: "Uranium",
+      density: "18.95",
+      electrons: 92,
+      protons: 92,
+      neutrons: 146,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 93,
@@ -1322,6 +1875,12 @@ class ElementData {
       summary:
           "Neptunium is a chemical element with symbol Np and atomic number 93. A radioactive actinide metal, neptunium is the first transuranic element.",
       color: getColor('actinide'),
+      latinName: "Neptunium",
+      density: "20.25",
+      electrons: 93,
+      protons: 93,
+      neutrons: 144,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 94,
@@ -1336,6 +1895,12 @@ class ElementData {
       summary:
           "Plutonium is a chemical element with symbol Pu and atomic number 94. It is an actinide metal of silvery-gray appearance that tarnishes when exposed to air, and forms a dull coating when oxidized.",
       color: getColor('actinide'),
+      latinName: "Plutonium",
+      density: "19.84",
+      electrons: 94,
+      protons: 94,
+      neutrons: 150,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 95,
@@ -1350,6 +1915,12 @@ class ElementData {
       summary:
           "Americium is a chemical element with symbol Am and atomic number 95. It is a radioactive transuranic element in the actinide series.",
       color: getColor('actinide'),
+      latinName: "Americium",
+      density: "11.34",
+      electrons: 95,
+      protons: 95,
+      neutrons: 148,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 96,
@@ -1364,6 +1935,12 @@ class ElementData {
       summary:
           "Curium is a chemical element with symbol Cm and atomic number 96. It is a radioactive transuranic element in the actinide series.",
       color: getColor('actinide'),
+      latinName: "Curium",
+      density: "13.51",
+      electrons: 96,
+      protons: 96,
+      neutrons: 151,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 97,
@@ -1378,6 +1955,12 @@ class ElementData {
       summary:
           "Berkelium is a chemical element with symbol Bk and atomic number 97. It is a member of the actinide and transuranium element series.",
       color: getColor('actinide'),
+      latinName: "Berkelium",
+      density: "14.78",
+      electrons: 97,
+      protons: 97,
+      neutrons: 150,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 98,
@@ -1392,6 +1975,12 @@ class ElementData {
       summary:
           "Californium is a chemical element with symbol Cf and atomic number 98. The element was first synthesized in 1950 at the University of California Radiation Laboratory in Berkeley.",
       color: getColor('actinide'),
+      latinName: "Californium",
+      density: "15.10",
+      electrons: 98,
+      protons: 98,
+      neutrons: 153,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 99,
@@ -1406,6 +1995,12 @@ class ElementData {
       summary:
           "Einsteinium is a chemical element with symbol Es and atomic number 99. It is the seventh transuranic element, and an actinide.",
       color: getColor('actinide'),
+      latinName: "Einsteinium",
+      density: "8.84",
+      electrons: 99,
+      protons: 99,
+      neutrons: 153,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 100,
@@ -1420,6 +2015,12 @@ class ElementData {
       summary:
           "Fermium is a chemical element with symbol Fm and atomic number 100. It is an actinide and the heaviest element that can be formed by neutron bombardment of lighter elements.",
       color: getColor('actinide'),
+      latinName: "Fermium",
+      density: "9.7",
+      electrons: 100,
+      protons: 100,
+      neutrons: 157,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 101,
@@ -1434,6 +2035,12 @@ class ElementData {
       summary:
           "Mendelevium is a chemical element with symbol Md and atomic number 101. A metallic radioactive transuranium element in the actinide series, it is the first element that currently cannot be produced in macroscopic quantities through neutron bombardment of lighter elements.",
       color: getColor('actinide'),
+      latinName: "Mendelevium",
+      density: "10.3",
+      electrons: 101,
+      protons: 101,
+      neutrons: 157,
+      valence: "2,3",
     ),
     ElementModel(
       atomicNumber: 102,
@@ -1448,6 +2055,12 @@ class ElementData {
       summary:
           "Nobelium is a chemical element with symbol No and atomic number 102. It is named in honor of Alfred Nobel, the inventor of dynamite and benefactor of science.",
       color: getColor('actinide'),
+      latinName: "Nobelium",
+      density: "9.9",
+      electrons: 102,
+      protons: 102,
+      neutrons: 157,
+      valence: "2,3",
     ),
     ElementModel(
       atomicNumber: 103,
@@ -1462,6 +2075,12 @@ class ElementData {
       summary:
           "Lawrencium is a chemical element with symbol Lr and atomic number 103. It is named in honor of Ernest Lawrence, inventor of the cyclotron.",
       color: getColor('actinide'),
+      latinName: "Lawrencium",
+      density: "14.4",
+      electrons: 103,
+      protons: 103,
+      neutrons: 163,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 104,
@@ -1476,6 +2095,12 @@ class ElementData {
       summary:
           "Rutherfordium is a chemical element with symbol Rf and atomic number 104. It is named after physicist Ernest Rutherford.",
       color: getColor('transition metal'),
+      latinName: "Rutherfordium",
+      density: "23.2",
+      electrons: 104,
+      protons: 104,
+      neutrons: 163,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 105,
@@ -1490,6 +2115,12 @@ class ElementData {
       summary:
           "Dubnium is a chemical element with symbol Db and atomic number 105. It is named after the town of Dubna in Russia.",
       color: getColor('transition metal'),
+      latinName: "Dubnium",
+      density: "29.3",
+      electrons: 105,
+      protons: 105,
+      neutrons: 163,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 106,
@@ -1504,6 +2135,12 @@ class ElementData {
       summary:
           "Seaborgium is a chemical element with symbol Sg and atomic number 106. It is named after the American nuclear chemist Glenn T. Seaborg.",
       color: getColor('transition metal'),
+      latinName: "Seaborgium",
+      density: "35.0",
+      electrons: 106,
+      protons: 106,
+      neutrons: 165,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 107,
@@ -1518,6 +2155,12 @@ class ElementData {
       summary:
           "Bohrium is a chemical element with symbol Bh and atomic number 107. It is named after Danish physicist Niels Bohr.",
       color: getColor('transition metal'),
+      latinName: "Bohrium",
+      density: "37.1",
+      electrons: 107,
+      protons: 107,
+      neutrons: 163,
+      valence: "7",
     ),
     ElementModel(
       atomicNumber: 108,
@@ -1532,6 +2175,12 @@ class ElementData {
       summary:
           "Hassium is a chemical element with symbol Hs and atomic number 108. It is named after the German state of Hesse.",
       color: getColor('transition metal'),
+      latinName: "Hassium",
+      density: "40.7",
+      electrons: 108,
+      protons: 108,
+      neutrons: 161,
+      valence: "8",
     ),
     ElementModel(
       atomicNumber: 109,
@@ -1546,6 +2195,12 @@ class ElementData {
       summary:
           "Meitnerium is a chemical element with symbol Mt and atomic number 109. It is named after Austrian physicist Lise Meitner.",
       color: getColor('unknown'),
+      latinName: "Meitnerium",
+      density: "37.4",
+      electrons: 109,
+      protons: 109,
+      neutrons: 169,
+      valence: "9",
     ),
     ElementModel(
       atomicNumber: 110,
@@ -1560,6 +2215,12 @@ class ElementData {
       summary:
           "Darmstadtium is a chemical element with symbol Ds and atomic number 110. It is named after the city of Darmstadt, Germany.",
       color: getColor('unknown'),
+      latinName: "Darmstadtium",
+      density: "34.8",
+      electrons: 110,
+      protons: 110,
+      neutrons: 171,
+      valence: "8",
     ),
     ElementModel(
       atomicNumber: 111,
@@ -1574,6 +2235,12 @@ class ElementData {
       summary:
           "Roentgenium is a chemical element with symbol Rg and atomic number 111. It is named after Wilhelm Röntgen, the discoverer of X-rays.",
       color: getColor('unknown'),
+      latinName: "Roentgenium",
+      density: "28.7",
+      electrons: 111,
+      protons: 111,
+      neutrons: 171,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 112,
@@ -1588,6 +2255,12 @@ class ElementData {
       summary:
           "Copernicium is a chemical element with symbol Cn and atomic number 112. It is named after the astronomer Nicolaus Copernicus.",
       color: getColor('transition metal'),
+      latinName: "Copernicium",
+      density: "23.7",
+      electrons: 112,
+      protons: 112,
+      neutrons: 173,
+      valence: "2",
     ),
     ElementModel(
       atomicNumber: 113,
@@ -1602,6 +2275,12 @@ class ElementData {
       summary:
           "Nihonium is a chemical element with symbol Nh and atomic number 113. It is named after the common Japanese name for Japan (Nihon).",
       color: getColor('unknown'),
+      latinName: "Nihonium",
+      density: "16.0",
+      electrons: 113,
+      protons: 113,
+      neutrons: 173,
+      valence: "3",
     ),
     ElementModel(
       atomicNumber: 114,
@@ -1616,6 +2295,12 @@ class ElementData {
       summary:
           "Flerovium is a chemical element with symbol Fl and atomic number 114. It is named after the Flerov Laboratory of Nuclear Reactions.",
       color: getColor('post-transition metal'),
+      latinName: "Flerovium",
+      density: "14.0",
+      electrons: 114,
+      protons: 114,
+      neutrons: 175,
+      valence: "4",
     ),
     ElementModel(
       atomicNumber: 115,
@@ -1630,6 +2315,12 @@ class ElementData {
       summary:
           "Moscovium is a chemical element with symbol Mc and atomic number 115. It is named after the Moscow Oblast, where the research center is located.",
       color: getColor('unknown'),
+      latinName: "Moscovium",
+      density: "13.5",
+      electrons: 115,
+      protons: 115,
+      neutrons: 175,
+      valence: "5",
     ),
     ElementModel(
       atomicNumber: 116,
@@ -1644,6 +2335,12 @@ class ElementData {
       summary:
           "Livermorium is a chemical element with symbol Lv and atomic number 116. It is named after the Lawrence Livermore National Laboratory.",
       color: getColor('unknown'),
+      latinName: "Livermorium",
+      density: "12.9",
+      electrons: 116,
+      protons: 116,
+      neutrons: 177,
+      valence: "6",
     ),
     ElementModel(
       atomicNumber: 117,
@@ -1658,6 +2355,12 @@ class ElementData {
       summary:
           "Tennessine is a chemical element with symbol Ts and atomic number 117. It is named after the state of Tennessee.",
       color: getColor('unknown'),
+      latinName: "Tennessine",
+      density: "7.2",
+      electrons: 117,
+      protons: 117,
+      neutrons: 177,
+      valence: "7",
     ),
     ElementModel(
       atomicNumber: 118,
@@ -1672,6 +2375,12 @@ class ElementData {
       summary:
           "Oganesson is a chemical element with symbol Og and atomic number 118. It is named after Yuri Oganessian.",
       color: getColor('unknown'),
+      latinName: "Oganesson",
+      density: "4.9",
+      electrons: 118,
+      protons: 118,
+      neutrons: 176,
+      valence: "8",
     ),
   ];
 }

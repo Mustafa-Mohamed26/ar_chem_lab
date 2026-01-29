@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color midnightBlue = Color(0xFF090837);
   static const Color royalBlue = Color(0xFF2E409E);
+  static const Color deepPurple = Color(0xFF4A148C); // Added color
   static const Color electricBlue = Color(0xFF2F0BFF);
   static const Color mediumBlue = Color(0xFF0D47A1);
   static const Color skyBlue = Color(0xFF5AC1E6);
