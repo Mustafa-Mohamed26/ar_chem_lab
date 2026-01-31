@@ -87,11 +87,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Container(
       padding: AppPadding.screen,
       decoration: BoxDecoration(
-        gradient: AppGradients.primary(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [AppColors.midnightBlue, AppColors.royalBlue],
-          stops: [0.47, 1.0],
+        image: DecorationImage(
+          image: AssetImage(AppAssets.onboardingBackground),
+          fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
