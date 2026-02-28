@@ -2,7 +2,7 @@ import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
+import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_tile.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/elements_data.dart';
 import 'package:ar_chem_lab/presentation/widget/screen_title.dart';
@@ -17,7 +17,7 @@ class PeriodicTableScreen extends StatefulWidget {
 }
 
 class _PeriodicTableScreenState extends State<PeriodicTableScreen> {
-  final Map<int, Map<int, ElementModel>> _gridMap = {};
+  final Map<int, Map<int, PeriodicTableResponse>> _gridMap = {};
 
   @override
   void initState() {

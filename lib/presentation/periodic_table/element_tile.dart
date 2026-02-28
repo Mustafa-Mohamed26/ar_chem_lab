@@ -2,12 +2,12 @@ import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/services/view_history_service.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
+import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ElementTile extends StatelessWidget {
-  final ElementModel element;
+  final PeriodicTableResponse element;
   const ElementTile({super.key, required this.element});
 
   @override

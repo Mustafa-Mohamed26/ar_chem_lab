@@ -1,4 +1,4 @@
-import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
+import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 import 'package:flutter/material.dart';
 
 class ElementData {
@@ -20,8 +20,8 @@ class ElementData {
     return categoryColors[category] ?? Colors.grey;
   }
 
-  static List<ElementModel> get allElements => [
-    ElementModel(
+  static List<PeriodicTableResponse> get allElements => [
+    PeriodicTableResponse(
       atomicNumber: 1,
       symbol: "H",
       name: "Hydrogen",
@@ -42,7 +42,7 @@ class ElementData {
       valence: "1",
       model3DPath: "assets/3d/hydrogen.glb",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 2,
       symbol: "He",
       name: "Helium",
@@ -62,7 +62,7 @@ class ElementData {
       neutrons: 2,
       valence: "0",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 3,
       symbol: "Li",
       name: "Lithium",
@@ -82,7 +82,7 @@ class ElementData {
       neutrons: 4,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 4,
       symbol: "Be",
       name: "Beryllium",
@@ -102,7 +102,7 @@ class ElementData {
       neutrons: 5,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 5,
       symbol: "B",
       name: "Boron",
@@ -122,7 +122,7 @@ class ElementData {
       neutrons: 6,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 6,
       symbol: "C",
       name: "Carbon",
@@ -142,7 +142,7 @@ class ElementData {
       neutrons: 6,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 7,
       symbol: "N",
       name: "Nitrogen",
@@ -162,7 +162,7 @@ class ElementData {
       neutrons: 7,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 8,
       symbol: "O",
       name: "Oxygen",
@@ -182,7 +182,7 @@ class ElementData {
       neutrons: 8,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 9,
       symbol: "F",
       name: "Fluorine",
@@ -202,7 +202,7 @@ class ElementData {
       neutrons: 10,
       valence: "7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 10,
       symbol: "Ne",
       name: "Neon",
@@ -222,7 +222,7 @@ class ElementData {
       neutrons: 10,
       valence: "0",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 11,
       symbol: "Na",
       name: "Sodium",
@@ -242,7 +242,7 @@ class ElementData {
       neutrons: 12,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 12,
       symbol: "Mg",
       name: "Magnesium",
@@ -262,7 +262,7 @@ class ElementData {
       neutrons: 12,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 13,
       symbol: "Al",
       name: "Aluminium",
@@ -282,7 +282,7 @@ class ElementData {
       neutrons: 14,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 14,
       symbol: "Si",
       name: "Silicon",
@@ -302,7 +302,7 @@ class ElementData {
       neutrons: 14,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 15,
       symbol: "P",
       name: "Phosphorus",
@@ -322,7 +322,7 @@ class ElementData {
       neutrons: 16,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 16,
       symbol: "S",
       name: "Sulfur",
@@ -342,7 +342,7 @@ class ElementData {
       neutrons: 16,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 17,
       symbol: "Cl",
       name: "Chlorine",
@@ -362,7 +362,7 @@ class ElementData {
       neutrons: 18,
       valence: "7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 18,
       symbol: "Ar",
       name: "Argon",
@@ -382,7 +382,7 @@ class ElementData {
       neutrons: 22,
       valence: "0",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 19,
       symbol: "K",
       name: "Potassium",
@@ -402,7 +402,7 @@ class ElementData {
       neutrons: 20,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 20,
       symbol: "Ca",
       name: "Calcium",
@@ -422,7 +422,7 @@ class ElementData {
       neutrons: 20,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 21,
       symbol: "Sc",
       name: "Scandium",
@@ -442,7 +442,7 @@ class ElementData {
       neutrons: 24,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 22,
       symbol: "Ti",
       name: "Titanium",
@@ -462,7 +462,7 @@ class ElementData {
       neutrons: 26,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 23,
       symbol: "V",
       name: "Vanadium",
@@ -482,7 +482,7 @@ class ElementData {
       neutrons: 28,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 24,
       symbol: "Cr",
       name: "Chromium",
@@ -502,7 +502,7 @@ class ElementData {
       neutrons: 28,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 25,
       symbol: "Mn",
       name: "Manganese",
@@ -522,7 +522,7 @@ class ElementData {
       neutrons: 30,
       valence: "7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 26,
       symbol: "Fe",
       name: "Iron",
@@ -542,7 +542,7 @@ class ElementData {
       neutrons: 30,
       valence: "2,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 27,
       symbol: "Co",
       name: "Cobalt",
@@ -562,7 +562,7 @@ class ElementData {
       neutrons: 32,
       valence: "2,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 28,
       symbol: "Ni",
       name: "Nickel",
@@ -582,7 +582,7 @@ class ElementData {
       neutrons: 31,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 29,
       symbol: "Cu",
       name: "Copper",
@@ -602,7 +602,7 @@ class ElementData {
       neutrons: 34,
       valence: "1,2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 30,
       symbol: "Zn",
       name: "Zinc",
@@ -622,7 +622,7 @@ class ElementData {
       neutrons: 35,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 31,
       symbol: "Ga",
       name: "Gallium",
@@ -642,7 +642,7 @@ class ElementData {
       neutrons: 39,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 32,
       symbol: "Ge",
       name: "Germanium",
@@ -662,7 +662,7 @@ class ElementData {
       neutrons: 41,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 33,
       symbol: "As",
       name: "Arsenic",
@@ -682,7 +682,7 @@ class ElementData {
       neutrons: 42,
       valence: "3,5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 34,
       symbol: "Se",
       name: "Selenium",
@@ -702,7 +702,7 @@ class ElementData {
       neutrons: 45,
       valence: "2,4,6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 35,
       symbol: "Br",
       name: "Bromine",
@@ -722,7 +722,7 @@ class ElementData {
       neutrons: 45,
       valence: "1,3,5,7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 36,
       symbol: "Kr",
       name: "Krypton",
@@ -742,7 +742,7 @@ class ElementData {
       neutrons: 48,
       valence: "0",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 37,
       symbol: "Rb",
       name: "Rubidium",
@@ -762,7 +762,7 @@ class ElementData {
       neutrons: 48,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 38,
       symbol: "Sr",
       name: "Strontium",
@@ -782,7 +782,7 @@ class ElementData {
       neutrons: 50,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 39,
       symbol: "Y",
       name: "Yttrium",
@@ -802,7 +802,7 @@ class ElementData {
       neutrons: 50,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 40,
       symbol: "Zr",
       name: "Zirconium",
@@ -822,7 +822,7 @@ class ElementData {
       neutrons: 51,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 41,
       symbol: "Nb",
       name: "Niobium",
@@ -842,7 +842,7 @@ class ElementData {
       neutrons: 52,
       valence: "3,5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 42,
       symbol: "Mo",
       name: "Molybdenum",
@@ -862,7 +862,7 @@ class ElementData {
       neutrons: 56,
       valence: "3,4,5,6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 43,
       symbol: "Tc",
       name: "Technetium",
@@ -882,7 +882,7 @@ class ElementData {
       neutrons: 55,
       valence: "4,7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 44,
       symbol: "Ru",
       name: "Ruthenium",
@@ -902,7 +902,7 @@ class ElementData {
       neutrons: 57,
       valence: "3,4,8",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 45,
       symbol: "Rh",
       name: "Rhodium",
@@ -922,7 +922,7 @@ class ElementData {
       neutrons: 58,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 46,
       symbol: "Pd",
       name: "Palladium",
@@ -942,7 +942,7 @@ class ElementData {
       neutrons: 60,
       valence: "2,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 47,
       symbol: "Ag",
       name: "Silver",
@@ -962,7 +962,7 @@ class ElementData {
       neutrons: 61,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 48,
       symbol: "Cd",
       name: "Cadmium",
@@ -982,7 +982,7 @@ class ElementData {
       neutrons: 64,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 49,
       symbol: "In",
       name: "Indium",
@@ -1002,7 +1002,7 @@ class ElementData {
       neutrons: 66,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 50,
       symbol: "Sn",
       name: "Tin",
@@ -1022,7 +1022,7 @@ class ElementData {
       neutrons: 70,
       valence: "2,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 51,
       symbol: "Sb",
       name: "Antimony",
@@ -1042,7 +1042,7 @@ class ElementData {
       neutrons: 70,
       valence: "3,5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 52,
       symbol: "Te",
       name: "Tellurium",
@@ -1062,7 +1062,7 @@ class ElementData {
       neutrons: 76,
       valence: "2,4,6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 53,
       symbol: "I",
       name: "Iodine",
@@ -1082,7 +1082,7 @@ class ElementData {
       neutrons: 74,
       valence: "-1,1,3,5,7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 54,
       symbol: "Xe",
       name: "Xenon",
@@ -1102,7 +1102,7 @@ class ElementData {
       neutrons: 77,
       valence: "0",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 55,
       symbol: "Cs",
       name: "Cesium",
@@ -1122,7 +1122,7 @@ class ElementData {
       neutrons: 78,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 56,
       symbol: "Ba",
       name: "Barium",
@@ -1142,7 +1142,7 @@ class ElementData {
       neutrons: 81,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 57,
       symbol: "La",
       name: "Lanthanum",
@@ -1162,7 +1162,7 @@ class ElementData {
       neutrons: 82,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 58,
       symbol: "Ce",
       name: "Cerium",
@@ -1182,7 +1182,7 @@ class ElementData {
       neutrons: 82,
       valence: "3,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 59,
       symbol: "Pr",
       name: "Praseodymium",
@@ -1202,7 +1202,7 @@ class ElementData {
       neutrons: 82,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 60,
       symbol: "Nd",
       name: "Neodymium",
@@ -1222,7 +1222,7 @@ class ElementData {
       neutrons: 82,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 61,
       symbol: "Pm",
       name: "Promethium",
@@ -1242,7 +1242,7 @@ class ElementData {
       neutrons: 84,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 62,
       symbol: "Sm",
       name: "Samarium",
@@ -1262,7 +1262,7 @@ class ElementData {
       neutrons: 90,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 63,
       symbol: "Eu",
       name: "Europium",
@@ -1282,7 +1282,7 @@ class ElementData {
       neutrons: 90,
       valence: "2,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 64,
       symbol: "Gd",
       name: "Gadolinium",
@@ -1302,7 +1302,7 @@ class ElementData {
       neutrons: 93,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 65,
       symbol: "Tb",
       name: "Terbium",
@@ -1322,7 +1322,7 @@ class ElementData {
       neutrons: 94,
       valence: "3,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 66,
       symbol: "Dy",
       name: "Dysprosium",
@@ -1342,7 +1342,7 @@ class ElementData {
       neutrons: 97,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 67,
       symbol: "Ho",
       name: "Holmium",
@@ -1362,7 +1362,7 @@ class ElementData {
       neutrons: 98,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 68,
       symbol: "Er",
       name: "Erbium",
@@ -1382,7 +1382,7 @@ class ElementData {
       neutrons: 99,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 69,
       symbol: "Tm",
       name: "Thulium",
@@ -1402,7 +1402,7 @@ class ElementData {
       neutrons: 100,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 70,
       symbol: "Yb",
       name: "Ytterbium",
@@ -1422,7 +1422,7 @@ class ElementData {
       neutrons: 103,
       valence: "2,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 71,
       symbol: "Lu",
       name: "Lutetium",
@@ -1442,7 +1442,7 @@ class ElementData {
       neutrons: 104,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 72,
       symbol: "Hf",
       name: "Hafnium",
@@ -1462,7 +1462,7 @@ class ElementData {
       neutrons: 106,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 73,
       symbol: "Ta",
       name: "Tantalum",
@@ -1482,7 +1482,7 @@ class ElementData {
       neutrons: 108,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 74,
       symbol: "W",
       name: "Tungsten",
@@ -1502,7 +1502,7 @@ class ElementData {
       neutrons: 110,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 75,
       symbol: "Re",
       name: "Rhenium",
@@ -1522,7 +1522,7 @@ class ElementData {
       neutrons: 111,
       valence: "7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 76,
       symbol: "Os",
       name: "Osmium",
@@ -1542,7 +1542,7 @@ class ElementData {
       neutrons: 114,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 77,
       symbol: "Ir",
       name: "Iridium",
@@ -1562,7 +1562,7 @@ class ElementData {
       neutrons: 115,
       valence: "3,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 78,
       symbol: "Pt",
       name: "Platinum",
@@ -1582,7 +1582,7 @@ class ElementData {
       neutrons: 117,
       valence: "2,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 79,
       symbol: "Au",
       name: "Gold",
@@ -1602,7 +1602,7 @@ class ElementData {
       neutrons: 118,
       valence: "1,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 80,
       symbol: "Hg",
       name: "Mercury",
@@ -1622,7 +1622,7 @@ class ElementData {
       neutrons: 121,
       valence: "1,2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 81,
       symbol: "Tl",
       name: "Thallium",
@@ -1642,7 +1642,7 @@ class ElementData {
       neutrons: 124,
       valence: "1,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 82,
       symbol: "Pb",
       name: "Lead",
@@ -1662,7 +1662,7 @@ class ElementData {
       neutrons: 125,
       valence: "2,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 83,
       symbol: "Bi",
       name: "Bismuth",
@@ -1682,7 +1682,7 @@ class ElementData {
       neutrons: 126,
       valence: "3,5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 84,
       symbol: "Po",
       name: "Polonium",
@@ -1702,7 +1702,7 @@ class ElementData {
       neutrons: 125,
       valence: "2,4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 85,
       symbol: "At",
       name: "Astatine",
@@ -1722,7 +1722,7 @@ class ElementData {
       neutrons: 125,
       valence: "-1,1,3,5,7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 86,
       symbol: "Rn",
       name: "Radon",
@@ -1742,7 +1742,7 @@ class ElementData {
       neutrons: 136,
       valence: "0",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 87,
       symbol: "Fr",
       name: "Francium",
@@ -1762,7 +1762,7 @@ class ElementData {
       neutrons: 136,
       valence: "1",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 88,
       symbol: "Ra",
       name: "Radium",
@@ -1782,7 +1782,7 @@ class ElementData {
       neutrons: 138,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 89,
       symbol: "Ac",
       name: "Actinium",
@@ -1802,7 +1802,7 @@ class ElementData {
       neutrons: 138,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 90,
       symbol: "Th",
       name: "Thorium",
@@ -1822,7 +1822,7 @@ class ElementData {
       neutrons: 142,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 91,
       symbol: "Pa",
       name: "Protactinium",
@@ -1842,7 +1842,7 @@ class ElementData {
       neutrons: 140,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 92,
       symbol: "U",
       name: "Uranium",
@@ -1862,7 +1862,7 @@ class ElementData {
       neutrons: 146,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 93,
       symbol: "Np",
       name: "Neptunium",
@@ -1882,7 +1882,7 @@ class ElementData {
       neutrons: 144,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 94,
       symbol: "Pu",
       name: "Plutonium",
@@ -1902,7 +1902,7 @@ class ElementData {
       neutrons: 150,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 95,
       symbol: "Am",
       name: "Americium",
@@ -1922,7 +1922,7 @@ class ElementData {
       neutrons: 148,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 96,
       symbol: "Cm",
       name: "Curium",
@@ -1942,7 +1942,7 @@ class ElementData {
       neutrons: 151,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 97,
       symbol: "Bk",
       name: "Berkelium",
@@ -1962,7 +1962,7 @@ class ElementData {
       neutrons: 150,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 98,
       symbol: "Cf",
       name: "Californium",
@@ -1982,7 +1982,7 @@ class ElementData {
       neutrons: 153,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 99,
       symbol: "Es",
       name: "Einsteinium",
@@ -2002,7 +2002,7 @@ class ElementData {
       neutrons: 153,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 100,
       symbol: "Fm",
       name: "Fermium",
@@ -2022,7 +2022,7 @@ class ElementData {
       neutrons: 157,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 101,
       symbol: "Md",
       name: "Mendelevium",
@@ -2042,7 +2042,7 @@ class ElementData {
       neutrons: 157,
       valence: "2,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 102,
       symbol: "No",
       name: "Nobelium",
@@ -2062,7 +2062,7 @@ class ElementData {
       neutrons: 157,
       valence: "2,3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 103,
       symbol: "Lr",
       name: "Lawrencium",
@@ -2082,7 +2082,7 @@ class ElementData {
       neutrons: 163,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 104,
       symbol: "Rf",
       name: "Rutherfordium",
@@ -2102,7 +2102,7 @@ class ElementData {
       neutrons: 163,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 105,
       symbol: "Db",
       name: "Dubnium",
@@ -2122,7 +2122,7 @@ class ElementData {
       neutrons: 163,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 106,
       symbol: "Sg",
       name: "Seaborgium",
@@ -2142,7 +2142,7 @@ class ElementData {
       neutrons: 165,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 107,
       symbol: "Bh",
       name: "Bohrium",
@@ -2162,7 +2162,7 @@ class ElementData {
       neutrons: 163,
       valence: "7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 108,
       symbol: "Hs",
       name: "Hassium",
@@ -2182,7 +2182,7 @@ class ElementData {
       neutrons: 161,
       valence: "8",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 109,
       symbol: "Mt",
       name: "Meitnerium",
@@ -2202,7 +2202,7 @@ class ElementData {
       neutrons: 169,
       valence: "9",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 110,
       symbol: "Ds",
       name: "Darmstadtium",
@@ -2222,7 +2222,7 @@ class ElementData {
       neutrons: 171,
       valence: "8",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 111,
       symbol: "Rg",
       name: "Roentgenium",
@@ -2242,7 +2242,7 @@ class ElementData {
       neutrons: 171,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 112,
       symbol: "Cn",
       name: "Copernicium",
@@ -2262,7 +2262,7 @@ class ElementData {
       neutrons: 173,
       valence: "2",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 113,
       symbol: "Nh",
       name: "Nihonium",
@@ -2282,7 +2282,7 @@ class ElementData {
       neutrons: 173,
       valence: "3",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 114,
       symbol: "Fl",
       name: "Flerovium",
@@ -2302,7 +2302,7 @@ class ElementData {
       neutrons: 175,
       valence: "4",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 115,
       symbol: "Mc",
       name: "Moscovium",
@@ -2322,7 +2322,7 @@ class ElementData {
       neutrons: 175,
       valence: "5",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 116,
       symbol: "Lv",
       name: "Livermorium",
@@ -2342,7 +2342,7 @@ class ElementData {
       neutrons: 177,
       valence: "6",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 117,
       symbol: "Ts",
       name: "Tennessine",
@@ -2362,7 +2362,7 @@ class ElementData {
       neutrons: 177,
       valence: "7",
     ),
-    ElementModel(
+    PeriodicTableResponse(
       atomicNumber: 118,
       symbol: "Og",
       name: "Oganesson",

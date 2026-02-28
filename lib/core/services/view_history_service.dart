@@ -1,4 +1,4 @@
-import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
+import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 import 'package:flutter/foundation.dart';
 
 class ViewHistoryService {
@@ -10,13 +10,15 @@ class ViewHistoryService {
 
   ViewHistoryService._internal();
 
-  final ValueNotifier<List<ElementModel>> mostViewedElements =
-      ValueNotifier<List<ElementModel>>([]);
+  final ValueNotifier<List<PeriodicTableResponse>> mostViewedElements =
+      ValueNotifier<List<PeriodicTableResponse>>([]);
 
-  void addElement(ElementModel element) {
+  void addElement(PeriodicTableResponse element) {
     if (element.isEmpty) return;
 
-    List<ElementModel> currentList = List.from(mostViewedElements.value);
+    List<PeriodicTableResponse> currentList = List.from(
+      mostViewedElements.value,
+    );
 
     // If element already exists, remove it to move it to the end (most recent)
     currentList.remove(element);

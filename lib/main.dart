@@ -1,3 +1,5 @@
+import 'package:ar_chem_lab/config/bloc_observer.dart';
+import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_theme.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/chat_bot_screen.dart';
@@ -7,10 +9,14 @@ import 'package:ar_chem_lab/presentation/onboarding/onboarding_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_detail_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/periodic_table_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
+  configureDependencies();  
   runApp(const MyApp());
 }
 
