@@ -3,14 +3,24 @@ import 'dart:ui';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/thinking_dots.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/typewriter_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatBubble extends StatelessWidget {
   final String text;
   final bool isUser;
+  final bool isThinking;
+  final VoidCallback? onTypewriterUpdate;
 
-  const ChatBubble({super.key, required this.text, required this.isUser});
+  const ChatBubble({
+    super.key,
+    required this.text,
+    required this.isUser,
+    this.isThinking = false,
+    this.onTypewriterUpdate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +33,15 @@ class ChatBubble extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isUser) _buildBotAvatar(),
-          if(!isUser) _littleBubble(),
+          if (!isUser) _littleBubble(),
           Flexible(
             child: ClipRRect(
-              // 1. Clip the blur to the border radius
               borderRadius: BorderRadius.all(Radius.circular(24.r)),
               child: BackdropFilter(
-                // 2. Apply the blur effect
                 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: Container(
                   padding: EdgeInsets.all(14.w),
                   decoration: BoxDecoration(
-                    // 3. Keep colors semi-transparent for the glass effect
                     color: AppColors.lowSaturationWhite,
                     borderRadius: BorderRadius.all(Radius.circular(24.r)),
                     border: Border.all(
@@ -42,15 +49,26 @@ class ChatBubble extends StatelessWidget {
                       width: 1.5,
                     ),
                   ),
-                  child: Text(
-                    text,
-                    style: AppStyles.medium12whitePrimary.copyWith(fontSize: 14.sp),
-                  ),
+                  child: isThinking
+                      ? const ThinkingDots()
+                      : isUser
+                      ? Text(
+                          text,
+                          style: AppStyles.medium12whitePrimary.copyWith(
+                            fontSize: 14.sp,
+                          ),
+                        )
+                      : TypewriterText(
+                          text: text,
+                          onChanged: onTypewriterUpdate,
+                          style: AppStyles.medium12whitePrimary.copyWith(
+                            fontSize: 14.sp,
+                          ),
+                        ),
                 ),
               ),
             ),
           ),
-          
           if (isUser) _littleBubble(),
           if (isUser) _buildUserAvatar(),
         ],

@@ -10,16 +10,25 @@ class DioInterceptors extends Interceptor {
     String message = "Something went wrong";
 
     if (responseData is Map) {
-      message =
-          (responseData['errors']?['msg'] as String?) ??
-          (responseData['message'] as String?) ??
-          message;
+      final error = responseData['error'];
+      if (error != null) {
+        message =
+            (error['message'] as String?) ??
+            (error['status'] as String?) ??
+            "Error Code: ${error['code']}";
+      } else {
+        message =
+            (responseData['errors']?['msg'] as String?) ??
+            (responseData['message'] as String?) ??
+            message;
+      }
     }
 
     if (err.type == DioExceptionType.connectionError ||
         err.type == DioExceptionType.connectionTimeout) {
       exception = NetworkException(message: 'No internet connection');
     } else if (err.response?.statusCode != null) {
+      message = "[$message] (Status: ${err.response?.statusCode})";
       exception = ServerException(
         message: message,
         statusCode: err.response?.statusCode,
