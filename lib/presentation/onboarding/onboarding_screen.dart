@@ -1,4 +1,5 @@
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
+import 'package:ar_chem_lab/core/services/onboarding_service.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,6 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       if (currentIndex < images.length - 1) {
         currentIndex++;
       } else {
+        OnboardingService().setOnboardingComplete();
         Navigator.pushNamedAndRemoveUntil(
           context,
           AppRoutes.homeScreen,

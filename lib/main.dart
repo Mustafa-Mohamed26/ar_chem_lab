@@ -8,6 +8,8 @@ import 'package:ar_chem_lab/presentation/home/home_screen.dart';
 import 'package:ar_chem_lab/presentation/onboarding/onboarding_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_detail_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/periodic_table_screen.dart';
+import 'package:ar_chem_lab/core/services/onboarding_service.dart';
+import 'package:ar_chem_lab/core/services/view_history_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +18,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
-  configureDependencies();  
+  configureDependencies();
+  await Future.wait([
+    ViewHistoryService().loadHistory(),
+    OnboardingService().loadOnboardingStatus(),
+  ]);
   runApp(const MyApp());
 }
 
@@ -32,7 +38,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Chem Lab',
-        initialRoute: AppRoutes.onboarding,
+        initialRoute: OnboardingService().isOnboardingComplete
+            ? AppRoutes.homeScreen
+            : AppRoutes.onboarding,
         routes: {
           AppRoutes.onboarding: (context) => OnboardingScreen(),
           AppRoutes.homeScreen: (context) => HomeScreen(),
