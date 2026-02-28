@@ -1,4 +1,4 @@
-import 'package:ar_chem_lab/api/models/response/element_response_dto.dart';
+import 'package:ar_chem_lab/api/models/response/periodic_table_response_dto.dart';
 import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 
 extension PeriodicTableResponseMapper on PeriodicTableResponse {

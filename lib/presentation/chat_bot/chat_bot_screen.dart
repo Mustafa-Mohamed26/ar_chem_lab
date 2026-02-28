@@ -1,3 +1,7 @@
+import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_cubit.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_state.dart';
+import 'package:ar_chem_lab/domain/entities/ai_message.dart';
+import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_gradients.dart';
@@ -6,46 +10,55 @@ import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/chat_bubble.dart';
 import 'package:ar_chem_lab/presentation/widget/user_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChatBotScreen extends StatefulWidget {
+class ChatBotScreen extends StatelessWidget {
   const ChatBotScreen({super.key});
 
   @override
-  State<ChatBotScreen> createState() => _ChatBotScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<ChatCubit>(),
+      child: const ChatBotView(),
+    );
+  }
 }
 
-class _ChatBotScreenState extends State<ChatBotScreen> {
+class ChatBotView extends StatefulWidget {
+  const ChatBotView({super.key});
+
+  @override
+  State<ChatBotView> createState() => _ChatBotViewState();
+}
+
+class _ChatBotViewState extends State<ChatBotView> {
   final TextEditingController _messageController = TextEditingController();
-  final List<Map<String, dynamic>> _messages = [];
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   void _sendMessage() {
     if (_messageController.text.trim().isEmpty) return;
+    context.read<ChatCubit>().sendMessage(_messageController.text);
+    _messageController.clear();
+    _scrollToBottom();
+  }
 
-    setState(() {
-      // FIX 2: Always add a 'time' key with a DateTime object
-      _messages.add({
-        "sender": "user",
-        "text": _messageController.text,
-        "time": DateTime.now(),
-      });
-      _messageController.clear();
-
-      // Simulate AI Response after a short delay
-      Future.delayed(const Duration(milliseconds: 500), () {
-        if (mounted) {
-          // Best practice: check if widget is still in tree
-          setState(() {
-            _messages.add({
-              "sender": "bot",
-              "text":
-                  "That's an interesting chemistry question! Let me help you with that.",
-              "time":
-                  DateTime.now(), // FIX 3: Add timestamp to bot response too
-            });
-          });
-        }
-      });
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
     });
   }
 
@@ -112,15 +125,47 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               UserHeader(
                 imageUrl: AppAssets.userImage,
                 title: "HEY MIKE",
-                subtitle: _messages.isEmpty ? "" : "Online",
+                subtitle: "Online",
                 showBackButton: true,
               ),
 
               // THE MECHANISM: Switch between Empty State and Chat State
               Expanded(
-                child: _messages.isEmpty
-                    ? _buildEmptyState()
-                    : _buildChatList(),
+                child: BlocConsumer<ChatCubit, ChatState>(
+                  listener: (context, state) {
+                    if (state is ChatError) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(state.message),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                    _scrollToBottom();
+                  },
+                  builder: (context, state) {
+                    final messages = state.messages;
+                    final isLoading = state is ChatLoading;
+
+                    if (messages.isEmpty && !isLoading) {
+                      return _buildEmptyState();
+                    }
+
+                    return Column(
+                      children: [
+                        Expanded(child: _buildChatList(messages)),
+                        if (isLoading)
+                          const ChatBubble(
+                            text:
+                                "", // Bubble handles widget if text is empty or we can pass a widget
+                            isUser: false,
+                            isThinking:
+                                true, // I should update ChatBubble to support this
+                          ),
+                      ],
+                    );
+                  },
+                ),
               ),
 
               _buildMessageInput(),
@@ -199,19 +244,19 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     );
   }
 
-  Widget _buildChatList() {
+  Widget _buildChatList(List<AiMessage> messages) {
     return ListView.builder(
+      controller: _scrollController,
       padding: EdgeInsets.zero,
-      itemCount: _messages.length,
+      itemCount: messages.length,
       itemBuilder: (context, index) {
-        final currentMsg = _messages[index];
-        final DateTime currentTime = currentMsg['time'] as DateTime;
+        final currentMsg = messages[index];
+        final DateTime currentTime = currentMsg.time;
         bool showDate = false;
         if (index == 0) {
           showDate = true;
         } else {
-          final DateTime previousTime =
-              _messages[index - 1]['time'] as DateTime;
+          final DateTime previousTime = messages[index - 1].time;
           if (currentTime.day != previousTime.day ||
               currentTime.month != previousTime.month ||
               currentTime.year != previousTime.year) {
@@ -222,8 +267,9 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           children: [
             if (showDate) _buildDateDivider(currentTime),
             ChatBubble(
-              text: currentMsg["text"] as String,
-              isUser: currentMsg["sender"] == "user",
+              text: currentMsg.text,
+              isUser: currentMsg.isUser,
+              onTypewriterUpdate: _scrollToBottom,
             ),
           ],
         );
@@ -281,7 +327,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                   border: Border.all(color: AppColors.white, width: 0.5),
                   color: AppColors.lowSaturationWhite,
                 ),
-                child: const Icon(Icons.add, color: AppColors.white, size: 25),
+                child: const Icon(Icons.send, color: AppColors.white, size: 25),
               ),
             ),
           ],
