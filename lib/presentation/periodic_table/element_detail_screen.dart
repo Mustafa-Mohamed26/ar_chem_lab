@@ -1,7 +1,7 @@
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
+import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +32,8 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
   @override
   Widget build(BuildContext context) {
     // Extract arguments
-    final element = ModalRoute.of(context)!.settings.arguments as ElementModel;
+    final element =
+        ModalRoute.of(context)!.settings.arguments as PeriodicTableResponse;
 
     return Scaffold(
       backgroundColor: AppColors.midnightBlue,
@@ -57,7 +58,10 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
     );
   }
 
-  Widget _buildSymbolHeader(BuildContext context, ElementModel element) {
+  Widget _buildSymbolHeader(
+    BuildContext context,
+    PeriodicTableResponse element,
+  ) {
     return SizedBox(
       height: 350.h,
       child: Stack(
@@ -118,11 +122,7 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
           ),
 
           // Back Button
-          Positioned(
-            top: 40.h,
-            left: 310.w,
-            child: GradientBackButton()
-          ),
+          Positioned(top: 40.h, left: 310.w, child: GradientBackButton()),
 
           // Element Info Card Overlay
           Positioned(
@@ -139,10 +139,7 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(element.name, style: AppStyles.bold24whitePrimary),
-                  Text(
-                    element.symbol,
-                    style: AppStyles.bold35whitePrimary
-                  ),
+                  Text(element.symbol, style: AppStyles.bold35whitePrimary),
                   Text(
                     "${element.atomicMass} (g/mol)",
                     style: AppStyles.regular14LightBlueSecondary,
@@ -156,7 +153,7 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
     );
   }
 
-  Widget _buildStatsRow(ElementModel element) {
+  Widget _buildStatsRow(PeriodicTableResponse element) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       padding: EdgeInsets.symmetric(vertical: 16.h),
@@ -216,24 +213,19 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
     );
   }
 
-  Widget _buildTabBarView(ElementModel element) {
+  Widget _buildTabBarView(PeriodicTableResponse element) {
     return TabBarView(
       controller: _tabController,
       children: [
         // Overview Tab
         _buildOverviewTab(element),
-        // Properties Tab (Placeholder for now)
-        Center(
-          child: Text(
-            "Properties content coming soon",
-            style: AppStyles.regular16WiteSecondary,
-          ),
-        ),
+        // Properties Tab
+        _buildPropertiesTab(element),
       ],
     );
   }
 
-  Widget _buildOverviewTab(ElementModel element) {
+  Widget _buildOverviewTab(PeriodicTableResponse element) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(20.w),
       child: Container(
@@ -251,6 +243,59 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
             _buildDetailRow("Periodic Group", element.groupName),
             _buildDetailRow("Period", "${element.y}"),
             _buildDetailRow("Valence (Valency)", element.valence),
+            _buildDetailRow(
+              "Melting Point",
+              element.meltingPoint.isNotEmpty
+                  ? "${element.meltingPoint} K"
+                  : "N/A",
+            ),
+            _buildDetailRow(
+              "Boiling Point",
+              element.boilingPoint.isNotEmpty
+                  ? "${element.boilingPoint} K"
+                  : "N/A",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPropertiesTab(PeriodicTableResponse element) {
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(20.w),
+      child: Container(
+        padding: EdgeInsets.all(20.w),
+        decoration: BoxDecoration(
+          color: AppColors.lowSaturationWhite,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.lowSaturationWhite),
+        ),
+        child: Column(
+          children: [
+            _buildDetailRow(
+              "Electronegativity",
+              element.electronegativity?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Atomic Radius",
+              element.atomicRadius?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Ionization Energy",
+              element.ionizationEnergy?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Electron Affinity",
+              element.electronAffinity?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Oxidation States",
+              element.oxidationStates ?? "N/A",
+            ),
+            _buildDetailRow("Standard State", element.standardState ?? "N/A"),
+            _buildDetailRow("Year Discovered", element.yearDiscovered),
+            _buildDetailRow("Group Block", element.groupBlock ?? "N/A"),
           ],
         ),
       ),
