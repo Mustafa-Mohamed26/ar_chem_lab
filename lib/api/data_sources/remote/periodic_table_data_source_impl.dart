@@ -17,7 +17,12 @@ class PeriodicTableDataSourceImpl implements PeriodicTableDataSource {
       // convert response to domain model
       return response.map((dto) => dto.toDomain()).toList();
     } on DioException catch (e) {
-      String message = (e.error as AppExceptions).message;
+      String message = "Server Error";
+      if (e.error is AppExceptions) {
+        message = (e.error as AppExceptions).message;
+      } else if (e.message != null) {
+        message = e.message!;
+      }
       throw ServerException(message: message);
     } catch (e) {
       rethrow;

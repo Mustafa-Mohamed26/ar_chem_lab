@@ -1,12 +1,15 @@
+import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
+import 'package:ar_chem_lab/presentation/periodic_table/cubit/periodic_table_states.dart';
+import 'package:ar_chem_lab/presentation/periodic_table/cubit/periodic_table_view_model.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_tile.dart';
-import 'package:ar_chem_lab/presentation/periodic_table/elements_data.dart';
 import 'package:ar_chem_lab/presentation/widget/screen_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PeriodicTableScreen extends StatefulWidget {
@@ -17,22 +20,26 @@ class PeriodicTableScreen extends StatefulWidget {
 }
 
 class _PeriodicTableScreenState extends State<PeriodicTableScreen> {
-  final Map<int, Map<int, PeriodicTableResponse>> _gridMap = {};
+  late PeriodicTableViewModel _viewModel;
 
   @override
   void initState() {
     super.initState();
-    _initializeGrid();
+    _viewModel = getIt<PeriodicTableViewModel>();
+    _viewModel.getPeriodicTable();
   }
 
-  void _initializeGrid() {
-    final elements = ElementData.allElements;
+  Map<int, Map<int, PeriodicTableResponse>> _initializeGrid(
+    List<PeriodicTableResponse> elements,
+  ) {
+    final Map<int, Map<int, PeriodicTableResponse>> gridMap = {};
     for (var element in elements) {
-      if (!_gridMap.containsKey(element.y)) {
-        _gridMap[element.y] = {};
+      if (!gridMap.containsKey(element.y)) {
+        gridMap[element.y] = {};
       }
-      _gridMap[element.y]![element.x] = element;
+      gridMap[element.y]![element.x] = element;
     }
+    return gridMap;
   }
 
   @override
@@ -54,27 +61,58 @@ class _PeriodicTableScreenState extends State<PeriodicTableScreen> {
             ),
             SizedBox(height: 20.h),
             Expanded(
-              child: InteractiveViewer(
-                boundaryMargin: const EdgeInsets.all(100),
-                minScale: 0.1,
-                maxScale: 3.0,
-                constrained: false, // Allow infinite scrolling space
-                // Optimization: RepaintBoundary isolates the canvas
-                child: RepaintBoundary(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildGroupLabels(),
-                        _buildMainTable(),
-                        SizedBox(height: 30.h),
-                        _buildLanthanidesSeries(),
-                        _buildActinidesSeries(),
-                      ],
-                    ),
-                  ),
-                ),
+              child: BlocBuilder<PeriodicTableViewModel, PeriodicTableState>(
+                key: const ValueKey('periodic_table_builder'),
+                bloc: _viewModel,
+                builder: (context, state) {
+                  if (state is PeriodicTableLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(color: AppColors.white),
+                    );
+                  } else if (state is PeriodicTableError) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            state.message,
+                            style: AppStyles.regular16WiteSecondary,
+                          ),
+                          SizedBox(height: 20.h),
+                          ElevatedButton(
+                            onPressed: () => _viewModel.getPeriodicTable(),
+                            child: const Text("Retry"),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else if (state is PeriodicTableSuccess) {
+                    final gridMap = _initializeGrid(state.elements);
+                    return InteractiveViewer(
+                      boundaryMargin: const EdgeInsets.all(100),
+                      minScale: 0.1,
+                      maxScale: 3.0,
+                      constrained: false, // Allow infinite scrolling space
+                      // Optimization: RepaintBoundary isolates the canvas
+                      child: RepaintBoundary(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildGroupLabels(),
+                              _buildMainTable(gridMap),
+                              SizedBox(height: 30.h),
+                              _buildLanthanidesSeries(gridMap),
+                              _buildActinidesSeries(gridMap),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
               ),
             ),
           ],
@@ -111,39 +149,46 @@ class _PeriodicTableScreenState extends State<PeriodicTableScreen> {
   }
 
   /// SECTION: Main Table (Periods 1-7)
-  Widget _buildMainTable() {
+  Widget _buildMainTable(Map<int, Map<int, PeriodicTableResponse>> gridMap) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(7, (index) {
         final period = index + 1;
-        return _buildPeriodRow(period);
+        return _buildPeriodRow(period, gridMap);
       }),
     );
   }
 
   /// SECTION: Bottom Series (Lanthanides)
-  Widget _buildLanthanidesSeries() {
+  Widget _buildLanthanidesSeries(
+    Map<int, Map<int, PeriodicTableResponse>> gridMap,
+  ) {
     return Padding(
       padding: EdgeInsets.only(
         left: 80.0 * 2 + 30.0.w,
       ), // Shift to align with Group 3 + Sidebar space
-      child: _buildPeriodRow(9),
+      child: _buildPeriodRow(9, gridMap),
     );
   }
 
   /// SECTION: Bottom Series (Actinides)
-  Widget _buildActinidesSeries() {
+  Widget _buildActinidesSeries(
+    Map<int, Map<int, PeriodicTableResponse>> gridMap,
+  ) {
     return Padding(
       padding: EdgeInsets.only(
         left: 80.0 * 2 + 30.0.w,
       ), // Shift to align with Group 3 + Sidebar space
-      child: _buildPeriodRow(10),
+      child: _buildPeriodRow(10, gridMap),
     );
   }
 
-  Widget _buildPeriodRow(int period) {
+  Widget _buildPeriodRow(
+    int period,
+    Map<int, Map<int, PeriodicTableResponse>> gridMap,
+  ) {
     // Optimization: Check if the row exists in map
-    final rowElements = _gridMap[period];
+    final rowElements = gridMap[period];
     if (rowElements == null) return const SizedBox();
 
     return Row(

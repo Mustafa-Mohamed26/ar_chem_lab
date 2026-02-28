@@ -219,13 +219,8 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
       children: [
         // Overview Tab
         _buildOverviewTab(element),
-        // Properties Tab (Placeholder for now)
-        Center(
-          child: Text(
-            "Properties content coming soon",
-            style: AppStyles.regular16WiteSecondary,
-          ),
-        ),
+        // Properties Tab
+        _buildPropertiesTab(element),
       ],
     );
   }
@@ -248,6 +243,59 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
             _buildDetailRow("Periodic Group", element.groupName),
             _buildDetailRow("Period", "${element.y}"),
             _buildDetailRow("Valence (Valency)", element.valence),
+            _buildDetailRow(
+              "Melting Point",
+              element.meltingPoint.isNotEmpty
+                  ? "${element.meltingPoint} K"
+                  : "N/A",
+            ),
+            _buildDetailRow(
+              "Boiling Point",
+              element.boilingPoint.isNotEmpty
+                  ? "${element.boilingPoint} K"
+                  : "N/A",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPropertiesTab(PeriodicTableResponse element) {
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(20.w),
+      child: Container(
+        padding: EdgeInsets.all(20.w),
+        decoration: BoxDecoration(
+          color: AppColors.lowSaturationWhite,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.lowSaturationWhite),
+        ),
+        child: Column(
+          children: [
+            _buildDetailRow(
+              "Electronegativity",
+              element.electronegativity?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Atomic Radius",
+              element.atomicRadius?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Ionization Energy",
+              element.ionizationEnergy?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Electron Affinity",
+              element.electronAffinity?.toString() ?? "N/A",
+            ),
+            _buildDetailRow(
+              "Oxidation States",
+              element.oxidationStates ?? "N/A",
+            ),
+            _buildDetailRow("Standard State", element.standardState ?? "N/A"),
+            _buildDetailRow("Year Discovered", element.yearDiscovered),
+            _buildDetailRow("Group Block", element.groupBlock ?? "N/A"),
           ],
         ),
       ),

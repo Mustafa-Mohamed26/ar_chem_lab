@@ -57,7 +57,7 @@ class PeriodicTableResponseDto {
     }
 
     return PeriodicTableResponseDto(
-      atomicNumber: int.parse(mapped["AtomicNumber"]),
+      atomicNumber: int.tryParse(mapped["AtomicNumber"]?.toString() ?? ""),
       symbol: mapped["Symbol"],
       name: mapped["Name"],
       atomicMass: parseDouble(mapped["AtomicMass"]),
