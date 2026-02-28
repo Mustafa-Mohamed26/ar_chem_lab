@@ -1,5 +1,7 @@
-import 'package:ar_chem_lab/presentation/periodic_table/element_model.dart';
+import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
+import 'package:ar_chem_lab/presentation/periodic_table/elements_data.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ViewHistoryService {
   static final ViewHistoryService _instance = ViewHistoryService._internal();
@@ -10,13 +12,58 @@ class ViewHistoryService {
 
   ViewHistoryService._internal();
 
-  final ValueNotifier<List<ElementModel>> mostViewedElements =
-      ValueNotifier<List<ElementModel>>([]);
+  static const String _key = 'most_viewed_elements';
 
-  void addElement(ElementModel element) {
+  final ValueNotifier<List<PeriodicTableResponse>> mostViewedElements =
+      ValueNotifier<List<PeriodicTableResponse>>([]);
+
+  Future<void> loadHistory() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final List<String>? savedIds = prefs.getStringList(_key);
+
+      if (savedIds != null && savedIds.isNotEmpty) {
+        final List<PeriodicTableResponse> loadedElements = [];
+        final allElements = ElementData.allElements;
+
+        for (var idStr in savedIds) {
+          final id = int.tryParse(idStr);
+          if (id != null) {
+            try {
+              final element = allElements.firstWhere(
+                (e) => e.atomicNumber == id,
+              );
+              loadedElements.add(element);
+            } catch (_) {
+              // Element not found in local data, skip
+            }
+          }
+        }
+        mostViewedElements.value = loadedElements;
+      }
+    } catch (e) {
+      debugPrint('Error loading history: $e');
+    }
+  }
+
+  Future<void> _saveHistory() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final List<String> idsToSave = mostViewedElements.value
+          .map((e) => e.atomicNumber.toString())
+          .toList();
+      await prefs.setStringList(_key, idsToSave);
+    } catch (e) {
+      debugPrint('Error saving history: $e');
+    }
+  }
+
+  void addElement(PeriodicTableResponse element) {
     if (element.isEmpty) return;
 
-    List<ElementModel> currentList = List.from(mostViewedElements.value);
+    List<PeriodicTableResponse> currentList = List.from(
+      mostViewedElements.value,
+    );
 
     // If element already exists, remove it to move it to the end (most recent)
     currentList.remove(element);
@@ -30,5 +77,6 @@ class ViewHistoryService {
     }
 
     mostViewedElements.value = currentList;
+    _saveHistory();
   }
 }

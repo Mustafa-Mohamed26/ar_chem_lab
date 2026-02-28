@@ -1,7 +1,7 @@
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ElementModel {
+class PeriodicTableResponse {
   final String symbol;
   final String name;
   final int atomicNumber;
@@ -28,7 +28,17 @@ class ElementModel {
   final String radioactive;
   final String yearDiscovered;
 
-  const ElementModel({
+  final String? cpkHexColor;
+  final String? electronConfiguration;
+  final double? electronegativity;
+  final double? atomicRadius;
+  final double? ionizationEnergy;
+  final double? electronAffinity;
+  final String? oxidationStates;
+  final String? standardState;
+  final String? groupBlock;
+
+  const PeriodicTableResponse({
     this.symbol = '',
     this.name = '',
     this.atomicNumber = 0,
@@ -53,6 +63,15 @@ class ElementModel {
     this.ionisation = "",
     this.radioactive = "",
     this.yearDiscovered = "",
+    this.cpkHexColor,
+    this.electronConfiguration,
+    this.electronegativity,
+    this.atomicRadius,
+    this.ionizationEnergy,
+    this.electronAffinity,
+    this.oxidationStates,
+    this.standardState,
+    this.groupBlock,
   });
 
   // Helper to get group name (e.g. IA, IIA)
@@ -66,7 +85,7 @@ class ElementModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ElementModel &&
+      other is PeriodicTableResponse &&
           runtimeType == other.runtimeType &&
           atomicNumber == other.atomicNumber;
 
