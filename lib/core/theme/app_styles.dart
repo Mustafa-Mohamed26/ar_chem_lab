@@ -168,5 +168,12 @@ class AppStyles {
     color: AppColors.skyBlue,
   );
 
+  static TextStyle bold12whiteSecondary = TextStyle(
+    fontFamily: 'NirmalaUI',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
   
 }

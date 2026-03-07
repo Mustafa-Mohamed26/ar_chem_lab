@@ -11,4 +11,6 @@ class AppAssets {
   static const String cardImage_1 = 'assets/images/card_image_1.png';
   static const String cardImage_2 = 'assets/images/card_image_2.png';
   static const String cardImage_3 = 'assets/images/card_image_3.png';
+  static const String appLogo = 'assets/images/Logo.png';
+  static const String successMarkImage = 'assets/images/Successmark.png';
 }

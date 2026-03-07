@@ -2,6 +2,11 @@ import 'package:ar_chem_lab/config/bloc_observer.dart';
 import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_theme.dart';
+import 'package:ar_chem_lab/presentation/auth/login_screen.dart';
+import 'package:ar_chem_lab/presentation/auth/register_screen.dart';
+import 'package:ar_chem_lab/presentation/auth/forgot_password_screen.dart';
+import 'package:ar_chem_lab/presentation/auth/create_new_password_screen.dart';
+import 'package:ar_chem_lab/presentation/auth/password_changed_screen.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/chat_bot_screen.dart';
 import 'package:ar_chem_lab/presentation/history/history_screen.dart';
 import 'package:ar_chem_lab/presentation/home/home_screen.dart';
@@ -41,7 +46,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Chem Lab',
         initialRoute: OnboardingService().isOnboardingComplete
-            ? AppRoutes.homeScreen
+            ? AppRoutes.loginScreen
             : AppRoutes.onboarding,
         routes: {
           AppRoutes.onboarding: (context) => OnboardingScreen(),
@@ -50,6 +55,14 @@ class MyApp extends StatelessWidget {
           AppRoutes.historyScreen: (context) => HistoryScreen(),
           AppRoutes.periodicTableScreen: (context) => PeriodicTableScreen(),
           AppRoutes.elementDetailScreen: (context) => ElementDetailScreen(),
+          AppRoutes.loginScreen: (context) => const LoginScreen(),
+          AppRoutes.registerScreen: (context) => const RegisterScreen(),
+          AppRoutes.forgotPasswordScreen: (context) =>
+              const ForgotPasswordScreen(),
+          AppRoutes.createNewPasswordScreen: (context) =>
+              const CreateNewPasswordScreen(),
+          AppRoutes.passwordChangedScreen: (context) =>
+              const PasswordChangedScreen(),
         },
         theme: AppTheme.darkTheme,
       ),
