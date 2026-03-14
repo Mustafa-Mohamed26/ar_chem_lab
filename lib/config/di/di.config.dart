@@ -30,9 +30,9 @@ import '../../data/repositories/periodic_table_repository_imp.dart' as _i573;
 import '../../domain/repositories/ai_repository.dart' as _i185;
 import '../../domain/repositories/auth_repository.dart' as _i1073;
 import '../../domain/repositories/periodic_table_repository.dart' as _i32;
+import '../../domain/use_cases/auth_use_case.dart' as _i1063;
 import '../../domain/use_cases/chat_bot_use_case.dart' as _i262;
 import '../../domain/use_cases/get_periodic_table_use_case.dart' as _i380;
-import '../../domain/use_cases/register_use_case.dart' as _i479;
 import '../../presentation/auth/cubit/auth_view_model.dart' as _i1010;
 import '../../presentation/chat_bot/cubit/chat_cubit.dart' as _i22;
 import '../../presentation/periodic_table/cubit/periodic_table_view_model.dart'
@@ -75,8 +75,11 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i661.AuthDataSource>(),
       ),
     );
-    gh.factory<_i479.RegisterUseCase>(
-      () => _i479.RegisterUseCase(repository: gh<_i1073.AuthRepository>()),
+    gh.factory<_i1063.AuthUseCase>(
+      () => _i1063.AuthUseCase(repository: gh<_i1073.AuthRepository>()),
+    );
+    gh.factory<_i1010.AuthViewModel>(
+      () => _i1010.AuthViewModel(authUseCase: gh<_i1063.AuthUseCase>()),
     );
     gh.factory<_i185.AiRepository>(
       () => _i434.AiRepositoryImpl(gh<_i743.AiDataSource>()),
@@ -84,9 +87,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i32.PeriodicTableRepository>(
       () =>
           _i573.PeriodicTableRepositoryImp(gh<_i852.PeriodicTableDataSource>()),
-    );
-    gh.factory<_i1010.AuthViewModel>(
-      () => _i1010.AuthViewModel(registerUseCase: gh<_i479.RegisterUseCase>()),
     );
     gh.factory<_i380.GetPeriodicTableUseCase>(
       () => _i380.GetPeriodicTableUseCase(gh<_i32.PeriodicTableRepository>()),

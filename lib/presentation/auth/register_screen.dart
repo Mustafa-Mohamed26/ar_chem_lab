@@ -67,7 +67,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: SafeArea(
                 child: Column(
                   children: [
-                    SizedBox(height: 40.h),
                     // --- FORM SECTION ---
                     Expanded(child: _buildFormContainer(context, state)),
                   ],

@@ -4,6 +4,7 @@ import 'package:ar_chem_lab/api/models/response/periodic_table_response_dto.dart
 import 'package:ar_chem_lab/api/models/response/gemini_response_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:ar_chem_lab/api/models/request/user_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
 
 class WebServices {
   final Dio dio;
@@ -17,6 +18,18 @@ class WebServices {
         data: request.toJson(),
       );
       return response.data["message"] as String;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> login(LoginRequestDto request) async {
+    try {
+      final response = await dio.post(
+        ApiEndpoints.login,
+        data: request.toJson(),
+      );
+      return response.data["access_token"] as String;
     } catch (e) {
       rethrow;
     }
