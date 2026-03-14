@@ -9,12 +9,14 @@ class AuthButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final double? height;
+  final bool isLoading;
 
   const AuthButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.height,
+    this.isLoading = false,
   });
 
   @override
@@ -32,17 +34,8 @@ class AuthButton extends StatelessWidget {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ),
-      child: Container(
+      child: SizedBox(
         height: height ?? 50.h,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.midnightBlue.withOpacity(0.3),
-              blurRadius: 10.r,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
@@ -52,7 +45,16 @@ class AuthButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.r),
             ),
           ),
-          child: Text(text, style: AppStyles.bold20whitePrimary),
+          child: isLoading
+              ? const SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2.5,
+                  ),
+                )
+              : Text(text, style: AppStyles.bold20whitePrimary),
         ),
       ),
     );

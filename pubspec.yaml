@@ -45,6 +45,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.5.4
   flutter_dotenv: ^5.1.0
+  awesome_dialog: ^3.3.0
 
 dev_dependencies:
   flutter_test:

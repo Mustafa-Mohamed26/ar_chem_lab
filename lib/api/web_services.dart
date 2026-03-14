@@ -3,11 +3,24 @@ import 'package:ar_chem_lab/api/models/request/gemini_request_dto.dart';
 import 'package:ar_chem_lab/api/models/response/periodic_table_response_dto.dart';
 import 'package:ar_chem_lab/api/models/response/gemini_response_dto.dart';
 import 'package:dio/dio.dart';
+import 'package:ar_chem_lab/api/models/request/user_request_dto.dart';
 
 class WebServices {
   final Dio dio;
 
   WebServices(this.dio);
+
+  Future<String> register(UserRequestDto request) async {
+    try {
+      final response = await dio.post(
+        ApiEndpoints.register,
+        data: request.toJson(),
+      );
+      return response.data["message"] as String;
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   Future<List<PeriodicTableResponseDto>> getPeriodicTable() async {
     try {

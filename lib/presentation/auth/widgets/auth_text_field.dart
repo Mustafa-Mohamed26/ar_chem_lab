@@ -9,6 +9,7 @@ class AuthTextField extends StatefulWidget {
   final String hintText;
   final bool isPassword;
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
 
   // --- CONSTRUCTOR ---
   const AuthTextField({
@@ -16,6 +17,7 @@ class AuthTextField extends StatefulWidget {
     required this.hintText,
     this.isPassword = false,
     this.controller,
+    this.validator,
   });
 
   @override
@@ -48,8 +50,9 @@ class _AuthTextFieldState extends State<AuthTextField> {
             ),
           ],
         ),
-        child: TextField(
+        child: TextFormField(
           controller: widget.controller,
+          validator: widget.validator,
           obscureText: widget.isPassword ? _obscureText : false,
           style: const TextStyle(
             color: AppColors.midnightBlue,
