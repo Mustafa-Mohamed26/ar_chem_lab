@@ -1,5 +1,6 @@
 import 'package:ar_chem_lab/api/models/response/login_response_dto.dart';
 import 'package:ar_chem_lab/data/data_sources/remote/auth_data_source.dart';
+import 'package:ar_chem_lab/domain/entities/user.dart';
 import 'package:ar_chem_lab/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -22,5 +23,11 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<LoginResponseDto> refreshToken(String token) async {
     return await remoteDataSource.refreshToken(token);
+  }
+
+  @override
+  Future<User> getProfile() async {
+    final response = await remoteDataSource.getProfile();
+    return response.toEntity();
   }
 }

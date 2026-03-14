@@ -1,14 +1,16 @@
 import 'package:ar_chem_lab/domain/use_cases/auth_use_case.dart';
+import 'package:ar_chem_lab/domain/use_cases/get_profile_use_case.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 @injectable
 class AuthViewModel extends Cubit<AuthState> {
   final AuthUseCase authUseCase;
+  final GetProfileUseCase getProfileUseCase;
 
   final formKey = GlobalKey<FormState>();
   
@@ -19,6 +21,7 @@ class AuthViewModel extends Cubit<AuthState> {
 
   AuthViewModel({
     required this.authUseCase,
+    required this.getProfileUseCase,
   }) : super(AuthInitial());
 
   @override
@@ -103,6 +106,16 @@ class AuthViewModel extends Cubit<AuthState> {
     } catch (e) {
       // In case of refresh failure, we might want to logout the user
       emit(AuthError("Session expired. Please login again."));
+    }
+  }
+
+  Future<void> getProfile() async {
+    emit(AuthLoading());
+    try {
+      final user = await getProfileUseCase.invoke();
+      emit(ProfileSuccess(user));
+    } catch (e) {
+      emit(AuthError(e.toString()));
     }
   }
 }

@@ -9,6 +9,8 @@ import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/chat_bubble.dart';
 import 'package:ar_chem_lab/presentation/widget/user_header.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -122,11 +124,24 @@ class _ChatBotViewState extends State<ChatBotView> {
           padding: AppPadding.screen,
           child: Column(
             children: [
-              UserHeader(
-                imageUrl: AppAssets.userImage,
-                title: "HEY MIKE",
-                subtitle: "Online",
-                showBackButton: true,
+              BlocBuilder<AuthViewModel, AuthState>(
+                builder: (context, state) {
+                  String name = "...";
+                  if (state is AuthInitial) {
+                    context.read<AuthViewModel>().getProfile();
+                  }
+                  if (state is ProfileSuccess) {
+                    name = state.user.username.toUpperCase();
+                  } else if (state is AuthError) {
+                    name = "ALCHEMIST";
+                  }
+                  return UserHeader(
+                    imageUrl: AppAssets.userImage,
+                    title: "HEY $name",
+                    subtitle: "Online",
+                    showBackButton: true,
+                  );
+                },
               ),
 
               // THE MECHANISM: Switch between Empty State and Chat State
@@ -184,7 +199,17 @@ class _ChatBotViewState extends State<ChatBotView> {
       child: Column(
         children: [
           Image.asset(AppAssets.robotImage, height: 200.h),
-          Text("Hello Mark", style: AppStyles.regular24whitePrimary),
+          BlocBuilder<AuthViewModel, AuthState>(
+            builder: (context, state) {
+              String name = "...";
+              if (state is ProfileSuccess) {
+                name = state.user.username;
+              } else if (state is AuthError) {
+                name = "Alchemist";
+              }
+              return Text("Hello $name", style: AppStyles.regular24whitePrimary);
+            },
+          ),
           Text(
             "How can I assist you today?",
             style: AppStyles.regular24whitePrimary,

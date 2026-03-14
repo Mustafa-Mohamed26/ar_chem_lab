@@ -33,6 +33,7 @@ import '../../domain/repositories/periodic_table_repository.dart' as _i32;
 import '../../domain/use_cases/auth_use_case.dart' as _i1063;
 import '../../domain/use_cases/chat_bot_use_case.dart' as _i262;
 import '../../domain/use_cases/get_periodic_table_use_case.dart' as _i380;
+import '../../domain/use_cases/get_profile_use_case.dart' as _i305;
 import '../../presentation/auth/cubit/auth_view_model.dart' as _i1010;
 import '../../presentation/chat_bot/cubit/chat_cubit.dart' as _i22;
 import '../../presentation/periodic_table/cubit/periodic_table_view_model.dart'
@@ -78,8 +79,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1063.AuthUseCase>(
       () => _i1063.AuthUseCase(repository: gh<_i1073.AuthRepository>()),
     );
+    gh.factory<_i305.GetProfileUseCase>(
+      () => _i305.GetProfileUseCase(repository: gh<_i1073.AuthRepository>()),
+    );
     gh.factory<_i1010.AuthViewModel>(
-      () => _i1010.AuthViewModel(authUseCase: gh<_i1063.AuthUseCase>()),
+      () => _i1010.AuthViewModel(
+        authUseCase: gh<_i1063.AuthUseCase>(),
+        getProfileUseCase: gh<_i305.GetProfileUseCase>(),
+      ),
     );
     gh.factory<_i185.AiRepository>(
       () => _i434.AiRepositoryImpl(gh<_i743.AiDataSource>()),

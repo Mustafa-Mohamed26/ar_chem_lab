@@ -8,6 +8,7 @@ import 'package:ar_chem_lab/presentation/auth/forgot_password_screen.dart';
 import 'package:ar_chem_lab/presentation/auth/create_new_password_screen.dart';
 import 'package:ar_chem_lab/presentation/auth/password_changed_screen.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/chat_bot_screen.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:ar_chem_lab/presentation/history/history_screen.dart';
 import 'package:ar_chem_lab/presentation/home/home_screen.dart';
 import 'package:ar_chem_lab/presentation/onboarding/onboarding_screen.dart';
@@ -38,33 +39,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Chem Lab',
-        initialRoute: OnboardingService().isOnboardingComplete
-            ? AppRoutes.loginScreen
-            : AppRoutes.onboarding,
-        routes: {
-          AppRoutes.onboarding: (context) => OnboardingScreen(),
-          AppRoutes.homeScreen: (context) => HomeScreen(),
-          AppRoutes.chatBotScreen: (context) => ChatBotScreen(),
-          AppRoutes.historyScreen: (context) => HistoryScreen(),
-          AppRoutes.periodicTableScreen: (context) => PeriodicTableScreen(),
-          AppRoutes.elementDetailScreen: (context) => ElementDetailScreen(),
-          AppRoutes.loginScreen: (context) => const LoginScreen(),
-          AppRoutes.registerScreen: (context) => const RegisterScreen(),
-          AppRoutes.forgotPasswordScreen: (context) =>
-              const ForgotPasswordScreen(),
-          AppRoutes.createNewPasswordScreen: (context) =>
-              const CreateNewPasswordScreen(),
-          AppRoutes.passwordChangedScreen: (context) =>
-              const PasswordChangedScreen(),
-        },
-        theme: AppTheme.darkTheme,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<AuthViewModel>()),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Chem Lab',
+          initialRoute: OnboardingService().isOnboardingComplete
+              ? AppRoutes.loginScreen
+              : AppRoutes.onboarding,
+          routes: {
+            AppRoutes.onboarding: (context) => OnboardingScreen(),
+            AppRoutes.homeScreen: (context) => HomeScreen(),
+            AppRoutes.chatBotScreen: (context) => ChatBotScreen(),
+            AppRoutes.historyScreen: (context) => HistoryScreen(),
+            AppRoutes.periodicTableScreen: (context) => PeriodicTableScreen(),
+            AppRoutes.elementDetailScreen: (context) => ElementDetailScreen(),
+            AppRoutes.loginScreen: (context) => const LoginScreen(),
+            AppRoutes.registerScreen: (context) => const RegisterScreen(),
+            AppRoutes.forgotPasswordScreen: (context) =>
+                const ForgotPasswordScreen(),
+            AppRoutes.createNewPasswordScreen: (context) =>
+                const CreateNewPasswordScreen(),
+            AppRoutes.passwordChangedScreen: (context) =>
+                const PasswordChangedScreen(),
+          },
+          theme: AppTheme.darkTheme,
+        ),
       ),
     );
   }

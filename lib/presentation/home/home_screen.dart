@@ -9,11 +9,26 @@ import 'package:ar_chem_lab/presentation/periodic_table/element_tile.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_bottom_nav_bar.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_container.dart';
 import 'package:ar_chem_lab/presentation/widget/user_header.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Trigger getProfile only once when the screen is first loaded
+    context.read<AuthViewModel>().getProfile();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +49,20 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                UserHeader(
-                  imageUrl: AppAssets.userImage,
-                  title: "HAY MARK",
-                  subtitle: "Ready for today's experiment?",
+                BlocBuilder<AuthViewModel, AuthState>(
+                  builder: (context, state) {
+                    String username = "...";
+                    if (state is ProfileSuccess) {
+                      username = state.user.username.toUpperCase();
+                    } else if (state is AuthError) {
+                      username = "ALCHEMIST";
+                    }
+                    return UserHeader(
+                      imageUrl: AppAssets.userImage,
+                      title: "HEY $username",
+                      subtitle: "Ready for today's experiment?",
+                    );
+                  },
                 ),
                 SizedBox(height: 20.h),
                 GradientContainer(

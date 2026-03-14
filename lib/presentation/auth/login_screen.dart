@@ -11,7 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
-import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/utils/dialog_helper.dart';
 import 'package:ar_chem_lab/core/utils/validators.dart';
 
@@ -22,58 +21,55 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => getIt<AuthViewModel>(),
-        child: BlocConsumer<AuthViewModel, AuthState>(
-          listener: (context, state) {
-            if (state is AuthSuccess) {
-              DialogHelper.showSuccessDialog(
-                context: context,
-                title: "Login Successful",
-                desc: state.message,
-                onOkPress: () {
-                  Future.delayed(const Duration(milliseconds: 300), () {
-                    if (context.mounted) {
-                      Navigator.pushReplacementNamed(
-                          context, AppRoutes.homeScreen);
-                    }
-                  });
-                },
-              );
-            } else if (state is AuthError) {
-              DialogHelper.showErrorDialog(
-                context: context,
-                title: "Login Failed",
-                desc: state.message,
-              );
-            }
-          },
-          builder: (context, state) {
-            return Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: AppGradients.primary(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [AppColors.midnightBlue, AppColors.royalBlue],
-                ),
-              ),
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    // --- HEADER SECTION ---
-                    SizedBox(height: 40.h),
-                    _buildHeader(),
-                    SizedBox(height: 40.h),
-
-                    // --- FORM SECTION ---
-                    Expanded(child: _buildFormContainer(context, state)),
-                  ],
-                ),
-              ),
+      body: BlocConsumer<AuthViewModel, AuthState>(
+        listener: (context, state) {
+          if (state is AuthSuccess) {
+            DialogHelper.showSuccessDialog(
+              context: context,
+              title: "Login Successful",
+              desc: state.message,
+              onOkPress: () {
+                Future.delayed(const Duration(milliseconds: 300), () {
+                  if (context.mounted) {
+                    Navigator.pushReplacementNamed(
+                        context, AppRoutes.homeScreen);
+                  }
+                });
+              },
             );
-          },
-        ),
+          } else if (state is AuthError) {
+            DialogHelper.showErrorDialog(
+              context: context,
+              title: "Login Failed",
+              desc: state.message,
+            );
+          }
+        },
+        builder: (context, state) {
+          return Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: AppGradients.primary(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [AppColors.midnightBlue, AppColors.royalBlue],
+              ),
+            ),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  // --- HEADER SECTION ---
+                  SizedBox(height: 40.h),
+                  _buildHeader(),
+                  SizedBox(height: 40.h),
+
+                  // --- FORM SECTION ---
+                  Expanded(child: _buildFormContainer(context, state)),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

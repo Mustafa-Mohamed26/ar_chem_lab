@@ -1,9 +1,9 @@
-class UserRequestDto {
+class RegisterRequestDto {
   final String username;
   final String email;
   final String password;
 
-  UserRequestDto({
+  RegisterRequestDto({
     required this.username,
     required this.email,
     required this.password,
@@ -17,8 +17,8 @@ class UserRequestDto {
     };
   }
 
-  factory UserRequestDto.fromJson(Map<String, dynamic> json) {
-    return UserRequestDto(
+  factory RegisterRequestDto.fromJson(Map<String, dynamic> json) {
+    return RegisterRequestDto(
       username: json['username'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
