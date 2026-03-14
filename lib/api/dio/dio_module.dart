@@ -1,3 +1,4 @@
+import 'package:ar_chem_lab/api/dio/auth_interceptor.dart';
 import 'package:ar_chem_lab/api/dio/dio_interceptors.dart';
 import 'package:ar_chem_lab/api/web_services.dart';
 import 'package:dio/dio.dart';
@@ -35,6 +36,7 @@ abstract class GetItModule {
     var dio = Dio(baseOptions);
     // dio interceptors
     dio.interceptors.add(DioInterceptors());
+    dio.interceptors.add(AuthInterceptor(dio, prettyDioLogger));
     dio.interceptors.add(prettyDioLogger);
     return dio;
   }

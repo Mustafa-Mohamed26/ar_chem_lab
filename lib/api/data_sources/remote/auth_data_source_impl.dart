@@ -1,6 +1,8 @@
 import 'package:ar_chem_lab/api/web_services.dart';
 import 'package:ar_chem_lab/api/models/request/user_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/refresh_token_request_dto.dart';
+import 'package:ar_chem_lab/api/models/response/login_response_dto.dart';
 import 'package:ar_chem_lab/core/exceptions/app_exceptions.dart';
 import 'package:ar_chem_lab/data/data_sources/remote/auth_data_source.dart';
 import 'package:dio/dio.dart';
@@ -42,13 +44,38 @@ class AuthDataSourceImpl implements AuthDataSource {
   }
 
   @override
-  Future<String> login(String username, String password) async {
+  Future<LoginResponseDto> login(String username, String password) async {
     try {
       final request = LoginRequestDto(
         username: username,
         password: password,
       );
       return await webServices.login(request);
+    } on DioException catch (e) {
+      String message = "Server Error";
+      if (e.response?.data != null) {
+        final data = e.response!.data;
+        if (data is Map) {
+          message = data['detail']?.toString() ?? data.toString();
+        } else {
+          message = data.toString();
+        }
+      } else if (e.error is AppExceptions) {
+        message = (e.error as AppExceptions).message;
+      } else if (e.message != null) {
+        message = e.message!;
+      }
+      throw ServerException(message: message);
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<LoginResponseDto> refreshToken(String token) async {
+    try {
+      final request = RefreshTokenRequestDto(refreshToken: token);
+      return await webServices.refreshToken(request);
     } on DioException catch (e) {
       String message = "Server Error";
       if (e.response?.data != null) {

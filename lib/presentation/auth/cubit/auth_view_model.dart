@@ -61,18 +61,48 @@ class AuthViewModel extends Cubit<AuthState> {
 
     emit(AuthLoading());
     try {
-      final token = await authUseCase.login(
+      final response = await authUseCase.login(
         nameController.text,
         passwordController.text,
       );
 
-      // Store token in shared preferences
+      // Store tokens in shared preferences
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('access_token', token);
+      if (response.accessToken != null) {
+        await prefs.setString('access_token', response.accessToken!);
+      }
+      if (response.refreshToken != null) {
+        await prefs.setString('refresh_token', response.refreshToken!);
+      }
 
       emit(AuthSuccess("Logged in successfully"));
     } catch (e) {
       emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> refreshToken() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final currentRefreshToken = prefs.getString('refresh_token');
+      
+      if (currentRefreshToken == null) {
+        throw Exception("No refresh token found");
+      }
+
+      final response = await authUseCase.refreshToken(currentRefreshToken);
+      
+      if (response.accessToken != null) {
+        await prefs.setString('access_token', response.accessToken!);
+      }
+      if (response.refreshToken != null) {
+        await prefs.setString('refresh_token', response.refreshToken!);
+      }
+      
+      emit(AuthSuccess("Token refreshed successfully"));
+    } catch (e) {
+      // In case of refresh failure, we might want to logout the user
+      emit(AuthError("Session expired. Please login again."));
     }
   }
 }
