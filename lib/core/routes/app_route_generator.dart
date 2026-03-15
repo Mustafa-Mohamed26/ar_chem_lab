@@ -12,6 +12,9 @@ import 'package:ar_chem_lab/presentation/auth/welcome_screen.dart';
 import 'package:ar_chem_lab/presentation/auth/otp_verification_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_detail_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/periodic_table_screen.dart';
+import 'package:ar_chem_lab/presentation/profiling/user_profiling_screen.dart';
+import 'package:ar_chem_lab/presentation/profiling/test/profiling_test_screen.dart';
+import 'package:ar_chem_lab/presentation/profiling/test/profiling_result_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouteGenerator {
@@ -43,13 +46,20 @@ class AppRouteGenerator {
         return _buildPageRoute(const PasswordChangedScreen());
       case AppRoutes.otpVerificationScreen:
         return _buildPageRoute(const OTPVerificationScreen());
+      case AppRoutes.userProfilingScreen:
+        return _buildPageRoute(const UserProfilingScreen());
+      case AppRoutes.profilingTestScreen:
+        return _buildPageRoute(const ProfilingTestScreen());
+      case AppRoutes.profilingResultScreen:
+        return _buildPageRoute(const ProfilingResultScreen(), settings);
       default:
         return _errorRoute();
     }
   }
 
-  static PageRouteBuilder _buildPageRoute(Widget page) {
+  static PageRouteBuilder _buildPageRoute(Widget page, [RouteSettings? settings]) {
     return PageRouteBuilder(
+      settings: settings, // ← forwards arguments to ModalRoute.of(context).settings
       pageBuilder: (context, animation, secondaryAnimation) => page,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.05, 0.0);

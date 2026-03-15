@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final double? width;
   final double? height;
   final Color? backgroundColor;
@@ -25,13 +25,17 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDisabled = onTap == null;
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         width: width ?? double.infinity,
         height: height ?? 48.h,
         decoration: BoxDecoration(
-          color: backgroundColor ?? AppColors.lightBlue,
+          color: isDisabled
+              ? (backgroundColor ?? AppColors.lightBlue).withOpacity(0.35)
+              : (backgroundColor ?? AppColors.lightBlue),
           borderRadius: BorderRadius.circular(12.r),
           border: borderColor != null
               ? Border.all(color: borderColor!, width: 1)
