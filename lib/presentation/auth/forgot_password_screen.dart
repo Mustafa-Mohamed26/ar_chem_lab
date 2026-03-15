@@ -1,121 +1,141 @@
+import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
-import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/presentation/auth/widgets/auth_text_field.dart';
-import 'package:ar_chem_lab/presentation/auth/widgets/auth_button.dart';
-import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
+import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
-  // --- MAIN BUILD METHOD ---
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: AppGradients.primary(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [AppColors.midnightBlue, AppColors.royalBlue],
-          ),
+      backgroundColor: AppColors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: AppColors.white, size: 20.sp),
+          onPressed: () => Navigator.pop(context),
         ),
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: 16.h),
-                // --- BACK BUTTON ---
-                Align(
-                  alignment: Alignment.topRight,
-                  child: const GradientBackButton(),
+        title: Text("Reset Password", style: AppStyles.bold18whiteSecondary),
+        centerTitle: false,
+      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 38.w),
+                      child: _buildHeader(),
+                    ),
+                    SizedBox(height: 48.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 38.w),
+                      child: _buildForm(context),
+                    ),
+                    SizedBox(height: 104.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: _buildSpamNote(),
+                    ),
+                    SizedBox(height: 16.h),
+                    _buildFooter(context),
+                  ],
                 ),
-                SizedBox(height: 30.h),
-
-                // --- HEADER SECTION ---
-                _buildHeader(),
-                SizedBox(height: 40.h),
-
-                // --- FORM SECTION ---
-                _buildForm(context),
-                SizedBox(height: 20.h),
-
-                // --- FOOTER SECTION ---
-                _buildFooter(context),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
-  // --- WIDGET EXTRACTS ---
-
-  /// Builds the top title and subtitle of the forgot password screen
   Widget _buildHeader() {
     return Column(
       children: [
-        Text("Forgot Password?", style: AppStyles.bold32whitePrimary),
+        Image.asset(AppAssets.forgotPasswordImage, height: 120.h),
+        SizedBox(height: 12.h),
+        Text(
+          "Forgot Password?",
+          style: AppStyles.bold24whiteOrbitron,
+          textAlign: TextAlign.center,
+        ),
         SizedBox(height: 16.h),
         Text(
-          "Don't worry! It occurs. Please enter the email address linked with your account.",
-          style: AppStyles.regular12whiteSecondary.copyWith(fontSize: 14.sp),
+          "Don't worry! Enter your email below and we'll send you a link to reset your password.",
+          style: AppStyles.regular13interLightGray,
           textAlign: TextAlign.center,
         ),
       ],
     );
   }
 
-  /// Builds the form with the email field and the send code button
   Widget _buildForm(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // Input Field
-        const AuthTextField(hintText: "Enter your email", isPassword: false),
-        SizedBox(height: 30.h),
-
-        // Action Button
-        _buildSendCodeButton(context),
-      ],
-    );
-  }
-
-  /// Builds the stylized send code button
-  Widget _buildSendCodeButton(BuildContext context) {
-    return AuthButton(
-      text: "Verify",
-      onPressed: () {
-        Navigator.pushNamed(context, AppRoutes.createNewPasswordScreen);
-      },
-    );
-  }
-
-  /// Builds the 'Login' footer text
-  Widget _buildFooter(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Remember Password? ", style: AppStyles.regular12whiteSecondary),
-        GestureDetector(
+        AuthTextField(label: "Email Address", prefixIcon: Icons.email_outlined),
+        SizedBox(height: 8.h),
+        Text(
+          "# Must be the email associated with your lab account.",
+          style: AppStyles.regular11interLightGray,
+        ),
+        SizedBox(height: 32.h),
+        AppButton(
+          text: "Send Reset Link",
           onTap: () {
-            Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+            Navigator.pushNamed(context, AppRoutes.otpVerificationScreen);
           },
-          child: Text(
-            "Login",
-            style: AppStyles.bold12whiteSecondary.copyWith(
-              color: AppColors.lavender,
-            ),
-          ),
         ),
       ],
+    );
+  }
+
+  Widget _buildSpamNote() {
+    return Container(
+      padding: EdgeInsets.all(16.w),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E26),
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: Text.rich(
+        TextSpan(
+          text: "Haven't received the email? Check your spam folder or ",
+          style: AppStyles.regular10whiteSecondary.copyWith(
+            color: AppColors.lightGray,
+          ),
+          children: [
+            TextSpan(
+              text: "try again.",
+              style: TextStyle(color: AppColors.lightBlue),
+            ),
+          ],
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Widget _buildFooter(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.pop(context),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.arrow_back, color: AppColors.lightGray, size: 16.sp),
+          SizedBox(width: 8.w),
+          Text("Back to Sign In", style: AppStyles.semiBold11lightGrayInter),
+        ],
+      ),
     );
   }
 }

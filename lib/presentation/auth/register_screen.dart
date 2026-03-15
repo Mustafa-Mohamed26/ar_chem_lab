@@ -1,11 +1,8 @@
-import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
-import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/presentation/auth/widgets/auth_text_field.dart';
-import 'package:ar_chem_lab/presentation/auth/widgets/auth_button.dart';
-import 'package:ar_chem_lab/presentation/auth/widgets/auth_form_container.dart';
+import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +20,22 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _agreeToTerms = false;
 
-  // --- MAIN BUILD METHOD ---
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: AppColors.white, size: 20.sp),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text("Create Account", style: AppStyles.bold18whiteSecondary),
+        centerTitle: false,
+      ),
       body: BlocProvider(
         create: (context) => getIt<AuthViewModel>(),
         child: BlocConsumer<AuthViewModel, AuthState>(
@@ -41,7 +49,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Future.delayed(const Duration(milliseconds: 300), () {
                     if (context.mounted) {
                       Navigator.pushReplacementNamed(
-                          context, AppRoutes.homeScreen);
+                        context,
+                        AppRoutes.homeScreen,
+                      );
                     }
                   });
                 },
@@ -55,23 +65,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
             }
           },
           builder: (context, state) {
-            return Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: AppGradients.primary(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [AppColors.midnightBlue, AppColors.royalBlue],
-                ),
-              ),
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    // --- FORM SECTION ---
-                    Expanded(child: _buildFormContainer(context, state)),
-                  ],
-                ),
-              ),
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildHeader(),
+                          SizedBox(height: 32.h),
+                          _buildFormSection(context, state),
+                          SizedBox(height: 32.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.w),
+                            child: AppButton(
+                              text: "Create Account",
+                              onTap: () {
+                                if (_agreeToTerms) {
+                                  context.read<AuthViewModel>().register();
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Please agree to terms"),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 24.h),
+                          _buildFooter(context),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),
@@ -79,108 +112,144 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  // --- WIDGET EXTRACTS ---
-
-  /// Builds the top logo and title of the register screen
   Widget _buildHeader() {
-    return Column(
-      children: [
-        Image.asset(AppAssets.appLogo, width: 100.w, height: 100.h),
-        SizedBox(height: 10.h),
-        Text("SIGN UP", style: AppStyles.bold32whitePrimary),
-      ],
-    );
-  }
-
-  /// Builds the main form container with the gradient border
-  Widget _buildFormContainer(BuildContext context, AuthState state) {
-    return AuthFormContainer(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // --- HEADER SECTION ---
-          _buildHeader(),
-          SizedBox(height: 20.h),
-          // Input Fields
-          Form(
-            key: context.read<AuthViewModel>().formKey,
-            child: _buildInputFields(context),
+          Text("Join the Lab", style: AppStyles.bold29whiteOrbitron),
+          SizedBox(height: 12.h),
+          Text(
+            "Unlock immersive AR experiments and master chemistry through interactive visualization",
+            textAlign: TextAlign.center,
+            style: AppStyles.regular13interLightGray,
           ),
-          SizedBox(height: 40.h),
-
-          // Action Buttons
-          _buildSignUpButton(context, state),
-          SizedBox(height: 30.h),
-          _buildFooter(context),
         ],
       ),
     );
   }
 
-  /// Builds the Sign Up text fields
+  Widget _buildFormSection(BuildContext context, AuthState state) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24.w),
+      padding: EdgeInsets.all(24.w),
+      decoration: BoxDecoration(
+        color: AppColors.gray,
+        borderRadius: BorderRadius.circular(24.r),
+      ),
+      child: Form(
+        key: context.read<AuthViewModel>().formKey,
+        child: Column(
+          children: [
+            _buildInputFields(context),
+            SizedBox(height: 16.h),
+            _buildTermsCheckbox(),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildInputFields(BuildContext context) {
     var viewModel = context.read<AuthViewModel>();
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AuthTextField(
-            controller: viewModel.nameController,
-            hintText: "Enter your name",
-            validator: Validators.validateFullName,
-            isPassword: false),
+          label: "Full Name",
+          prefixIcon: Icons.person_outline,
+          controller: viewModel.nameController,
+          validator: Validators.validateFullName,
+        ),
         SizedBox(height: 20.h),
         AuthTextField(
-            controller: viewModel.emailController,
-            hintText: "Enter your email",
-            validator: Validators.validateEmail,
-            isPassword: false),
+          label: "Email Address",
+          prefixIcon: Icons.email_outlined,
+          controller: viewModel.emailController,
+          validator: Validators.validateEmail,
+        ),
         SizedBox(height: 20.h),
         AuthTextField(
-            controller: viewModel.passwordController,
-            hintText: "Enter your password",
-            validator: Validators.validatePassword,
-            isPassword: true),
+          label: "Password",
+          prefixIcon: Icons.lock_outline,
+          isPassword: true,
+          controller: viewModel.passwordController,
+          validator: Validators.validatePassword,
+        ),
         SizedBox(height: 20.h),
         AuthTextField(
-            controller: viewModel.confirmPasswordController,
-            hintText: "Confirm Password",
-            validator: (val) => Validators.validateConfirmPassword(
-                  val,
-                  viewModel.passwordController.text,
-                ),
-            isPassword: true),
+          label: "Confirm Password",
+          prefixIcon: Icons.lock_outline,
+          isPassword: true,
+          controller: viewModel.confirmPasswordController,
+          validator: (val) => Validators.validateConfirmPassword(
+            val,
+            viewModel.passwordController.text,
+          ),
+        ),
       ],
     );
   }
 
-  /// Builds the stylized sign up button
-  Widget _buildSignUpButton(BuildContext context, AuthState state) {
-    return AuthButton(
-      text: "Sign Up",
-      isLoading: state is AuthLoading,
-      onPressed: () {
-        context.read<AuthViewModel>().register();
-      },
+  Widget _buildTermsCheckbox() {
+    return Row(
+      children: [
+        SizedBox(
+          width: 24.w,
+          height: 24.h,
+          child: Checkbox(
+            value: _agreeToTerms,
+            onChanged: (val) => setState(() => _agreeToTerms = val ?? false),
+            side: BorderSide(color: AppColors.lightGray),
+            activeColor: AppColors.lightBlue,
+            checkColor: AppColors.darkBlue,
+          ),
+        ),
+        SizedBox(width: 12.w),
+        Expanded(
+          child: Text.rich(
+            TextSpan(
+              text: "By creating an account, I agree to the ",
+              style: AppStyles.regular10whiteSecondary.copyWith(
+                color: AppColors.lightGray,
+              ),
+              children: [
+                TextSpan(
+                  text: "Terms of Service",
+                  style: TextStyle(color: AppColors.lightBlue),
+                ),
+                const TextSpan(text: " and "),
+                TextSpan(
+                  text: "Privacy Policy.",
+                  style: TextStyle(color: AppColors.lightBlue),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
-  /// Builds the 'SignIn' footer text
   Widget _buildFooter(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           "Already have an account? ",
-          style: AppStyles.regular12whiteSecondary,
+          style: AppStyles.regular16WiteSecondary.copyWith(
+            fontSize: 14.sp,
+            color: AppColors.lightGray,
+          ),
         ),
         GestureDetector(
           onTap: () {
             Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
           },
           child: Text(
-            "SignIn",
-            style: AppStyles.bold12whiteSecondary.copyWith(
-              color: AppColors.lavender,
+            "Sign In",
+            style: AppStyles.bold16whiteSecondary.copyWith(
+              fontSize: 14.sp,
+              color: AppColors.lightBlue,
             ),
           ),
         ),

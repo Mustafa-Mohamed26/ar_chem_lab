@@ -7,6 +7,7 @@ import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_button.dart';
+import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -58,7 +59,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         OnboardingService().setOnboardingComplete();
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRoutes.homeScreen,
+          AppRoutes.welcomeScreen,
           (_) => false,
         );
         // Navigate to main app
@@ -85,35 +86,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // ------------------- Build method -------------------
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: AppPadding.screen,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppAssets.onboardingBackground),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
-              Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Padding(
+              padding: AppPadding.screen,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildImageSection(),
                   _buildTitle(),
                   SizedBox(height: 20.h),
                   _buildSubtitle(),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 60.h),
                   _buildDotsIndicator(),
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 10.h),
                   _buildButton(),
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 10.h)
+                  
                 ],
               ),
-              if (currentIndex > 0) _buildBackButton(),
-            ],
-          ),
+            ),
+            if (currentIndex > 0) _buildBackButton(),
+          ],
         ),
       ),
     );
@@ -143,7 +139,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Text(
         titles[currentIndex],
         key: ValueKey<int>(currentIndex),
-        style: AppStyles.bold32whitePrimary,
+        style: AppStyles.bold24lightBlueOrbitron,
         textAlign: TextAlign.center,
       ),
     );
@@ -159,7 +155,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Text(
           subtitles[currentIndex],
-          style: AppStyles.regular18whiteSecondary,
+          style: AppStyles.regular18whiteInter,
           textAlign: TextAlign.center,
         ),
       ),
@@ -187,9 +183,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  /// Gradient button
   Widget _buildButton() {
-    return GradientButton(text: buttonTexts[currentIndex], onTap: _nextPage);
+    return AppButton(
+      text: buttonTexts[currentIndex],
+      onTap: _nextPage,
+    );
   }
 
   /// Back button

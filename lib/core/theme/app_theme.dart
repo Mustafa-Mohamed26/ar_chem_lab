@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.transparent,
-  
+    scaffoldBackgroundColor: AppColors.black,
+    colorScheme: const ColorScheme.dark(
+      primary: AppColors.lightBlue,
+      surface: AppColors.black,
+    ),
   );
 }

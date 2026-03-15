@@ -8,10 +8,8 @@ class AppColors {
   static const Color mediumBlue = Color(0xFF0D47A1);
   static const Color skyBlue = Color(0xFF5AC1E6);
   static const Color cyanAccent = Color(0xFF18FFFF);
-  static const Color darkBlue = Color(0xFF1B1748);
   static const Color lavender = Color(0xFF8583B2);
 
-  static const Color white = Color(0xFFFFFFFF);
   static const Color lowSaturationWhite = Color.fromRGBO(255, 255, 255, 0.05);
 
   static const Color black = Color(0xFF000000);
@@ -24,4 +22,15 @@ class AppColors {
   static const Color redAccent = Color(0xFFFF5252);
 
   static const Color transparent = Colors.transparent;
+
+
+  // Add more colors as needed
+
+  static const Color lightBlue = Color(0xFF7BA4F7);
+  static const Color darkBlue = Color(0xFF34405D);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color gray = Color.fromARGB(255, 23, 23, 23);
+  static const Color lightGray = Color(0xFF8A8B95);
+  static const Color darkGray = Color(0xFF1E1E26);
+  static const Color secondaryDarkGray = Color(0xFF2E2E35);
 }
