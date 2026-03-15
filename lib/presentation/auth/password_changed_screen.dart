@@ -32,7 +32,7 @@ class PasswordChangedScreen extends StatelessWidget {
               SizedBox(height: 48.h),
 
               // --- ACTION BUTTON ---
-              _buildBackToLoginButton(context),
+              _buildBackToSignInButton(context),
             ],
           ),
         ),
@@ -58,13 +58,13 @@ class PasswordChangedScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBackToLoginButton(BuildContext context) {
+  Widget _buildBackToSignInButton(BuildContext context) {
     return AppButton(
-      text: "Back to Login",
+      text: "Back to sign In",
       onTap: () {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRoutes.loginScreen,
+          AppRoutes.welcomeScreen,
           (route) => false,
         );
       },

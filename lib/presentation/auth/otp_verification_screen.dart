@@ -14,7 +14,10 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
-  final List<TextEditingController> _controllers = List.generate(4, (index) => TextEditingController());
+  final List<TextEditingController> _controllers = List.generate(
+    4,
+    (index) => TextEditingController(),
+  );
   final List<FocusNode> _focusNodes = List.generate(4, (index) => FocusNode());
 
   @override
@@ -40,6 +43,16 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text("OTP Verification", style: AppStyles.bold18whiteSecondary),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: AppColors.white, size: 20.sp),
+          onPressed: () => Navigator.pop(context),
+        ),
+        centerTitle: false,
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -74,7 +87,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       AppButton(
                         text: "Verify",
                         onTap: () {
-                          Navigator.pushNamed(context, AppRoutes.createNewPasswordScreen);
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.createNewPasswordScreen,
+                          );
                         },
                       ),
                       SizedBox(height: 32.h),
@@ -135,10 +151,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           onTap: () {
             // Handle resend
           },
-          child: Text(
-            "Resend",
-            style: AppStyles.bold13interWhite,
-          ),
+          child: Text("Resend", style: AppStyles.bold13interWhite),
         ),
       ],
     );
