@@ -65,7 +65,7 @@ class AuthViewModel extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final response = await authUseCase.login(
-        nameController.text,
+        emailController.text,
         passwordController.text,
       );
 

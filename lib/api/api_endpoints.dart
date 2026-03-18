@@ -4,11 +4,13 @@ class ApiEndpoints {
   static String get geminiChat =>
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${dotenv.env['GEMINI_API_KEY']}";
 
-  static String get register => "http://10.0.2.2:8000/register";
-  static String get login => "http://10.0.2.2:8000/login";
-  static String get refreshToken => "http://10.0.2.2:8000/refresh";
-  static String get profile => "http://10.0.2.2:8000/profile";
-  static String get forgotPassword => "http://10.0.2.2:8000/forgot-password";
-  static String get verifyResetCode => "http://10.0.2.2:8000/verify-reset-code";
-  static String get resetPassword => "http://10.0.2.2:8000/reset-password";
+  static String get baseUrl => "http://192.168.1.14:8000";
+
+  static String get register => "$baseUrl/register";
+  static String get login => "$baseUrl/login";
+  static String get refreshToken => "$baseUrl/refresh";
+  static String get profile => "$baseUrl/profile";
+  static String get forgotPassword => "$baseUrl/forgot-password";
+  static String get verifyResetCode => "$baseUrl/verify-reset-code";
+  static String get resetPassword => "$baseUrl/reset-password";
 }

@@ -45,10 +45,10 @@ class AuthDataSourceImpl implements AuthDataSource {
   }
 
   @override
-  Future<LoginResponseDto> login(String username, String password) async {
+  Future<LoginResponseDto> login(String email, String password) async {
     try {
       final request = LoginRequestDto(
-        username: username,
+        email: email,
         password: password,
       );
       return await webServices.login(request);
