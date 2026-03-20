@@ -4,7 +4,6 @@ import 'package:ar_chem_lab/domain/entities/ai_message.dart';
 import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
-import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/chat_bubble.dart';
