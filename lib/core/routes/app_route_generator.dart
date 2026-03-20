@@ -10,12 +10,16 @@ import 'package:ar_chem_lab/presentation/home/home_screen.dart';
 import 'package:ar_chem_lab/presentation/onboarding/onboarding_screen.dart';
 import 'package:ar_chem_lab/presentation/auth/welcome_screen.dart';
 import 'package:ar_chem_lab/presentation/auth/otp_verification_screen.dart';
+import 'package:ar_chem_lab/presentation/auth/email_verification_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_detail_screen.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/periodic_table_screen.dart';
 import 'package:ar_chem_lab/presentation/profiling/user_profiling_screen.dart';
 import 'package:ar_chem_lab/presentation/profiling/test/profiling_test_screen.dart';
 import 'package:ar_chem_lab/presentation/profiling/test/profiling_result_screen.dart';
 import 'package:ar_chem_lab/presentation/profile/profile_screen.dart';
+import 'package:ar_chem_lab/presentation/lab/lab_main_screen.dart';
+import 'package:ar_chem_lab/presentation/lab/experiment_detail_screen.dart';
+import 'package:ar_chem_lab/domain/entities/lab/experiment_entity.dart';
 import 'package:flutter/material.dart';
 
 class AppRouteGenerator {
@@ -47,6 +51,8 @@ class AppRouteGenerator {
         return _buildPageRoute(const PasswordChangedScreen(), settings);
       case AppRoutes.otpVerificationScreen:
         return _buildPageRoute(const OTPVerificationScreen(), settings);
+      case AppRoutes.emailVerificationScreen:
+        return _buildPageRoute(const EmailVerificationScreen(), settings);
       case AppRoutes.userProfilingScreen:
         return _buildPageRoute(const UserProfilingScreen(), settings);
       case AppRoutes.profilingTestScreen:
@@ -55,6 +61,11 @@ class AppRouteGenerator {
         return _buildPageRoute(const ProfilingResultScreen(), settings);
       case AppRoutes.profileScreen:
         return _buildPageRoute(const ProfileScreen(), settings);
+      case AppRoutes.labMainScreen:
+        return _buildPageRoute(const LabMainScreen(), settings);
+      case AppRoutes.experimentDetailScreen:
+        final experiment = settings.arguments as ExperimentEntity;
+        return _buildPageRoute(ExperimentDetailScreen(experiment: experiment), settings);
       default:
         return _errorRoute();
     }

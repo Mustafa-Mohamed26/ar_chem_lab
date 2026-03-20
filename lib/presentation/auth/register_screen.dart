@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     if (context.mounted) {
                       Navigator.pushReplacementNamed(
                         context,
-                        AppRoutes.homeScreen,
+                        AppRoutes.emailVerificationScreen,
                       );
                     }
                   });

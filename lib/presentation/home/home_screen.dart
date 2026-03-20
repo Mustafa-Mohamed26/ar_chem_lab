@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 progress: 0.82,
                 helperText: "Complete 3 more challenges to unlock Organic Chemistry modules.",
                 onContinue: () {
-                  // TODO: Implement navigation to latest challenge
+                  Navigator.pushNamed(context, AppRoutes.labMainScreen);
                 },
               ),
               SizedBox(height: 16.h),
