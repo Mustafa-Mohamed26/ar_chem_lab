@@ -1,5 +1,5 @@
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
+import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,8 +15,8 @@ class ScreenTitle extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: AppStyles.bold32whitePrimary,),
-            GradientBackButton()
+            Text(title, style: AppStyles.bold32whitePrimary),
+            BackButton(),
           ],
         ),
       ],

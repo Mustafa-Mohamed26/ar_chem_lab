@@ -41,6 +41,12 @@ class AppStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
+
+  static TextStyle bold20whiteOrbitron = GoogleFonts.orbitron(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
   
 
   // --- Inter font styles ---
@@ -60,6 +66,12 @@ class AppStyles {
   static TextStyle bold14interWhite = GoogleFonts.inter(
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle medium14whiteInter = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
     color: AppColors.white,
   );
 

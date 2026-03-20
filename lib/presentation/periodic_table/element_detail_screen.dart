@@ -2,7 +2,7 @@ import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
-import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
+import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -122,7 +122,7 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
           ),
 
           // Back Button
-          Positioned(top: 40.h, left: 310.w, child: GradientBackButton()),
+          Positioned(top: 40.h, left: 310.w, child: BackButton()),
 
           // Element Info Card Overlay
           Positioned(

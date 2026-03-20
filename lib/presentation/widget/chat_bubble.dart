@@ -42,28 +42,17 @@ class ChatBubble extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(14.w),
                   decoration: BoxDecoration(
-                    color: AppColors.lowSaturationWhite,
+                    color: AppColors.darkGray,
                     borderRadius: BorderRadius.all(Radius.circular(24.r)),
-                    border: Border.all(
-                      color: AppColors.lowSaturationWhite,
-                      width: 1.5,
-                    ),
                   ),
                   child: isThinking
                       ? const ThinkingDots()
                       : isUser
-                      ? Text(
-                          text,
-                          style: AppStyles.medium12whitePrimary.copyWith(
-                            fontSize: 14.sp,
-                          ),
-                        )
+                      ? Text(text, style: AppStyles.medium14whiteInter)
                       : TypewriterText(
                           text: text,
                           onChanged: onTypewriterUpdate,
-                          style: AppStyles.medium12whitePrimary.copyWith(
-                            fontSize: 14.sp,
-                          ),
+                          style: AppStyles.medium14whiteInter,
                         ),
                 ),
               ),
@@ -81,8 +70,7 @@ class ChatBubble extends StatelessWidget {
       padding: EdgeInsets.all(4.w),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.lowSaturationWhite,
-        border: Border.all(color: AppColors.lowSaturationWhite, width: 1.5),
+        color: AppColors.darkBlue,
       ),
       child: Image.asset(AppAssets.robotImage, width: 35.w, height: 35.w),
     );
@@ -101,9 +89,8 @@ class ChatBubble extends StatelessWidget {
       width: 8.w,
       height: 8.w,
       decoration: BoxDecoration(
-        color: AppColors.lowSaturationWhite,
+        color: AppColors.darkGray,
         shape: BoxShape.circle,
-        border: Border.all(color: AppColors.lowSaturationWhite, width: 1.5),
       ),
     );
   }

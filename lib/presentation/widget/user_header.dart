@@ -1,5 +1,5 @@
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/widget/gradient_back_button.dart';
+import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // Assuming you're using screenutil for .w
 
@@ -35,12 +35,12 @@ class UserHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min, // Keeps the column tight
               children: [
-                Text(title, style: AppStyles.bold20whitePrimary),
+                Text(title, style: AppStyles.bold17whiteInter),
                 Text(subtitle, style: AppStyles.regular13skyBlueSecondary),
               ],
             ),
             Spacer(),
-            if (showBackButton) const GradientBackButton(),
+            if (showBackButton) const AppBackButton(),
           ],
         ),
       ],
