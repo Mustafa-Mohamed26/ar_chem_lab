@@ -1,6 +1,7 @@
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
+import 'package:ar_chem_lab/presentation/periodic_table/widget/bohr_model_widget.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,27 +69,7 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
         children: [
           // Main Content Centered
           Center(
-            child: Hero(
-              tag: 'element_symbol_${element.symbol}',
-              child: Material(
-                color: Colors.transparent,
-                child: Container(
-                  width: 180.w,
-                  height: 180.w,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white30, width: 2),
-                  ),
-                  child: Text(
-                    element.symbol,
-                    style: AppStyles.bold32whiteOrbitron.copyWith(
-                      fontSize: 80.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            child: BohrModelWidget(element: element),
           ),
 
           // Back Button
