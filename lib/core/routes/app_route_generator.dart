@@ -21,35 +21,35 @@ class AppRouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.onboarding:
-        return _buildPageRoute(OnboardingScreen());
+        return _buildPageRoute(OnboardingScreen(), settings);
       case AppRoutes.welcomeScreen:
-        return _buildPageRoute(const WelcomeScreen());
+        return _buildPageRoute(const WelcomeScreen(), settings);
       case AppRoutes.homeScreen:
-        return _buildPageRoute(HomeScreen());
+        return _buildPageRoute(HomeScreen(), settings);
       case AppRoutes.chatBotScreen:
-        return _buildPageRoute(ChatBotScreen());
+        return _buildPageRoute(ChatBotScreen(), settings);
       case AppRoutes.historyScreen:
-        return _buildPageRoute(HistoryScreen());
+        return _buildPageRoute(HistoryScreen(), settings);
       case AppRoutes.periodicTableScreen:
-        return _buildPageRoute(PeriodicTableScreen());
+        return _buildPageRoute(PeriodicTableScreen(), settings);
       case AppRoutes.elementDetailScreen:
-        return _buildPageRoute(ElementDetailScreen());
+        return _buildPageRoute(ElementDetailScreen(), settings);
       case AppRoutes.loginScreen:
-        return _buildPageRoute(const LoginScreen());
+        return _buildPageRoute(const LoginScreen(), settings);
       case AppRoutes.registerScreen:
-        return _buildPageRoute(const RegisterScreen());
+        return _buildPageRoute(const RegisterScreen(), settings);
       case AppRoutes.forgotPasswordScreen:
-        return _buildPageRoute(const ForgotPasswordScreen());
+        return _buildPageRoute(const ForgotPasswordScreen(), settings);
       case AppRoutes.createNewPasswordScreen:
-        return _buildPageRoute(const CreateNewPasswordScreen());
+        return _buildPageRoute(const CreateNewPasswordScreen(), settings);
       case AppRoutes.passwordChangedScreen:
-        return _buildPageRoute(const PasswordChangedScreen());
+        return _buildPageRoute(const PasswordChangedScreen(), settings);
       case AppRoutes.otpVerificationScreen:
-        return _buildPageRoute(const OTPVerificationScreen());
+        return _buildPageRoute(const OTPVerificationScreen(), settings);
       case AppRoutes.userProfilingScreen:
-        return _buildPageRoute(const UserProfilingScreen());
+        return _buildPageRoute(const UserProfilingScreen(), settings);
       case AppRoutes.profilingTestScreen:
-        return _buildPageRoute(const ProfilingTestScreen());
+        return _buildPageRoute(const ProfilingTestScreen(), settings);
       case AppRoutes.profilingResultScreen:
         return _buildPageRoute(const ProfilingResultScreen(), settings);
       default:

@@ -31,9 +31,20 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
 
   @override
   Widget build(BuildContext context) {
-    // Extract arguments
-    final element =
-        ModalRoute.of(context)!.settings.arguments as PeriodicTableResponse;
+    // Extract arguments safely
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args == null || args is! PeriodicTableResponse) {
+      return Scaffold(
+        backgroundColor: AppColors.midnightBlue,
+        body: Center(
+          child: Text(
+            "Element details not found",
+            style: AppStyles.bold20whitePrimary,
+          ),
+        ),
+      );
+    }
+    final PeriodicTableResponse element = args;
 
     return Scaffold(
       backgroundColor: AppColors.midnightBlue,

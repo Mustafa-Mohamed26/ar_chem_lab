@@ -70,7 +70,7 @@ class ChatBubble extends StatelessWidget {
       padding: EdgeInsets.all(4.w),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.darkBlue,
+        color: AppColors.darkGray,
       ),
       child: Image.asset(AppAssets.robotImage, width: 35.w, height: 35.w),
     );
@@ -80,7 +80,7 @@ class ChatBubble extends StatelessWidget {
     return CircleAvatar(
       radius: 18.r,
       backgroundColor: AppColors.white,
-      child: Icon(Icons.person, color: AppColors.darkBlue, size: 35.sp),
+      child: Icon(Icons.person, color: AppColors.darkGray, size: 35.sp),
     );
   }
 

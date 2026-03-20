@@ -10,128 +10,140 @@ class HistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Logic for Status Styles
-    Color stateColor;
-    String stateLabel;
-    IconData stateIcon;
-
-    switch (data.status) {
-      case ExperimentStatus.completed:
-        stateColor = AppColors.neonGreen; // Neon Green
-        stateLabel = "Completed";
-        stateIcon = Icons.check_circle_outline;
-        break;
-      case ExperimentStatus.inProgress:
-        stateColor = AppColors.amber; // Orange/Amber
-        stateLabel = "In Progress";
-        stateIcon = Icons.error_outline;
-        break;
-      case ExperimentStatus.incomplete:
-        stateColor = AppColors.redAccent;
-        stateLabel = "Incomplete";
-        stateIcon = Icons.highlight_off;
-        break;
-    }
-
+    final isSuccess = data.status == ExperimentStatus.success;
+    final statusColor = isSuccess ? AppColors.lightBlue : AppColors.redAccent;
+    final statusText = isSuccess ? "SUCCESS" : "FAILED";
+    
     return Container(
-      padding: EdgeInsets.all(16),
       margin: EdgeInsets.only(bottom: 16.h),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: AppColors.lowSaturationWhite,
-        borderRadius: BorderRadius.circular(19),
-        border: Border.all(color: stateColor),
+        color: AppColors.darkGray,
+        borderRadius: BorderRadius.circular(24.r),
+        border: Border.all(color: AppColors.lowSaturationGray),
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  data.title,
-                  style: AppStyles.bold24cyanAccentPrimary,
-                ),
+          // Left Icon Container
+          Container(
+            width: 56.w,
+            height: 56.w,
+            decoration: BoxDecoration(
+              color: isSuccess 
+                  ? AppColors.lightBlue.withValues(alpha: 0.15)
+                  : AppColors.redAccent.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(16.r),
+              border: Border.all(
+                color: isSuccess 
+                    ? AppColors.lightBlue.withValues(alpha: 0.3)
+                    : AppColors.redAccent.withValues(alpha: 0.3),
               ),
-              Icon(stateIcon, color: stateColor, size: 28),
-              SizedBox(width: 4.w),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: stateColor),
+            ),
+            child: Icon(
+              isSuccess ? Icons.science_outlined : Icons.error_outline,
+              color: statusColor,
+              size: 28.sp,
+            ),
+          ),
+          SizedBox(width: 16.w),
+          
+          // Center Info
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      data.title,
+                      style: AppStyles.bold18whiteOrbitron.copyWith(
+                        fontSize: 17.sp,
+                      ),
+                    ),
+                    _buildStatusTag(statusText, statusColor),
+                  ],
                 ),
-                child: Text(
-                  stateLabel,
-                  style: AppStyles.regular13skyBlueSecondary.copyWith(
-                    color: stateColor,
+                SizedBox(height: 4.h),
+                Text(
+                  data.date,
+                  style: AppStyles.regular12graySecondary.copyWith(
+                    color: Colors.white38,
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Icon(Icons.calendar_month, size: 18, color: AppColors.grey),
-              SizedBox(width: 4.w),
-              Text(data.date, style: AppStyles.regular12graySecondary),
-              SizedBox(width: 12.w),
-              Icon(Icons.timer, size: 18, color: AppColors.grey),
-              SizedBox(width: 4.w),
-              Text(data.duration, style: AppStyles.regular12graySecondary),
-            ],
-          ),
-          SizedBox(height: 12.h),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: AppColors.mediumBlue,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  "Reactions",
-                  style: AppStyles.regular10whiteSecondary,
-                ),
-              ),
-              SizedBox(width: 10.w),
-              Icon(Icons.info_outline, color: Colors.greenAccent, size: 16),
-              Text(
-                " Low risk",
-                style: AppStyles.regular12graySecondary.copyWith(
-                  color: AppColors.neonGreen,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            "Successfully observed pH change with indicator",
-            style: AppStyles.regular12graySecondary,
-          ),
-          Row(
-            children: [
-              Icon(Icons.auto_graph, color: AppColors.cyanAccent, size: 16),
-              Text(
-                " pH: ${data.pHStart} - ${data.pHEnd}",
-                style: AppStyles.regular12whiteSecondary,
-              ),
-              const Spacer(),
-              SizedBox(width: 10.w),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.delete_outline,
-                  color: Colors.redAccent,
-                  size: 28,
-                ),
-              ),
-            ],
+                SizedBox(height: 12.h),
+                _buildBottomInfo(isSuccess),
+              ],
+            ),
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildStatusTag(String text, Color color) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Text(
+        text,
+        style: AppStyles.bold10whitePrimary.copyWith(
+          color: color,
+          letterSpacing: 0.5,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomInfo(bool isSuccess) {
+    if (isSuccess) {
+      if (data.extraInfo != null) {
+        return Row(
+          children: [
+            Icon(Icons.science, size: 14.sp, color: AppColors.cyanAccent),
+            SizedBox(width: 6.w),
+            Text(
+              data.extraInfo!,
+              style: AppStyles.bold12whiteSecondary.copyWith(
+                color: Colors.white70,
+                fontSize: 11.sp,
+              ),
+            ),
+          ],
+        );
+      }
+      return Row(
+        children: [
+          Icon(Icons.timer_outlined, size: 14.sp, color: AppColors.lightBlue),
+          SizedBox(width: 6.w),
+          Text(
+            data.duration,
+            style: AppStyles.medium12InterWhite.copyWith(
+              color: Colors.white70,
+              fontSize: 11.sp,
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Row(
+        children: [
+          Icon(Icons.warning_amber_rounded, size: 14.sp, color: AppColors.redAccent),
+          SizedBox(width: 6.w),
+          Text(
+            "Reason: ${data.reason ?? 'Unknown'}",
+            style: AppStyles.medium12InterWhite.copyWith(
+              color: AppColors.redAccent.withOpacity(0.8),
+              fontSize: 11.sp,
+            ),
+          ),
+        ],
+      );
+    }
   }
 }
