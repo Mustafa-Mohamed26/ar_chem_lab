@@ -1,10 +1,10 @@
 import 'dart:ui';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/thinking_dots.dart';
-import 'package:ar_chem_lab/presentation/chat_bot/typewriter_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -48,12 +48,22 @@ class ChatBubble extends StatelessWidget {
                   child: isThinking
                       ? const ThinkingDots()
                       : isUser
-                      ? Text(text, style: AppStyles.medium14whiteInter)
-                      : TypewriterText(
-                          text: text,
-                          onChanged: onTypewriterUpdate,
-                          style: AppStyles.medium14whiteInter,
-                        ),
+                          ? Text(text, style: AppStyles.medium14whiteInter)
+                          : MarkdownBody(
+                              data: text,
+                              styleSheet: MarkdownStyleSheet(
+                                p: AppStyles.medium14whiteInter,
+                                strong: AppStyles.medium14whiteInter.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.lightBlue,
+                                ),
+                                h1: AppStyles.bold20whiteOrbitron,
+                                h2: AppStyles.bold18whiteOrbitron,
+                                h3: AppStyles.bold14whiteInter,
+                                listBullet: AppStyles.medium14whiteInter,
+                                blockSpacing: 10.h,
+                              ),
+                            ),
                 ),
               ),
             ),
