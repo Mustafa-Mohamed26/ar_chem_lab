@@ -30,6 +30,18 @@ class AppStyles {
     color: AppColors.white,
   );
 
+  static TextStyle bold32whiteOrbitron = GoogleFonts.orbitron(
+    fontSize: 32.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle bold18whiteOrbitron = GoogleFonts.orbitron(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+  
 
   // --- Inter font styles ---
 
@@ -44,6 +56,13 @@ class AppStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
+
+  static TextStyle bold14interWhite = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
 
   static TextStyle regular13interLightGray = GoogleFonts.inter(
     fontSize: 13.sp,
@@ -79,6 +98,42 @@ class AppStyles {
     fontSize: 11.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.lightGray,
+  );
+
+  static TextStyle regular12whiteInter = GoogleFonts.inter(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.white
+  );
+
+  static TextStyle bold17whiteInter = GoogleFonts.inter(
+    fontSize: 17.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white
+  );
+
+  static TextStyle regular12interWhite = GoogleFonts.inter(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.white  
+  );
+
+  static TextStyle bold22interWhite = GoogleFonts.inter(
+    fontSize: 22.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle medium12InterWhite = GoogleFonts.inter(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white
+  );
+
+  static TextStyle bold14whiteInter = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white
   );
   // --- PRIMARY STYLES (Agency FB) ---
 

@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppPadding {
   static EdgeInsets screen = EdgeInsets.symmetric(
-    horizontal: 12.w,
-    vertical: 12.h,
+    horizontal: 14.w,
+    vertical: 14.h,
   );
 
   static EdgeInsets horizontal = EdgeInsets.symmetric(horizontal: 12.w);

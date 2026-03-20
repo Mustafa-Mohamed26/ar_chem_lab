@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Chem Lab',
           initialRoute: OnboardingService().isOnboardingComplete
-              ? AppRoutes.welcomeScreen
+              ? AppRoutes.homeScreen
               : AppRoutes.onboarding,
           onGenerateRoute: AppRouteGenerator.generateRoute,
           theme: AppTheme.darkTheme,

@@ -34,7 +34,7 @@ class AppButton extends StatelessWidget {
         height: height ?? 48.h,
         decoration: BoxDecoration(
           color: isDisabled
-              ? (backgroundColor ?? AppColors.lightBlue).withOpacity(0.35)
+              ? (backgroundColor ?? AppColors.lightBlue).withValues(alpha: 0.35)
               : (backgroundColor ?? AppColors.lightBlue),
           borderRadius: BorderRadius.circular(12.r),
           border: borderColor != null
