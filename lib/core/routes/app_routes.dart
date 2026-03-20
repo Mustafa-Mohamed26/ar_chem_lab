@@ -17,4 +17,6 @@ class AppRoutes {
   static const String userProfilingScreen = '/userProfiling';
   static const String profilingTestScreen = '/profilingTest';
   static const String profilingResultScreen = '/profilingResult';
+
+  static const String profileScreen = '/profile';
 }

@@ -6,7 +6,7 @@ import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/widget/chat_bubble.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/chat_bubble.dart';
 import 'package:ar_chem_lab/presentation/widget/user_header.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';

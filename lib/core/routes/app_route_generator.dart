@@ -15,6 +15,7 @@ import 'package:ar_chem_lab/presentation/periodic_table/periodic_table_screen.da
 import 'package:ar_chem_lab/presentation/profiling/user_profiling_screen.dart';
 import 'package:ar_chem_lab/presentation/profiling/test/profiling_test_screen.dart';
 import 'package:ar_chem_lab/presentation/profiling/test/profiling_result_screen.dart';
+import 'package:ar_chem_lab/presentation/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouteGenerator {
@@ -52,6 +53,8 @@ class AppRouteGenerator {
         return _buildPageRoute(const ProfilingTestScreen(), settings);
       case AppRoutes.profilingResultScreen:
         return _buildPageRoute(const ProfilingResultScreen(), settings);
+      case AppRoutes.profileScreen:
+        return _buildPageRoute(const ProfileScreen(), settings);
       default:
         return _errorRoute();
     }

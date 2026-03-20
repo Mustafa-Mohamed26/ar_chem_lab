@@ -69,6 +69,12 @@ class AppStyles {
 
   // --- Inter font styles ---
 
+  static TextStyle bold24whiteInter = GoogleFonts.inter(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
   static TextStyle regular14LightBlueInter = GoogleFonts.inter(
     fontSize: 14.sp,
     fontWeight: FontWeight.normal,

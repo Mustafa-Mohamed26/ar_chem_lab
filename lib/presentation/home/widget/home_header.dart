@@ -1,3 +1,4 @@
+import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,14 @@ class HomeHeader extends StatelessWidget {
         SizedBox(height: 20.h),
         Row(
           children: [
-            Image.asset(
-              imageUrl,
-              // You might want to add width/height here to keep it consistent
-              width: 50.w,
-              height: 50.w,
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, AppRoutes.profileScreen),
+              child: Image.asset(
+                imageUrl,
+                // You might want to add width/height here to keep it consistent
+                width: 50.w,
+                height: 50.w,
+              ),
             ),
             SizedBox(width: 12.w),
             Column(

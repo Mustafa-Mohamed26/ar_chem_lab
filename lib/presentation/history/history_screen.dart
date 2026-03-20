@@ -1,3 +1,5 @@
+import 'package:ar_chem_lab/core/constants/app_assets.dart';
+import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
@@ -124,15 +126,35 @@ class _HistoryScreenState extends State<HistoryScreen> {
       children: [
         Row(
           children: [
-            Text(
-              "EXPERIMENT ",
-              style: AppStyles.bold18whiteOrbitron,
-            ),
-            Text(
-              "HISTORY",
-              style: AppStyles.bold18whiteOrbitron.copyWith(
-                color: AppColors.lightBlue,
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, AppRoutes.profileScreen),
+              child: Container(
+                width: 50.w,
+                height: 50.w,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(AppAssets.userImage),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
+            ),
+            SizedBox(width: 12.w),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "EXPERIMENT ",
+                  style: AppStyles.bold18whiteOrbitron,
+                ),
+                Text(
+                  "HISTORY",
+                  style: AppStyles.bold18whiteOrbitron.copyWith(
+                    color: AppColors.lightBlue,
+                    
+                  ),
+                ),
+              ],
             ),
           ],
         ),
