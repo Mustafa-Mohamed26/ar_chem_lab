@@ -51,7 +51,7 @@ class LevelProgressCard extends StatelessWidget {
                 top: -40.h,
                 child: Image.asset(
                   AppAssets.testTubeImage,
-                  height: 100.h,
+                  height: 110.h,
                   fit: BoxFit.contain,
                 ),
               ),
