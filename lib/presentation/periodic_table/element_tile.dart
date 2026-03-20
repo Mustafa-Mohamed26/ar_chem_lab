@@ -59,7 +59,7 @@ class ElementTile extends StatelessWidget {
         padding: EdgeInsets.only(left: 4.w, top: 2.h),
         child: Text(
           '${element.atomicNumber}',
-          style: AppStyles.bold10whitePrimary,
+          style: AppStyles.bold10whiteInter,
         ),
       ),
     );
@@ -67,7 +67,7 @@ class ElementTile extends StatelessWidget {
 
   Widget _buildSymbol() {
     return Expanded(
-      child: Text(element.symbol, style: AppStyles.bold32whitePrimary),
+      child: Text(element.symbol, style: AppStyles.bold32whiteInter),
     );
   }
 
@@ -79,7 +79,7 @@ class ElementTile extends StatelessWidget {
         textAlign: TextAlign.center,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: AppStyles.bold12whitePrimary,
+        style: AppStyles.bold12whiteInter,
       ),
     );
   }

@@ -6,6 +6,24 @@ import 'package:google_fonts/google_fonts.dart';
 class AppStyles {
   // --- Orbitron font styles ---
 
+  static TextStyle bold12whiteInter = GoogleFonts.inter(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static TextStyle regular16WiteInter = GoogleFonts.inter(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.white,
+  );
+
+  static TextStyle bold32whiteInter = GoogleFonts.inter(
+    fontSize: 32.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
   static TextStyle bold24lightBlueOrbitron = GoogleFonts.orbitron(
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
@@ -50,6 +68,18 @@ class AppStyles {
   
 
   // --- Inter font styles ---
+
+  static TextStyle regular14LightBlueInter = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.lightBlue,
+  );
+
+  static TextStyle bold10whiteInter = GoogleFonts.inter(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
 
   static TextStyle regular18whiteInter = GoogleFonts.inter(
     fontSize: 18.sp,

@@ -7,7 +7,7 @@ import 'package:ar_chem_lab/domain/entities/periodic_table_response.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/cubit/periodic_table_states.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/cubit/periodic_table_view_model.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_tile.dart';
-import 'package:ar_chem_lab/presentation/widget/screen_title.dart';
+import 'package:ar_chem_lab/presentation/periodic_table/screen_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -134,7 +134,7 @@ class _PeriodicTableScreenState extends State<PeriodicTableScreen> {
             margin: const EdgeInsets.all(2),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: AppColors.lowSaturationWhite,
+              color: AppColors.darkGray,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(color: AppColors.lowSaturationWhite),
             ),
@@ -202,13 +202,13 @@ class _PeriodicTableScreenState extends State<PeriodicTableScreen> {
           alignment: Alignment.center,
           decoration: period <= 7
               ? BoxDecoration(
-                  color: AppColors.lowSaturationWhite,
+                  color: AppColors.darkGray,
                   borderRadius: BorderRadius.circular(4),
                   border: Border.all(color: AppColors.lowSaturationWhite),
                 )
               : null,
           child: period <= 7
-              ? Text('$period', style: AppStyles.regular16WiteSecondary)
+              ? Text('$period', style: AppStyles.regular16WiteInter)
               : null, // Don't show number for Lanthanides/Actinides
         ),
 
