@@ -1,5 +1,6 @@
 class AppAssets {
-  static const String onboardingBackground = 'assets/images/onboarding_background.png';
+  static const String onboardingBackground =
+      'assets/images/onboarding_background.png';
   static const String onboarding1Image = 'assets/images/onboarding_1_img.png';
   static const String onboarding2Image = 'assets/images/onboarding_2_img.png';
   static const String onboarding3Image = 'assets/images/onboarding_3_img.png';
@@ -11,4 +12,8 @@ class AppAssets {
   static const String cardImage_1 = 'assets/images/card_image_1.png';
   static const String cardImage_2 = 'assets/images/card_image_2.png';
   static const String cardImage_3 = 'assets/images/card_image_3.png';
+  static const String appLogo = 'assets/images/app_logo.png';
+  static const String successMarkImage = 'assets/images/Successmark.png';
+  static const String forgotPasswordImage =
+      'assets/images/forgot_password_img.png';
 }

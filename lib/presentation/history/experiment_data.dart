@@ -1,19 +1,19 @@
-enum ExperimentStatus { completed, inProgress, incomplete }
+enum ExperimentStatus { success, failed }
 
 class ExperimentData {
   final String title;
   final String date;
   final String duration;
   final ExperimentStatus status;
-  final double pHStart;
-  final double pHEnd;
+  final String? reason;
+  final String? extraInfo;
 
   ExperimentData({
     required this.title,
     required this.date,
     required this.duration,
     required this.status,
-    required this.pHStart,
-    required this.pHEnd,
+    this.reason,
+    this.extraInfo,
   });
 }

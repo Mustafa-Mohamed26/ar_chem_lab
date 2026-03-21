@@ -7,7 +7,7 @@ class CircleGradientPainter extends CustomPainter {
     final Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
     final Paint paint = Paint()
       ..shader = const LinearGradient(
-        colors: [AppColors.electricBlue, AppColors.skyBlue], // Match your theme
+        colors: [AppColors.lightBlue, AppColors.lightBlue], // Match your theme
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ).createShader(rect)

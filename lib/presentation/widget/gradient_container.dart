@@ -53,17 +53,20 @@ class GradientContainer extends StatelessWidget {
                   mainAxisAlignment: .center,
                   children: [
                     Text(title, style: AppStyles.bold40whitePrimary),
-                    Text(subtitle ?? "", style: AppStyles.regular18whiteSecondary),
+                    Text(
+                      subtitle ?? "",
+                      style: AppStyles.regular18whiteSecondary,
+                    ),
                   ],
                 ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(imagePath ?? "",),
+                  Image.asset(imagePath ?? ""),
                   Image.asset(subImagePath ?? ""),
                 ],
-              )
+              ),
             ],
           ),
         ),

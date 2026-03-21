@@ -11,7 +11,7 @@ class NotchPainter extends CustomPainter {
       ..shader = const LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
-        colors: [AppColors.electricBlue, AppColors.skyBlue, AppColors.skyBlue],
+        colors: [AppColors.lightBlue, AppColors.lightBlue, AppColors.lightBlue],
         stops: [0.0, 0.62, 1.0],
       ).createShader(rect)
       ..style = PaintingStyle.stroke
@@ -42,7 +42,7 @@ class NotchPainter extends CustomPainter {
 
     // The "S-Curve" out of the notch
     path.cubicTo(
-      centerX + (notchWidth /3),
+      centerX + (notchWidth / 3),
       notchHeight, // Control Point 1
       centerX + (notchWidth / 4),
       0, // Control Point 2
@@ -69,8 +69,8 @@ class NotchPainter extends CustomPainter {
 
     // Optional: Fill the background of the bar so content doesn't show through
     final backgroundPaint = Paint()
-      ..color =
-          AppColors.lavender // Your dark background color
+      ..color = AppColors
+          .darkGray // Your dark background color
       ..style = PaintingStyle.fill;
     canvas.drawPath(path, backgroundPaint);
   }

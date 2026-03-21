@@ -1,10 +1,10 @@
 import 'dart:ui';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/thinking_dots.dart';
-import 'package:ar_chem_lab/presentation/chat_bot/typewriter_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -42,27 +42,26 @@ class ChatBubble extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(14.w),
                   decoration: BoxDecoration(
-                    color: AppColors.lowSaturationWhite,
+                    color: AppColors.darkGray,
                     borderRadius: BorderRadius.all(Radius.circular(24.r)),
-                    border: Border.all(
-                      color: AppColors.lowSaturationWhite,
-                      width: 1.5,
-                    ),
                   ),
                   child: isThinking
                       ? const ThinkingDots()
                       : isUser
-                      ? Text(
-                          text,
-                          style: AppStyles.medium12whitePrimary.copyWith(
-                            fontSize: 14.sp,
-                          ),
-                        )
-                      : TypewriterText(
-                          text: text,
-                          onChanged: onTypewriterUpdate,
-                          style: AppStyles.medium12whitePrimary.copyWith(
-                            fontSize: 14.sp,
+                      ? Text(text, style: AppStyles.medium14whiteInter)
+                      : MarkdownBody(
+                          data: text,
+                          styleSheet: MarkdownStyleSheet(
+                            p: AppStyles.medium14whiteInter,
+                            strong: AppStyles.medium14whiteInter.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.lightBlue,
+                            ),
+                            h1: AppStyles.bold20whiteOrbitron,
+                            h2: AppStyles.bold18whiteOrbitron,
+                            h3: AppStyles.bold14whiteInter,
+                            listBullet: AppStyles.medium14whiteInter,
+                            blockSpacing: 10.h,
                           ),
                         ),
                 ),
@@ -81,8 +80,7 @@ class ChatBubble extends StatelessWidget {
       padding: EdgeInsets.all(4.w),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.lowSaturationWhite,
-        border: Border.all(color: AppColors.lowSaturationWhite, width: 1.5),
+        color: AppColors.darkGray,
       ),
       child: Image.asset(AppAssets.robotImage, width: 35.w, height: 35.w),
     );
@@ -92,7 +90,7 @@ class ChatBubble extends StatelessWidget {
     return CircleAvatar(
       radius: 18.r,
       backgroundColor: AppColors.white,
-      child: Icon(Icons.person, color: AppColors.darkBlue, size: 35.sp),
+      child: Icon(Icons.person, color: AppColors.darkGray, size: 35.sp),
     );
   }
 
@@ -101,9 +99,8 @@ class ChatBubble extends StatelessWidget {
       width: 8.w,
       height: 8.w,
       decoration: BoxDecoration(
-        color: AppColors.lowSaturationWhite,
+        color: AppColors.darkGray,
         shape: BoxShape.circle,
-        border: Border.all(color: AppColors.lowSaturationWhite, width: 1.5),
       ),
     );
   }

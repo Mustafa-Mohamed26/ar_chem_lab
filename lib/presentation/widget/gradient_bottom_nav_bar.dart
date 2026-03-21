@@ -61,7 +61,7 @@ class GradientBottomNavBar extends StatelessWidget {
                   ), // Padding between border and icon
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.lavender, // Match the bar background
+                    color: AppColors.darkGray, // Match the bar background
                   ),
                   child: const Icon(
                     Icons.science,
@@ -76,7 +76,7 @@ class GradientBottomNavBar extends StatelessWidget {
           // Labels for the center button (optional)
           Positioned(
             bottom: 10,
-            child: Text("My Lab", style: AppStyles.bold14whitePrimary),
+            child: Text("My Lab", style: AppStyles.bold14whiteInter),
           ),
         ],
       ),
@@ -97,7 +97,7 @@ class GradientBottomNavBar extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, color: AppColors.white, size: 40.sp),
-            Text(label, style: AppStyles.medium12whitePrimary),
+            Text(label, style: AppStyles.medium12InterWhite),
           ],
         ),
       ),
