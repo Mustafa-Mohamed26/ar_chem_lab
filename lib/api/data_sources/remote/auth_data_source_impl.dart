@@ -32,20 +32,10 @@ class AuthDataSourceImpl implements AuthDataSource {
       );
       return await webServices.register(request);
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response?.data != null) {
-        final data = e.response!.data;
-        if (data is Map) {
-          message = data['detail']?.toString() ?? data.toString();
-        } else {
-          message = data.toString();
-        }
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }
@@ -57,20 +47,10 @@ class AuthDataSourceImpl implements AuthDataSource {
       final request = VerifyEmailRequestDto(email: email, code: code);
       return await webServices.verifyEmail(request);
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response?.data != null) {
-        final data = e.response!.data;
-        if (data is Map) {
-          message = data['detail']?.toString() ?? data.toString();
-        } else {
-          message = data.toString();
-        }
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }
@@ -82,20 +62,10 @@ class AuthDataSourceImpl implements AuthDataSource {
       final request = ForgotPasswordRequestDto(email: email);
       return await webServices.forgotPassword(request);
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response?.data != null) {
-        final data = e.response!.data;
-        if (data is Map) {
-          message = data['detail']?.toString() ?? data.toString();
-        } else {
-          message = data.toString();
-        }
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }
@@ -115,20 +85,10 @@ class AuthDataSourceImpl implements AuthDataSource {
       );
       return await webServices.resetPassword(request);
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response?.data != null) {
-        final data = e.response!.data;
-        if (data is Map) {
-          message = data['detail']?.toString() ?? data.toString();
-        } else {
-          message = data.toString();
-        }
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }
@@ -140,20 +100,10 @@ class AuthDataSourceImpl implements AuthDataSource {
       final request = LoginRequestDto(email: email, password: password);
       return await webServices.login(request);
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response?.data != null) {
-        final data = e.response!.data;
-        if (data is Map) {
-          message = data['detail']?.toString() ?? data.toString();
-        } else {
-          message = data.toString();
-        }
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }
@@ -165,20 +115,10 @@ class AuthDataSourceImpl implements AuthDataSource {
       final request = RefreshTokenRequestDto(refreshToken: token);
       return await webServices.refreshToken(request);
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response?.data != null) {
-        final data = e.response!.data;
-        if (data is Map) {
-          message = data['detail']?.toString() ?? data.toString();
-        } else {
-          message = data.toString();
-        }
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }

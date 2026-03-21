@@ -22,7 +22,15 @@ void main() async {
     OnboardingService().loadOnboardingStatus(),
   ]);
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<AuthViewModel>()),
+        BlocProvider(create: (context) => getIt<ChatCubit>()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,24 +38,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => getIt<AuthViewModel>()),
-        BlocProvider(create: (context) => getIt<ChatCubit>()),
-      ],
-      child: ScreenUtilInit(
-        designSize: const Size(375, 812),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Chem Lab',
-          initialRoute: OnboardingService().isOnboardingComplete
-              ? AppRoutes.welcomeScreen
-              : AppRoutes.onboarding,
-          onGenerateRoute: AppRouteGenerator.generateRoute,
-          theme: AppTheme.darkTheme,
-        ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Chem Lab',
+        initialRoute: OnboardingService().isOnboardingComplete
+            ? AppRoutes.welcomeScreen
+            : AppRoutes.onboarding,
+        onGenerateRoute: AppRouteGenerator.generateRoute,
+        theme: AppTheme.darkTheme,
       ),
     );
   }

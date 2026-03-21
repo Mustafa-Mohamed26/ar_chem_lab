@@ -18,17 +18,10 @@ class AiDataSourceImpl implements AiDataSource {
       final response = await webServices.sendMessage(request);
       return response.toDomain();
     } on DioException catch (e) {
-      String message = "Server Error";
-      if (e.response != null && e.response?.data != null) {
-        // Log the full response for more details
-        message =
-            "Gemini API Error: ${e.response?.data['error']?['message'] ?? e.response?.data.toString()}";
-      } else if (e.error is AppExceptions) {
-        message = (e.error as AppExceptions).message;
-      } else if (e.message != null) {
-        message = e.message!;
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
       }
-      throw ServerException(message: message);
+      throw ServerException(message: e.message ?? "Server Error");
     } catch (e) {
       throw UnexpectedException(message: e.toString());
     }
