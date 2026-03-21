@@ -26,7 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     // Trigger getProfile only once when the screen is first loaded
-    context.read<AuthViewModel>().getProfile();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<AuthViewModel>().getProfile();
+      }
+    });
   }
 
   @override

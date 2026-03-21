@@ -187,7 +187,7 @@ class AuthViewModel extends Cubit<AuthState> {
   }
 
   Future<void> getProfile() async {
-    emit(AuthLoading());
+    emit(ProfileLoading());
     try {
       final user = await getProfileUseCase.invoke();
       emit(ProfileSuccess(user));

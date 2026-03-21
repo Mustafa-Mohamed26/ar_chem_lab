@@ -11,6 +11,8 @@ class AuthSuccess extends AuthState {
   AuthSuccess(this.message);
 }
 
+class ProfileLoading extends AuthState {}
+
 class ProfileSuccess extends AuthState {
   final User user;
   ProfileSuccess(this.user);
