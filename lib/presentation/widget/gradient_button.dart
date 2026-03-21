@@ -36,7 +36,9 @@ class GradientButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
           ),
           padding: EdgeInsets.symmetric(horizontal: 48.w, vertical: 12.h),
-          child: Center(child: Text(text, style: AppStyles.bold18whiteSecondary)),
+          child: Center(
+            child: Text(text, style: AppStyles.bold18whiteSecondary),
+          ),
         ),
       ),
     );

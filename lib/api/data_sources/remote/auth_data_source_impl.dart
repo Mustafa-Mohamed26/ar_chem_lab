@@ -1,0 +1,138 @@
+import 'package:ar_chem_lab/api/web_services.dart';
+import 'package:ar_chem_lab/api/models/request/register_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/verify_email_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/forgot_password_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/reset_password_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/refresh_token_request_dto.dart';
+import 'package:ar_chem_lab/api/models/response/login_response_dto.dart';
+import 'package:ar_chem_lab/api/models/response/user_response_dto.dart';
+import 'package:ar_chem_lab/core/exceptions/app_exceptions.dart';
+import 'package:ar_chem_lab/data/data_sources/remote/auth_data_source.dart';
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable(as: AuthDataSource)
+class AuthDataSourceImpl implements AuthDataSource {
+  final WebServices webServices;
+
+  AuthDataSourceImpl({required this.webServices});
+
+  @override
+  Future<String> register(
+    String username,
+    String email,
+    String password,
+  ) async {
+    try {
+      final request = RegisterRequestDto(
+        username: username,
+        email: email,
+        password: password,
+      );
+      return await webServices.register(request);
+    } on DioException catch (e) {
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
+      }
+      throw ServerException(message: e.message ?? "Server Error");
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<String> verifyEmail(String email, String code) async {
+    try {
+      final request = VerifyEmailRequestDto(email: email, code: code);
+      return await webServices.verifyEmail(request);
+    } on DioException catch (e) {
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
+      }
+      throw ServerException(message: e.message ?? "Server Error");
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<String> forgotPassword(String email) async {
+    try {
+      final request = ForgotPasswordRequestDto(email: email);
+      return await webServices.forgotPassword(request);
+    } on DioException catch (e) {
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
+      }
+      throw ServerException(message: e.message ?? "Server Error");
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<String> resetPassword(
+    String email,
+    String code,
+    String newPassword,
+  ) async {
+    try {
+      final request = ResetPasswordRequestDto(
+        email: email,
+        code: code,
+        newPassword: newPassword,
+      );
+      return await webServices.resetPassword(request);
+    } on DioException catch (e) {
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
+      }
+      throw ServerException(message: e.message ?? "Server Error");
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<LoginResponseDto> login(String email, String password) async {
+    try {
+      final request = LoginRequestDto(email: email, password: password);
+      return await webServices.login(request);
+    } on DioException catch (e) {
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
+      }
+      throw ServerException(message: e.message ?? "Server Error");
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<LoginResponseDto> refreshToken(String token) async {
+    try {
+      final request = RefreshTokenRequestDto(refreshToken: token);
+      return await webServices.refreshToken(request);
+    } on DioException catch (e) {
+      if (e.error is AppExceptions) {
+        throw e.error as AppExceptions;
+      }
+      throw ServerException(message: e.message ?? "Server Error");
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<UserResponseDto> getProfile() async {
+    try {
+      return await webServices.getProfile();
+    } on DioException catch (e) {
+      throw ServerException(
+        message: e.message ?? "Failed to fetch profile",
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+}

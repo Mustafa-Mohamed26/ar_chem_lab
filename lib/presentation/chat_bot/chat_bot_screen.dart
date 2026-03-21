@@ -1,14 +1,14 @@
 import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_cubit.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_state.dart';
 import 'package:ar_chem_lab/domain/entities/ai_message.dart';
-import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
-import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/widget/chat_bubble.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/chat_bubble.dart';
 import 'package:ar_chem_lab/presentation/widget/user_header.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,10 +18,7 @@ class ChatBotScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ChatCubit>(),
-      child: const ChatBotView(),
-    );
+    return const ChatBotView();
   }
 }
 
@@ -109,69 +106,73 @@ class _ChatBotViewState extends State<ChatBotView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: AppGradients.primary(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [AppColors.midnightBlue, AppColors.royalBlue],
-        ),
-      ),
-      child: Scaffold(
-        body: Padding(
-          padding: AppPadding.screen,
-          child: Column(
-            children: [
-              UserHeader(
-                imageUrl: AppAssets.userImage,
-                title: "HEY MIKE",
-                subtitle: "Online",
-                showBackButton: true,
-              ),
+    return Scaffold(
+      body: Padding(
+        padding: AppPadding.screen,
+        child: Column(
+          children: [
+            BlocBuilder<AuthViewModel, AuthState>(
+              builder: (context, state) {
+                String name = "...";
+                if (state is AuthInitial) {
+                  context.read<AuthViewModel>().getProfile();
+                }
+                if (state is ProfileSuccess) {
+                  name = state.user.username.toUpperCase();
+                } else if (state is AuthError) {
+                  name = "ALCHEMIST";
+                }
+                return UserHeader(
+                  imageUrl: AppAssets.userImage,
+                  title: "HEY $name",
+                  subtitle: "Online",
+                  showBackButton: true,
+                );
+              },
+            ),
 
-              // THE MECHANISM: Switch between Empty State and Chat State
-              Expanded(
-                child: BlocConsumer<ChatCubit, ChatState>(
-                  listener: (context, state) {
-                    if (state is ChatError) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(state.message),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                    _scrollToBottom();
-                  },
-                  builder: (context, state) {
-                    final messages = state.messages;
-                    final isLoading = state is ChatLoading;
-
-                    if (messages.isEmpty && !isLoading) {
-                      return _buildEmptyState();
-                    }
-
-                    return Column(
-                      children: [
-                        Expanded(child: _buildChatList(messages)),
-                        if (isLoading)
-                          const ChatBubble(
-                            text:
-                                "", // Bubble handles widget if text is empty or we can pass a widget
-                            isUser: false,
-                            isThinking:
-                                true, // I should update ChatBubble to support this
-                          ),
-                      ],
+            // THE MECHANISM: Switch between Empty State and Chat State
+            Expanded(
+              child: BlocConsumer<ChatCubit, ChatState>(
+                listener: (context, state) {
+                  if (state is ChatError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.message),
+                        backgroundColor: Colors.red,
+                      ),
                     );
-                  },
-                ),
-              ),
+                  }
+                  _scrollToBottom();
+                },
+                builder: (context, state) {
+                  final messages = state.messages;
+                  final isLoading = state is ChatLoading;
 
-              _buildMessageInput(),
-              SizedBox(height: 20.h),
-            ],
-          ),
+                  if (messages.isEmpty && !isLoading) {
+                    return _buildEmptyState();
+                  }
+
+                  return Column(
+                    children: [
+                      Expanded(child: _buildChatList(messages)),
+                      if (isLoading)
+                        const ChatBubble(
+                          text:
+                              "", // Bubble handles widget if text is empty or we can pass a widget
+                          isUser: false,
+                          isThinking:
+                              true, // I should update ChatBubble to support this
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ),
+
+            _buildMessageInput(),
+            SizedBox(height: 20.h),
+          ],
         ),
       ),
     );
@@ -184,29 +185,37 @@ class _ChatBotViewState extends State<ChatBotView> {
       child: Column(
         children: [
           Image.asset(AppAssets.robotImage, height: 200.h),
-          Text("Hello Mark", style: AppStyles.regular24whitePrimary),
-          Text(
-            "How can I assist you today?",
-            style: AppStyles.regular24whitePrimary,
+          SizedBox(height: 10.h),
+          BlocBuilder<AuthViewModel, AuthState>(
+            builder: (context, state) {
+              String name = "ALCHEMIST";
+              if (state is ProfileSuccess) {
+                name = state.user.username.toUpperCase();
+              }
+              return Text("Hello $name", style: AppStyles.bold20whiteOrbitron);
+            },
           ),
-          SizedBox(height: 25.h),
-          // Example of one of your feature cards
+          Text(
+            "How can i assist you today?",
+            style: AppStyles.bold20whiteOrbitron,
+          ),
+          SizedBox(height: 15.h),
           _buildFeatureCard(
             subtitle:
-                "Generate Chemical Solutions AI-powered prompt builder Create precise chemistry prompts ",
+                "Generate Chemical Solutions\nAI-powered prompt builder\nCreate precise chemistry prompts",
             imagePath: AppAssets.cardImage_1,
             isFullWidth: true,
           ),
-          // Add more cards here following the image layout...
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildFeatureCard(
-                subtitle: "AI Chemistry Visualizer for chemical reactions",
+                subtitle:
+                    "AI Chemistry Visualizer\nfor chemical reactions and concepts",
                 imagePath: AppAssets.cardImage_2,
               ),
               _buildFeatureCard(
-                subtitle: "Reaction Analyzer Explain reaction steps ",
+                subtitle: "Reaction Analyzer\nExplain reaction steps",
                 imagePath: AppAssets.cardImage_3,
               ),
             ],
@@ -223,18 +232,18 @@ class _ChatBotViewState extends State<ChatBotView> {
         children: [
           Expanded(
             child: Divider(
-              color: AppColors.lowSaturationWhite,
+              color: AppColors.darkGray,
               thickness: 2,
               endIndent: 15.w,
             ),
           ),
           Text(
             _getFormattedDate(dateTime),
-            style: AppStyles.medium12whitePrimary,
+            style: AppStyles.medium14whiteInter,
           ),
           Expanded(
             child: Divider(
-              color: AppColors.lowSaturationWhite,
+              color: AppColors.darkGray,
               thickness: 2,
               indent: 15.w,
             ),
@@ -279,59 +288,43 @@ class _ChatBotViewState extends State<ChatBotView> {
 
   Widget _buildMessageInput() {
     return Container(
-      // This padding acts as the thickness of your border
-      padding: const EdgeInsets.all(1.5),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.r),
-        gradient: const LinearGradient(
-          colors: [
-            AppColors.electricBlue,
-            AppColors.skyBlue,
-            AppColors.skyBlue,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.centerRight,
-          stops: [0.0, 0.62, 1.0],
-        ),
+        color: AppColors.darkGray,
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(color: AppColors.lightBlue, width: 2),
       ),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            24.r,
-          ), // Slightly smaller than parent
-          color: AppColors.royalBlue, // Match your theme's dark blue
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              child: TextField(
-                maxLines: 3,
-                controller: _messageController,
-                style: const TextStyle(color: AppColors.white),
-                decoration: InputDecoration(
-                  hintText: "Message Chatbot Ai...",
-                  hintStyle: AppStyles.regular16WiteSecondary,
-                  fillColor: AppColors.white,
-                  border: InputBorder.none,
+      child: Column(
+        children: [
+          TextField(
+            maxLines: null,
+            minLines: 1,
+            controller: _messageController,
+            style: const TextStyle(color: AppColors.white),
+            decoration: InputDecoration(
+              hintText: "Message Chatbot Ai....",
+              hintStyle: AppStyles.regular16WiteSecondary.copyWith(
+                color: AppColors.white.withValues(alpha: 0.3),
+              ),
+              border: InputBorder.none,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: _sendMessage,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withValues(alpha: 0.15),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.add, color: AppColors.white, size: 28.w),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: _sendMessage,
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.white, width: 0.5),
-                  color: AppColors.lowSaturationWhite,
-                ),
-                child: const Icon(Icons.send, color: AppColors.white, size: 25),
-              ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -343,30 +336,20 @@ class _ChatBotViewState extends State<ChatBotView> {
   }) {
     return Container(
       width: isFullWidth ? double.infinity : 165.w,
-      height: isFullWidth ? 135.h : 135.h,
-      margin: EdgeInsets.only(bottom: 10.h),
+      height: 140.h,
+      margin: EdgeInsets.only(bottom: 12.h),
+      padding: EdgeInsets.all(8.w),
       decoration: BoxDecoration(
-        color: AppColors.lowSaturationWhite,
-        border: Border.all(color: AppColors.lowSaturationWhite, width: 1),
-        borderRadius: BorderRadius.circular(24.r),
+        color: AppColors.darkGray,
+        border: Border.all(color: AppColors.lowSaturationWhite, width: 1.5),
+        borderRadius: BorderRadius.circular(20.r),
       ),
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(imagePath, width: 45.w, height: 45.h),
-                Expanded(
-                  child: Text(
-                    subtitle,
-                    style: AppStyles.regular16WiteSecondary,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          Image.asset(imagePath, width: 40.w, height: 40.h),
+          SizedBox(height: 10.h),
+          Expanded(child: Text(subtitle, style: AppStyles.regular12whiteInter)),
         ],
       ),
     );

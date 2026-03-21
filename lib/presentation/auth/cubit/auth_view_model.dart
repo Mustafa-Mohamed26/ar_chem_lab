@@ -1,0 +1,206 @@
+import 'package:ar_chem_lab/domain/use_cases/auth_use_case.dart';
+import 'package:ar_chem_lab/domain/use_cases/get_profile_use_case.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:flutter/material.dart';
+
+@injectable
+class AuthViewModel extends Cubit<AuthState> {
+  final AuthUseCase authUseCase;
+  final GetProfileUseCase getProfileUseCase;
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  String? resetCode;
+
+  AuthViewModel({required this.authUseCase, required this.getProfileUseCase})
+    : super(AuthInitial());
+
+  @override
+  Future<void> close() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
+  }
+
+  Future<void> register() async {
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.register(
+        nameController.text,
+        emailController.text,
+        passwordController.text,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage == "User registered successfully") {
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> verifyEmail(String code) async {
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.verifyEmail(
+        emailController.text,
+        code,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage == "Email verified successfully") {
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> forgotPassword() async {
+    if (emailController.text.isEmpty) {
+      emit(AuthError("Please enter your email address"));
+      return;
+    }
+
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.forgotPassword(
+        emailController.text,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage.toLowerCase().contains("sent")) {
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> resetPassword() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      emit(AuthError("Passwords do not match"));
+      return;
+    }
+    if (passwordController.text.isEmpty ||
+        resetCode == null ||
+        emailController.text.isEmpty) {
+      emit(AuthError("Missing required fields for reset"));
+      return;
+    }
+
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.resetPassword(
+        emailController.text,
+        resetCode!,
+        passwordController.text,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage.toLowerCase().contains("reset")) {
+        // Clear sensitive temporary data
+        resetCode = null;
+        passwordController.clear();
+        confirmPasswordController.clear();
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> login({bool rememberMe = false}) async {
+    emit(AuthLoading());
+    try {
+      final response = await authUseCase.login(
+        emailController.text,
+        passwordController.text,
+      );
+
+      // Store tokens and rememberMe preference
+      final prefs = await SharedPreferences.getInstance();
+      if (response.accessToken != null) {
+        await prefs.setString('access_token', response.accessToken!);
+      }
+      if (response.refreshToken != null) {
+        await prefs.setString('refresh_token', response.refreshToken!);
+      }
+      
+      // Store the rememberMe flag
+      await prefs.setBool('remember_me', rememberMe);
+
+      emit(AuthSuccess("Logged in successfully"));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('access_token');
+    await prefs.remove('refresh_token');
+    await prefs.remove('remember_me');
+    
+    // Clear controllers
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+    
+    emit(AuthInitial());
+  }
+
+  Future<void> refreshToken() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final currentRefreshToken = prefs.getString('refresh_token');
+
+      if (currentRefreshToken == null) {
+        throw Exception("No refresh token found");
+      }
+
+      final response = await authUseCase.refreshToken(currentRefreshToken);
+
+      if (response.accessToken != null) {
+        await prefs.setString('access_token', response.accessToken!);
+      }
+      if (response.refreshToken != null) {
+        await prefs.setString('refresh_token', response.refreshToken!);
+      }
+
+      emit(AuthSuccess("Token refreshed successfully"));
+    } catch (e) {
+      // In case of refresh failure, we might want to logout the user
+      emit(AuthError("Session expired. Please login again."));
+    }
+  }
+
+  Future<void> getProfile() async {
+    emit(ProfileLoading());
+    try {
+      final user = await getProfileUseCase.invoke();
+      emit(ProfileSuccess(user));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+}
