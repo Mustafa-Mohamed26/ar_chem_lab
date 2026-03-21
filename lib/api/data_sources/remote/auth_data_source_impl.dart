@@ -1,6 +1,8 @@
 import 'package:ar_chem_lab/api/web_services.dart';
 import 'package:ar_chem_lab/api/models/request/register_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/verify_email_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/forgot_password_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/reset_password_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/refresh_token_request_dto.dart';
 import 'package:ar_chem_lab/api/models/response/login_response_dto.dart';
@@ -54,6 +56,64 @@ class AuthDataSourceImpl implements AuthDataSource {
     try {
       final request = VerifyEmailRequestDto(email: email, code: code);
       return await webServices.verifyEmail(request);
+    } on DioException catch (e) {
+      String message = "Server Error";
+      if (e.response?.data != null) {
+        final data = e.response!.data;
+        if (data is Map) {
+          message = data['detail']?.toString() ?? data.toString();
+        } else {
+          message = data.toString();
+        }
+      } else if (e.error is AppExceptions) {
+        message = (e.error as AppExceptions).message;
+      } else if (e.message != null) {
+        message = e.message!;
+      }
+      throw ServerException(message: message);
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<String> forgotPassword(String email) async {
+    try {
+      final request = ForgotPasswordRequestDto(email: email);
+      return await webServices.forgotPassword(request);
+    } on DioException catch (e) {
+      String message = "Server Error";
+      if (e.response?.data != null) {
+        final data = e.response!.data;
+        if (data is Map) {
+          message = data['detail']?.toString() ?? data.toString();
+        } else {
+          message = data.toString();
+        }
+      } else if (e.error is AppExceptions) {
+        message = (e.error as AppExceptions).message;
+      } else if (e.message != null) {
+        message = e.message!;
+      }
+      throw ServerException(message: message);
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<String> resetPassword(
+    String email,
+    String code,
+    String newPassword,
+  ) async {
+    try {
+      final request = ResetPasswordRequestDto(
+        email: email,
+        code: code,
+        newPassword: newPassword,
+      );
+      return await webServices.resetPassword(request);
     } on DioException catch (e) {
       String message = "Server Error";
       if (e.response?.data != null) {

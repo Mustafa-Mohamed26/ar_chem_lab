@@ -20,6 +20,18 @@ class AuthUseCase {
     return await repository.verifyEmail(email, code);
   }
 
+  Future<String> forgotPassword(String email) async {
+    return await repository.forgotPassword(email);
+  }
+
+  Future<String> resetPassword(
+    String email,
+    String code,
+    String newPassword,
+  ) async {
+    return await repository.resetPassword(email, code, newPassword);
+  }
+
   Future<LoginResponseDto> login(String email, String password) async {
     return await repository.login(email, password);
   }

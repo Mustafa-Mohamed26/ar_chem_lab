@@ -6,6 +6,10 @@ import 'package:ar_chem_lab/presentation/auth/widgets/auth_text_field.dart';
 import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:ar_chem_lab/core/utils/dialog_helper.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -24,37 +28,68 @@ class ForgotPasswordScreen extends StatelessWidget {
         title: Text("Reset Password", style: AppStyles.bold18whiteSecondary),
         centerTitle: false,
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38.w),
-                      child: _buildHeader(),
-                    ),
-                    SizedBox(height: 48.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 38.w),
-                      child: _buildForm(context),
-                    ),
-                    SizedBox(height: 104.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w),
-                      child: _buildSpamNote(),
-                    ),
-                    SizedBox(height: 16.h),
-                    _buildFooter(context),
-                  ],
+      body: BlocListener<AuthViewModel, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLoading) {
+            DialogHelper.showLoadingDialog(context);
+          } else if (state is AuthSuccess) {
+            DialogHelper.hideLoadingDialog(context);
+            DialogHelper.showSuccessDialog(
+              context: context,
+              title: "Success",
+              desc: state.message,
+              onOkPress: () {
+                Future.delayed(const Duration(milliseconds: 300), () {
+                  if (context.mounted) {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.otpVerificationScreen,
+                    );
+                  }
+                });
+              },
+            );
+          } else if (state is AuthError) {
+            DialogHelper.hideLoadingDialog(context);
+            DialogHelper.showErrorDialog(
+              context: context,
+              title: "Error",
+              desc: state.message,
+            );
+          }
+        },
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 38.w),
+                        child: _buildHeader(),
+                      ),
+                      SizedBox(height: 48.h),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 38.w),
+                        child: _buildForm(context),
+                      ),
+                      SizedBox(height: 104.h),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: _buildSpamNote(),
+                      ),
+                      SizedBox(height: 16.h),
+                      _buildFooter(context),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
@@ -71,7 +106,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Text(
-          "Don't worry! Enter your email below and we'll send you a link to reset your password.",
+          "Don't worry! Enter your email below and we'll send you a link to reset your password.\nThe OTP will be sent to your email.",
           style: AppStyles.regular13interLightGray,
           textAlign: TextAlign.center,
         ),
@@ -83,7 +118,11 @@ class ForgotPasswordScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        AuthTextField(label: "Email Address", prefixIcon: Icons.email_outlined),
+        AuthTextField(
+          label: "Email Address",
+          prefixIcon: Icons.email_outlined,
+          controller: context.read<AuthViewModel>().emailController,
+        ),
         SizedBox(height: 8.h),
         Text(
           "# Must be the email associated with your lab account.",
@@ -93,7 +132,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         AppButton(
           text: "Send Reset Link",
           onTap: () {
-            Navigator.pushNamed(context, AppRoutes.otpVerificationScreen);
+            context.read<AuthViewModel>().forgotPassword();
           },
         ),
       ],

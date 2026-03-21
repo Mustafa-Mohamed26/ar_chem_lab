@@ -6,9 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String name;
+  final String? email;
   final String rank;
 
-  const ProfileHeader({super.key, required this.name, required this.rank});
+  const ProfileHeader({
+    super.key,
+    required this.name,
+    this.email,
+    required this.rank,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +42,16 @@ class ProfileHeader extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Text(name, style: AppStyles.bold24whiteOrbitron),
+              if (email != null) ...[
+                SizedBox(height: 4.h),
+                Text(
+                  email!,
+                  style: AppStyles.regular18whiteSecondary.copyWith(
+                    fontSize: 14.sp,
+                    color: AppColors.lightGray,
+                  ),
+                ),
+              ],
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

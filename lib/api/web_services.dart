@@ -8,6 +8,8 @@ import 'package:ar_chem_lab/api/models/request/verify_email_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/register_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/refresh_token_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/forgot_password_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/reset_password_request_dto.dart';
 import 'package:ar_chem_lab/api/models/response/user_response_dto.dart';
 
 class WebServices {
@@ -40,6 +42,36 @@ class WebServices {
         return response.data['message'] ?? "success";
       }
       return "Verification failed";
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> forgotPassword(ForgotPasswordRequestDto request) async {
+    try {
+      final response = await dio.post(
+        ApiEndpoints.forgotPassword,
+        data: request.toJson(),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return response.data['message'] ?? "success";
+      }
+      return "Request failed";
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> resetPassword(ResetPasswordRequestDto request) async {
+    try {
+      final response = await dio.post(
+        ApiEndpoints.resetPassword,
+        data: request.toJson(),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return response.data['message'] ?? "success";
+      }
+      return "Request failed";
     } catch (e) {
       rethrow;
     }

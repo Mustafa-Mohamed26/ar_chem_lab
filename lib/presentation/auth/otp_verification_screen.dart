@@ -5,6 +5,8 @@ import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
   const OTPVerificationScreen({super.key});
@@ -87,10 +89,22 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       AppButton(
                         text: "Verify",
                         onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            AppRoutes.createNewPasswordScreen,
-                          );
+                          final code = _controllers.map((c) => c.text).join();
+                          if (code.length == 4) {
+                            context.read<AuthViewModel>().resetCode = code;
+                            Navigator.pushNamed(
+                              context,
+                              AppRoutes.createNewPasswordScreen,
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  "Please enter a valid 4-digit code",
+                                ),
+                              ),
+                            );
+                          }
                         },
                       ),
                       SizedBox(height: 32.h),

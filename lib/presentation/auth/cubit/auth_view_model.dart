@@ -19,6 +19,8 @@ class AuthViewModel extends Cubit<AuthState> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  String? resetCode;
+
   AuthViewModel({required this.authUseCase, required this.getProfileUseCase})
     : super(AuthInitial());
 
@@ -65,6 +67,64 @@ class AuthViewModel extends Cubit<AuthState> {
 
       if (responseMessage.toLowerCase().contains("successfully") ||
           responseMessage == "Email verified successfully") {
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> forgotPassword() async {
+    if (emailController.text.isEmpty) {
+      emit(AuthError("Please enter your email address"));
+      return;
+    }
+
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.forgotPassword(
+        emailController.text,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage.toLowerCase().contains("sent")) {
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> resetPassword() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      emit(AuthError("Passwords do not match"));
+      return;
+    }
+    if (passwordController.text.isEmpty ||
+        resetCode == null ||
+        emailController.text.isEmpty) {
+      emit(AuthError("Missing required fields for reset"));
+      return;
+    }
+
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.resetPassword(
+        emailController.text,
+        resetCode!,
+        passwordController.text,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage.toLowerCase().contains("reset")) {
+        // Clear sensitive temporary data
+        resetCode = null;
+        passwordController.clear();
+        confirmPasswordController.clear();
         emit(AuthSuccess(responseMessage));
       } else {
         emit(AuthError(responseMessage));
