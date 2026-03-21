@@ -1,8 +1,6 @@
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/services/view_history_service.dart';
-import 'package:ar_chem_lab/core/theme/app_colors.dart';
-import 'package:ar_chem_lab/core/theme/app_gradients.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/home/widget/home_action_card.dart';
@@ -10,7 +8,6 @@ import 'package:ar_chem_lab/presentation/home/widget/home_header.dart';
 import 'package:ar_chem_lab/presentation/home/widget/level_progress_card.dart';
 import 'package:ar_chem_lab/presentation/periodic_table/element_tile.dart';
 import 'package:ar_chem_lab/presentation/widget/gradient_bottom_nav_bar.dart';
-import 'package:ar_chem_lab/presentation/widget/gradient_container.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

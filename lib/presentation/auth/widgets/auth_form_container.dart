@@ -13,7 +13,7 @@ class AuthFormContainer extends StatelessWidget {
     return GradientBorderContainer(
       borderWidth: 1.5.w,
       borderRadius: 30.r,
-      innerBackgroundColor: AppColors.midnightBlue.withOpacity(0.85),
+      innerBackgroundColor: AppColors.midnightBlue.withValues(alpha: 0.85),
       gradient: const LinearGradient(
         colors: [AppColors.electricBlue, AppColors.skyBlue],
         begin: Alignment.topLeft,

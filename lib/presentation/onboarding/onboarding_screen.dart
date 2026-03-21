@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
-import 'package:ar_chem_lab/presentation/widget/gradient_button.dart';
 import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 
 class OnboardingScreen extends StatefulWidget {

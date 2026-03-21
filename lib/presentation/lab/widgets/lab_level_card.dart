@@ -41,10 +41,10 @@ class LabLevelCard extends StatelessWidget {
                 width: 40.w,
                 height: 40.w,
                 decoration: BoxDecoration(
-                  color: isActive ? AppColors.lightBlue.withOpacity(0.1) : Colors.transparent,
+                  color: isActive ? AppColors.lightBlue.withValues(alpha: 0.1) : Colors.transparent,
                   borderRadius: BorderRadius.circular(8.r),
                   border: Border.all(
-                    color: isActive ? AppColors.lightBlue.withOpacity(0.3) : AppColors.gray,
+                    color: isActive ? AppColors.lightBlue.withValues(alpha: 0.3) : AppColors.gray,
                   ),
                 ),
                 child: Icon(
@@ -96,10 +96,10 @@ class LabLevelCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: isActive ? AppColors.lightBlue.withOpacity(0.1) : Colors.transparent,
+        color: isActive ? AppColors.lightBlue.withValues(alpha: 0.1) : Colors.transparent,
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
-          color: isActive ? AppColors.lightBlue.withOpacity(0.3) : AppColors.gray,
+          color: isActive ? AppColors.lightBlue.withValues(alpha: 0.3) : AppColors.gray,
         ),
       ),
       child: Text(

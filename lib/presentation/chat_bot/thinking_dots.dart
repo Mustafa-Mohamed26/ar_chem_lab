@@ -46,7 +46,7 @@ class _ThinkingDotsState extends State<ThinkingDots>
               width: 8.w,
               height: 8.w,
               decoration: BoxDecoration(
-                color: AppColors.white.withOpacity(opacity),
+                color: AppColors.white.withValues(alpha: opacity),
                 shape: BoxShape.circle,
               ),
             );

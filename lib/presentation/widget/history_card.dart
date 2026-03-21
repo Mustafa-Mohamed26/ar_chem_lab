@@ -86,9 +86,9 @@ class HistoryCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Text(
         text,
@@ -138,7 +138,7 @@ class HistoryCard extends StatelessWidget {
           Text(
             "Reason: ${data.reason ?? 'Unknown'}",
             style: AppStyles.medium12InterWhite.copyWith(
-              color: AppColors.redAccent.withOpacity(0.8),
+              color: AppColors.redAccent.withValues(alpha: 0.8),
               fontSize: 11.sp,
             ),
           ),

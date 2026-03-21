@@ -242,9 +242,9 @@ class _ArReadyBadge extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: AppColors.lightBlue.withOpacity(0.15),
+        color: AppColors.lightBlue.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: AppColors.lightBlue.withOpacity(0.4)),
+        border: Border.all(color: AppColors.lightBlue.withValues(alpha: 0.4)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

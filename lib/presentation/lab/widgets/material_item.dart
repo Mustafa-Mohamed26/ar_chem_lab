@@ -23,7 +23,7 @@ class MaterialItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.darkGray,
             borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(color: AppColors.lightBlue.withOpacity(0.3)),
+            border: Border.all(color: AppColors.lightBlue.withValues(alpha: 0.3)),
           ),
           child: Icon(
             icon,

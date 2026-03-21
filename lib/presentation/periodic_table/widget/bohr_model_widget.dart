@@ -180,16 +180,16 @@ class BohrPainter extends CustomPainter {
 
     // 1. Draw Nucleus Glow (Pulsing)
     final nucleusGlowPaint = Paint()
-      ..color = AppColors.lightBlue.withOpacity(0.1 + (pulse * 0.1))
+      ..color = AppColors.lightBlue.withValues(alpha: (0.1 + (pulse * 0.1)))
       ..maskFilter = MaskFilter.blur(BlurStyle.normal, 20 + (pulse * 10));
     canvas.drawCircle(center, baseRadius * (0.8 + pulse * 0.1), nucleusGlowPaint);
 
     // 2. Draw Nucleus Core
     final nucleusGradient = RadialGradient(
       colors: [
-        Colors.white.withOpacity(0.8),
+        Colors.white.withValues(alpha: 0.8),
         AppColors.lightBlue,
-        AppColors.lightBlue.withOpacity(0.4),
+        AppColors.lightBlue.withValues(alpha: 0.4),
         Colors.transparent,
       ],
       stops: [0.0, 0.2 + (pulse * 0.1), 0.7, 1.0],
@@ -238,7 +238,7 @@ class BohrPainter extends CustomPainter {
 
       // Draw orbit path
       final orbitPaint = Paint()
-        ..color = Colors.white.withOpacity(0.05)
+        ..color = Colors.white.withValues(alpha: 0.05)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.0;
       canvas.drawOval(orbitRect, orbitPaint);
@@ -275,7 +275,7 @@ class BohrPainter extends CustomPainter {
       final double ty = center.dy + (rect.height / 2) * math.sin(trailAngle);
       
       final trailPaint = Paint()
-        ..color = AppColors.lightBlue.withOpacity(0.3 / t)
+        ..color = AppColors.lightBlue.withValues(alpha: (0.3 / t))
         ..style = PaintingStyle.fill;
       
       canvas.drawCircle(Offset(tx, ty), 3.0 / t, trailPaint);
@@ -287,7 +287,7 @@ class BohrPainter extends CustomPainter {
     
     // Glow
     final glowPaint = Paint()
-      ..color = AppColors.lightBlue.withOpacity(0.4)
+      ..color = AppColors.lightBlue.withValues(alpha: 0.4)
       ..maskFilter = MaskFilter.blur(BlurStyle.normal, 6 * scale);
     canvas.drawCircle(position, radius * 2.5, glowPaint);
 
@@ -297,7 +297,7 @@ class BohrPainter extends CustomPainter {
       colors: [
         Colors.white,
         AppColors.lightBlue,
-        AppColors.lightBlue.withOpacity(0.9),
+        AppColors.lightBlue.withValues(alpha: 0.9),
       ],
     ).createShader(Rect.fromCircle(center: position, radius: radius));
 
