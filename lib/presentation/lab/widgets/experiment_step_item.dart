@@ -37,7 +37,8 @@ class ExperimentStepItem extends StatelessWidget {
                     width: 12.w,
                     height: 12.w,
                     decoration: const BoxDecoration(
-                      color: Colors.transparent, // Empty dot for future "completed" state or keep it empty as per image
+                      color: Colors
+                          .transparent, // Empty dot for future "completed" state or keep it empty as per image
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -45,10 +46,7 @@ class ExperimentStepItem extends StatelessWidget {
               ),
               if (!isLast)
                 Expanded(
-                  child: Container(
-                    width: 2.w,
-                    color: AppColors.gray,
-                  ),
+                  child: Container(width: 2.w, color: AppColors.gray),
                 ),
             ],
           ),
@@ -57,15 +55,9 @@ class ExperimentStepItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: AppStyles.bold14interWhite,
-                ),
+                Text(title, style: AppStyles.bold14interWhite),
                 SizedBox(height: 4.h),
-                Text(
-                  description,
-                  style: AppStyles.regular11interLightGray,
-                ),
+                Text(description, style: AppStyles.regular11interLightGray),
                 SizedBox(height: 16.h),
               ],
             ),

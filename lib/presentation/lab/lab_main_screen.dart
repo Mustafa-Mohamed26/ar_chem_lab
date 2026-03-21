@@ -40,14 +40,18 @@ class LabMainScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 24.h),
-              Text("Chemistry Progression", style: AppStyles.bold24whiteOrbitron),
-              SizedBox(height: 8.h),
-              Text(
-                "unlock new experimental modules by completing prerequisites.",
-                style: AppStyles.regular13interLightGray,
-              ),
-              SizedBox(height: 32.h),
-              ...levels.map((level) => LabLevelCard(
+                Text(
+                  "Chemistry Progression",
+                  style: AppStyles.bold24whiteOrbitron,
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  "unlock new experimental modules by completing prerequisites.",
+                  style: AppStyles.regular13interLightGray,
+                ),
+                SizedBox(height: 32.h),
+                ...levels.map(
+                  (level) => LabLevelCard(
                     level: level,
                     onStart: () {
                       if (level.experiments.isNotEmpty) {
@@ -58,29 +62,32 @@ class LabMainScreen extends StatelessWidget {
                         );
                       }
                     },
-                  )),
-              SizedBox(height: 24.h),
-            ],
+                  ),
+                ),
+                SizedBox(height: 24.h),
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   List<LabLevelEntity> _getDummyLevels() {
     return [
       LabLevelEntity(
         id: "1",
         title: "Beginner level",
-        description: "Master the molecular basics. Learn laboratory safety, basic reactions, and compound identification through guided interactive simulations.",
+        description:
+            "Master the molecular basics. Learn laboratory safety, basic reactions, and compound identification through guided interactive simulations.",
         status: LabLevelStatus.active,
         progress: 0.75,
         experiments: [
           ExperimentEntity(
             id: "e1",
             title: "Fundamentals of Chemistry",
-            description: "Learn the basics of Volumetric measurements and safety protocols in a controlled AR environment",
+            description:
+                "Learn the basics of Volumetric measurements and safety protocols in a controlled AR environment",
             time: "15 min",
             exp: "4 Steps",
             safety: ExperimentSafety.high,
@@ -93,21 +100,25 @@ class LabMainScreen extends StatelessWidget {
             path: [
               const ExperimentStep(
                 title: "Measure Reactants",
-                description: "Precisely measure 50ml of solution A using the graduated cylinder.",
+                description:
+                    "Precisely measure 50ml of solution A using the graduated cylinder.",
               ),
               const ExperimentStep(
                 title: "Observe Reaction",
-                description: "Monitor temperature changes as the exothermic reaction stabilizes.",
+                description:
+                    "Monitor temperature changes as the exothermic reaction stabilizes.",
               ),
             ],
-            tip: "Ensure you are in well-lit area for the most accurate equipment tracking during the experiment",
+            tip:
+                "Ensure you are in well-lit area for the most accurate equipment tracking during the experiment",
           ),
         ],
       ),
       const LabLevelEntity(
         id: "2",
         title: "Intermediate level",
-        description: "Full access to the Quantum Lab. Design your own molecules, run sub-atomic stability tests, and contribute to the global leaderboard.",
+        description:
+            "Full access to the Quantum Lab. Design your own molecules, run sub-atomic stability tests, and contribute to the global leaderboard.",
         status: LabLevelStatus.locked,
         progress: 0.0,
         experiments: [],

@@ -8,13 +8,13 @@ sealed class AppExceptions implements Exception {
 }
 
 class ServerException extends AppExceptions {
-  ServerException({required super.message,  super.statusCode});
+  ServerException({required super.message, super.statusCode});
 }
 
 class NetworkException extends AppExceptions {
-  NetworkException({required super.message,  super.statusCode});
+  NetworkException({required super.message, super.statusCode});
 }
 
 class UnexpectedException extends AppExceptions {
-  UnexpectedException({required super.message,  super.statusCode});
+  UnexpectedException({required super.message, super.statusCode});
 }

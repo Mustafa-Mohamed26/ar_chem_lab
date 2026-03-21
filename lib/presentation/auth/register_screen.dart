@@ -1,16 +1,15 @@
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
-import 'package:ar_chem_lab/presentation/auth/widgets/auth_text_field.dart';
-import 'package:ar_chem_lab/presentation/widget/app_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
-import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
-import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/utils/dialog_helper.dart';
 import 'package:ar_chem_lab/core/utils/validators.dart';
+import 'package:ar_chem_lab/presentation/auth/widgets/auth_text_field.dart';
+import 'package:ar_chem_lab/presentation/widget/app_button.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -36,75 +35,72 @@ class _RegisterScreenState extends State<RegisterScreen> {
         title: Text("Create Account", style: AppStyles.bold18whiteSecondary),
         centerTitle: false,
       ),
-      body: BlocProvider(
-        create: (context) => getIt<AuthViewModel>(),
-        child: BlocConsumer<AuthViewModel, AuthState>(
-          listener: (context, state) {
-            if (state is AuthSuccess) {
-              DialogHelper.showSuccessDialog(
-                context: context,
-                title: "Success",
-                desc: state.message,
-                onOkPress: () {
-                  Future.delayed(const Duration(milliseconds: 300), () {
-                    if (context.mounted) {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        AppRoutes.emailVerificationScreen,
-                      );
-                    }
-                  });
-                },
-              );
-            } else if (state is AuthError) {
-              DialogHelper.showErrorDialog(
-                context: context,
-                title: "Error",
-                desc: state.message,
-              );
-            }
-          },
-          builder: (context, state) {
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildHeader(),
-                          SizedBox(height: 32.h),
-                          _buildFormSection(context, state),
-                          SizedBox(height: 32.h),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24.w),
-                            child: AppButton(
-                              text: "Create Account",
-                              onTap: () {
-                                if (_agreeToTerms) {
-                                  context.read<AuthViewModel>().register();
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text("Please agree to terms"),
-                                    ),
-                                  );
-                                }
-                              },
-                            ),
-                          ),
-                          SizedBox(height: 24.h),
-                          _buildFooter(context),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+      body: BlocListener<AuthViewModel, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLoading) {
+            DialogHelper.showLoadingDialog(context);
+          } else if (state is AuthSuccess) {
+            DialogHelper.hideLoadingDialog(context);
+            DialogHelper.showSuccessDialog(
+              context: context,
+              title: "Success",
+              desc: state.message,
+              onOkPress: () {
+                Future.delayed(const Duration(milliseconds: 300), () {
+                  if (context.mounted) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.emailVerificationScreen,
+                    );
+                  }
+                });
               },
+            );
+          } else if (state is AuthError) {
+            DialogHelper.hideLoadingDialog(context);
+            DialogHelper.showErrorDialog(
+              context: context,
+              title: "Error",
+              desc: state.message,
+            );
+          }
+        },
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildHeader(),
+                      SizedBox(height: 32.h),
+                      _buildFormSection(context),
+                      SizedBox(height: 32.h),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: AppButton(
+                          text: "Create Account",
+                          onTap: () {
+                            if (_agreeToTerms) {
+                              context.read<AuthViewModel>().register();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("Please agree to terms"),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 24.h),
+                      _buildFooter(context),
+                    ],
+                  ),
+                ),
+              ),
             );
           },
         ),
@@ -129,7 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _buildFormSection(BuildContext context, AuthState state) {
+  Widget _buildFormSection(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 24.w),
       padding: EdgeInsets.all(24.w),

@@ -32,53 +32,59 @@ class ExperimentDetailScreen extends StatelessWidget {
                       children: [
                         Image.asset(AppAssets.appLogo, height: 46.h),
                         SizedBox(width: 8.w),
-                        Text("${_getExperienceLevel(experiment)} experiment", style: AppStyles.bold18whiteOrbitron),
+                        Text(
+                          "${_getExperienceLevel(experiment)} experiment",
+                          style: AppStyles.bold18whiteOrbitron,
+                        ),
                       ],
                     ),
                     const AppBackButton(),
                   ],
                 ),
               ),
-            _buildMainCard(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 32.h),
-                  Text("Required Materials", style: AppStyles.bold20whiteOrbitron),
-                  SizedBox(height: 24.h),
-                  _buildMaterialsGrid(),
-                  SizedBox(height: 32.h),
-                  Text("Experiment Path", style: AppStyles.bold20whiteOrbitron),
-                  SizedBox(height: 24.h),
-                  AppButton(
-                    text: "Start the Experiment",
-                    onTap: () {},
-                  ),
-                  SizedBox(height: 24.h),
-                  ...experiment.path.asMap().entries.map((entry) {
-                    return ExperimentStepItem(
-                      stepNumber: entry.key + 1,
-                      title: entry.value.title,
-                      description: entry.value.description,
-                      isLast: entry.key == experiment.path.length - 1,
-                    );
-                  }),
-                  if (experiment.tip != null) ...[
+              _buildMainCard(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     SizedBox(height: 32.h),
-                    _buildTipBox(),
+                    Text(
+                      "Required Materials",
+                      style: AppStyles.bold20whiteOrbitron,
+                    ),
+                    SizedBox(height: 24.h),
+                    _buildMaterialsGrid(),
+                    SizedBox(height: 32.h),
+                    Text(
+                      "Experiment Path",
+                      style: AppStyles.bold20whiteOrbitron,
+                    ),
+                    SizedBox(height: 24.h),
+                    AppButton(text: "Start the Experiment", onTap: () {}),
+                    SizedBox(height: 24.h),
+                    ...experiment.path.asMap().entries.map((entry) {
+                      return ExperimentStepItem(
+                        stepNumber: entry.key + 1,
+                        title: entry.value.title,
+                        description: entry.value.description,
+                        isLast: entry.key == experiment.path.length - 1,
+                      );
+                    }),
+                    if (experiment.tip != null) ...[
+                      SizedBox(height: 32.h),
+                      _buildTipBox(),
+                    ],
+                    SizedBox(height: 48.h),
                   ],
-                  SizedBox(height: 48.h),
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _buildMainCard() {
     return Container(
@@ -98,7 +104,11 @@ class ExperimentDetailScreen extends StatelessWidget {
               width: double.infinity,
               color: AppColors.gray,
               child: const Center(
-                child: Icon(Icons.image_outlined, size: 64, color: AppColors.lightGray),
+                child: Icon(
+                  Icons.image_outlined,
+                  size: 64,
+                  color: AppColors.lightGray,
+                ),
               ),
             ),
           ),
@@ -118,8 +128,16 @@ class ExperimentDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildStat(Icons.access_time, "TIME", experiment.time),
-                    _buildStat(Icons.auto_awesome_outlined, "EXP", experiment.exp),
-                    _buildStat(Icons.security, "SAFETY", experiment.safety.name.toUpperCase()),
+                    _buildStat(
+                      Icons.auto_awesome_outlined,
+                      "EXP",
+                      experiment.exp,
+                    ),
+                    _buildStat(
+                      Icons.security,
+                      "SAFETY",
+                      experiment.safety.name.toUpperCase(),
+                    ),
                   ],
                 ),
               ],
@@ -137,7 +155,14 @@ class ExperimentDetailScreen extends StatelessWidget {
           children: [
             Icon(icon, color: AppColors.lightBlue, size: 16.sp),
             SizedBox(width: 4.w),
-            Text(label, style: TextStyle(color: AppColors.lightBlue, fontSize: 10.sp, fontWeight: FontWeight.bold)),
+            Text(
+              label,
+              style: TextStyle(
+                color: AppColors.lightBlue,
+                fontSize: 10.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
         SizedBox(height: 8.h),
@@ -182,14 +207,14 @@ class ExperimentDetailScreen extends StatelessWidget {
             children: [
               Icon(Icons.info_outline, color: AppColors.lightBlue, size: 18.sp),
               SizedBox(width: 8.w),
-              Text("Pro tip : AR Calibration", style: AppStyles.bold14interWhite),
+              Text(
+                "Pro tip : AR Calibration",
+                style: AppStyles.bold14interWhite,
+              ),
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
-            experiment.tip!,
-            style: AppStyles.regular11interLightGray,
-          ),
+          Text(experiment.tip!, style: AppStyles.regular11interLightGray),
         ],
       ),
     );
@@ -202,11 +227,16 @@ class ExperimentDetailScreen extends StatelessWidget {
 
   IconData _getMaterialIcon(String iconName) {
     switch (iconName) {
-      case "beaker": return Icons.science;
-      case "pipette": return Icons.colorize;
-      case "testTube": return Icons.biotech;
-      case "heat": return Icons.whatshot;
-      default: return Icons.category;
+      case "beaker":
+        return Icons.science;
+      case "pipette":
+        return Icons.colorize;
+      case "testTube":
+        return Icons.biotech;
+      case "heat":
+        return Icons.whatshot;
+      default:
+        return Icons.category;
     }
   }
 }

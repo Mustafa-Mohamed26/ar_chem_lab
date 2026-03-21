@@ -20,7 +20,10 @@ class CreateNewPasswordScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios, color: AppColors.white, size: 20.sp),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text("Create New Password", style: AppStyles.bold18whiteSecondary),
+        title: Text(
+          "Create New Password",
+          style: AppStyles.bold18whiteSecondary,
+        ),
         centerTitle: false,
       ),
       body: LayoutBuilder(
@@ -85,7 +88,10 @@ class CreateNewPasswordScreen extends StatelessWidget {
         AppButton(
           text: "Reset Password",
           onTap: () {
-            Navigator.pushReplacementNamed(context, AppRoutes.passwordChangedScreen);
+            Navigator.pushReplacementNamed(
+              context,
+              AppRoutes.passwordChangedScreen,
+            );
           },
         ),
       ],

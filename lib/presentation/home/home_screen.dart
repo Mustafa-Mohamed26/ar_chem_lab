@@ -59,12 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Continue your chemistry journey and explore 12 new reactions today",
                 style: AppStyles.bold14interWhite,
               ),
-  
+
               SizedBox(height: 20.h),
               LevelProgressCard(
                 level: "Intermediate",
                 progress: 0.82,
-                helperText: "Complete 3 more challenges to unlock Organic Chemistry modules.",
+                helperText:
+                    "Complete 3 more challenges to unlock Organic Chemistry modules.",
                 onContinue: () {
                   Navigator.pushNamed(context, AppRoutes.labMainScreen);
                 },
@@ -76,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 iconPath: AppAssets.testTubeImage,
                 actionIcon: Icons.play_arrow_rounded,
                 onTap: () {
-                   Navigator.pushNamed(context, AppRoutes.periodicTableScreen);
+                  Navigator.pushNamed(context, AppRoutes.periodicTableScreen);
                 },
               ),
               SizedBox(height: 16.h),

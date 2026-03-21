@@ -9,11 +9,7 @@ class LabLevelCard extends StatelessWidget {
   final LabLevelEntity level;
   final VoidCallback onStart;
 
-  const LabLevelCard({
-    super.key,
-    required this.level,
-    required this.onStart,
-  });
+  const LabLevelCard({super.key, required this.level, required this.onStart});
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +37,14 @@ class LabLevelCard extends StatelessWidget {
                 width: 40.w,
                 height: 40.w,
                 decoration: BoxDecoration(
-                  color: isActive ? AppColors.lightBlue.withValues(alpha: 0.1) : Colors.transparent,
+                  color: isActive
+                      ? AppColors.lightBlue.withValues(alpha: 0.1)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(8.r),
                   border: Border.all(
-                    color: isActive ? AppColors.lightBlue.withValues(alpha: 0.3) : AppColors.gray,
+                    color: isActive
+                        ? AppColors.lightBlue.withValues(alpha: 0.3)
+                        : AppColors.gray,
                   ),
                 ),
                 child: Icon(
@@ -60,7 +60,11 @@ class LabLevelCard extends StatelessWidget {
                   children: [
                     Text(
                       level.title,
-                      style: isActive ? AppStyles.bold18whiteOrbitron : AppStyles.bold18whiteOrbitron.copyWith(color: AppColors.lightGray),
+                      style: isActive
+                          ? AppStyles.bold18whiteOrbitron
+                          : AppStyles.bold18whiteOrbitron.copyWith(
+                              color: AppColors.lightGray,
+                            ),
                     ),
                     SizedBox(height: 4.h),
                     _buildStatusTag(isActive, isLocked),
@@ -72,16 +76,15 @@ class LabLevelCard extends StatelessWidget {
           SizedBox(height: 20.h),
           Text(
             level.description,
-            style: AppStyles.regular12interWhite.copyWith(color: AppColors.lightGray),
+            style: AppStyles.regular12interWhite.copyWith(
+              color: AppColors.lightGray,
+            ),
           ),
           SizedBox(height: 20.h),
           if (isActive) ...[
-             _buildProgressBar(),
-             SizedBox(height: 20.h),
-             AppButton(
-               text: "Start the Experiment", 
-               onTap: onStart
-             ),
+            _buildProgressBar(),
+            SizedBox(height: 20.h),
+            AppButton(text: "Start the Experiment", onTap: onStart),
           ] else if (isLocked) ...[
             _buildPrerequisiteBox(),
             SizedBox(height: 16.h),
@@ -96,10 +99,14 @@ class LabLevelCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: isActive ? AppColors.lightBlue.withValues(alpha: 0.1) : Colors.transparent,
+        color: isActive
+            ? AppColors.lightBlue.withValues(alpha: 0.1)
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
-          color: isActive ? AppColors.lightBlue.withValues(alpha: 0.3) : AppColors.gray,
+          color: isActive
+              ? AppColors.lightBlue.withValues(alpha: 0.3)
+              : AppColors.gray,
         ),
       ),
       child: Text(
@@ -122,7 +129,9 @@ class LabLevelCard extends StatelessWidget {
           child: LinearProgressIndicator(
             value: level.progress,
             backgroundColor: AppColors.gray,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.lightBlue),
+            valueColor: const AlwaysStoppedAnimation<Color>(
+              AppColors.lightBlue,
+            ),
             minHeight: 8.h,
           ),
         ),
@@ -145,7 +154,9 @@ class LabLevelCard extends StatelessWidget {
           Expanded(
             child: Text(
               "Complete '${level.prerequisite ?? 'Prerequisites'}' to unlock",
-              style: AppStyles.regular11interLightGray.copyWith(color: AppColors.lightGray),
+              style: AppStyles.regular11interLightGray.copyWith(
+                color: AppColors.lightGray,
+              ),
             ),
           ),
         ],

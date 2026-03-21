@@ -206,10 +206,7 @@ class ProfilingStep4Assessment extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 20.h),
-        AppButton(
-          text: 'Start Test  ›',
-          onTap: () => _startTest(context),
-        ),
+        AppButton(text: 'Start Test  ›', onTap: () => _startTest(context)),
         SizedBox(height: 12.h),
         GestureDetector(
           onTap: () => _skipTest(context),

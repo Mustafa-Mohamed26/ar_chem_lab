@@ -65,23 +65,36 @@ class AppRouteGenerator {
         return _buildPageRoute(const LabMainScreen(), settings);
       case AppRoutes.experimentDetailScreen:
         final experiment = settings.arguments as ExperimentEntity;
-        return _buildPageRoute(ExperimentDetailScreen(experiment: experiment), settings);
+        return _buildPageRoute(
+          ExperimentDetailScreen(experiment: experiment),
+          settings,
+        );
       default:
         return _errorRoute();
     }
   }
 
-  static PageRouteBuilder _buildPageRoute(Widget page, [RouteSettings? settings]) {
+  static PageRouteBuilder _buildPageRoute(
+    Widget page, [
+    RouteSettings? settings,
+  ]) {
     return PageRouteBuilder(
-      settings: settings, // ← forwards arguments to ModalRoute.of(context).settings
+      settings:
+          settings, // ← forwards arguments to ModalRoute.of(context).settings
       pageBuilder: (context, animation, secondaryAnimation) => page,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.05, 0.0);
         const end = Offset.zero;
         const curve = Curves.easeOutCubic;
 
-        var slideTween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-        var fadeTween = Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: curve));
+        var slideTween = Tween(
+          begin: begin,
+          end: end,
+        ).chain(CurveTween(curve: curve));
+        var fadeTween = Tween(
+          begin: 0.0,
+          end: 1.0,
+        ).chain(CurveTween(curve: curve));
 
         return FadeTransition(
           opacity: animation.drive(fadeTween),
@@ -96,11 +109,13 @@ class AppRouteGenerator {
   }
 
   static Route<dynamic> _errorRoute() {
-    return MaterialPageRoute(builder: (_) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('Error')),
-        body: const Center(child: Text('Page not found')),
-      );
-    });
+    return MaterialPageRoute(
+      builder: (_) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('Error')),
+          body: const Center(child: Text('Page not found')),
+        );
+      },
+    );
   }
 }

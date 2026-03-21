@@ -1,7 +1,6 @@
 import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_cubit.dart';
 import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_state.dart';
 import 'package:ar_chem_lab/domain/entities/ai_message.dart';
-import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
@@ -19,10 +18,7 @@ class ChatBotScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ChatCubit>(),
-      child: const ChatBotView(),
-    );
+    return const ChatBotView();
   }
 }
 
@@ -134,7 +130,7 @@ class _ChatBotViewState extends State<ChatBotView> {
                 );
               },
             ),
-    
+
             // THE MECHANISM: Switch between Empty State and Chat State
             Expanded(
               child: BlocConsumer<ChatCubit, ChatState>(
@@ -152,11 +148,11 @@ class _ChatBotViewState extends State<ChatBotView> {
                 builder: (context, state) {
                   final messages = state.messages;
                   final isLoading = state is ChatLoading;
-    
+
                   if (messages.isEmpty && !isLoading) {
                     return _buildEmptyState();
                   }
-    
+
                   return Column(
                     children: [
                       Expanded(child: _buildChatList(messages)),
@@ -173,7 +169,7 @@ class _ChatBotViewState extends State<ChatBotView> {
                 },
               ),
             ),
-    
+
             _buildMessageInput(),
             SizedBox(height: 20.h),
           ],
@@ -188,7 +184,6 @@ class _ChatBotViewState extends State<ChatBotView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          
           Image.asset(AppAssets.robotImage, height: 200.h),
           SizedBox(height: 10.h),
           BlocBuilder<AuthViewModel, AuthState>(
@@ -206,7 +201,8 @@ class _ChatBotViewState extends State<ChatBotView> {
           ),
           SizedBox(height: 15.h),
           _buildFeatureCard(
-            subtitle: "Generate Chemical Solutions\nAI-powered prompt builder\nCreate precise chemistry prompts",
+            subtitle:
+                "Generate Chemical Solutions\nAI-powered prompt builder\nCreate precise chemistry prompts",
             imagePath: AppAssets.cardImage_1,
             isFullWidth: true,
           ),
@@ -214,7 +210,8 @@ class _ChatBotViewState extends State<ChatBotView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildFeatureCard(
-                subtitle: "AI Chemistry Visualizer\nfor chemical reactions and concepts",
+                subtitle:
+                    "AI Chemistry Visualizer\nfor chemical reactions and concepts",
                 imagePath: AppAssets.cardImage_2,
               ),
               _buildFeatureCard(
@@ -318,7 +315,6 @@ class _ChatBotViewState extends State<ChatBotView> {
               GestureDetector(
                 onTap: _sendMessage,
                 child: Container(
-                  
                   decoration: BoxDecoration(
                     color: AppColors.white.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
@@ -353,12 +349,7 @@ class _ChatBotViewState extends State<ChatBotView> {
         children: [
           Image.asset(imagePath, width: 40.w, height: 40.h),
           SizedBox(height: 10.h),
-          Expanded(
-            child: Text(
-              subtitle,
-              style: AppStyles.regular12whiteInter
-            ),
-          ),
+          Expanded(child: Text(subtitle, style: AppStyles.regular12whiteInter)),
         ],
       ),
     );

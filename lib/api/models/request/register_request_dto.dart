@@ -10,11 +10,7 @@ class RegisterRequestDto {
   });
 
   Map<String, dynamic> toJson() {
-    return {
-      'username': username,
-      'email': email,
-      'password': password,
-    };
+    return {'username': username, 'email': email, 'password': password};
   }
 
   factory RegisterRequestDto.fromJson(Map<String, dynamic> json) {

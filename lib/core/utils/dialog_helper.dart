@@ -50,4 +50,17 @@ class DialogHelper {
       btnOkOnPress: onOkPress ?? () {},
     ).show();
   }
+
+  static void showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) =>
+          const Center(child: CircularProgressIndicator(color: Colors.white)),
+    );
+  }
+
+  static void hideLoadingDialog(BuildContext context) {
+    Navigator.of(context, rootNavigator: true).pop();
+  }
 }

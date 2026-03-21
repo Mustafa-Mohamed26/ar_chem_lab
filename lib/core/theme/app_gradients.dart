@@ -13,11 +13,7 @@ class AppGradients {
     return LinearGradient(
       begin: begin,
       end: end,
-      colors: colors ??
-          const [
-            AppColors.midnightBlue,
-            AppColors.royalBlue,
-          ],
+      colors: colors ?? const [AppColors.midnightBlue, AppColors.royalBlue],
       stops: stops ?? const [0.47, 1.0],
     );
   }

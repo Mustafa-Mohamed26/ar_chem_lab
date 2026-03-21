@@ -68,9 +68,7 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
       child: Stack(
         children: [
           // Main Content Centered
-          Center(
-            child: BohrModelWidget(element: element),
-          ),
+          Center(child: BohrModelWidget(element: element)),
 
           // Back Button
           Positioned(top: 40.h, left: 310.w, child: AppBackButton()),

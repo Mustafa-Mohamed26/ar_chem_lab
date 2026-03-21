@@ -180,10 +180,7 @@ class _ProfilingTestScreenState extends State<ProfilingTestScreen> {
                 letterSpacing: 1.2,
               ),
             ),
-            Text(
-              '$percent% Complete',
-              style: AppStyles.regular12graySecondary,
-            ),
+            Text('$percent% Complete', style: AppStyles.regular12graySecondary),
           ],
         ),
         SizedBox(height: 6.h),
@@ -213,10 +210,7 @@ class _ProfilingTestScreenState extends State<ProfilingTestScreen> {
         SizedBox(height: 12.h),
 
         // ─ Hint ─
-        Text(
-          _currentQuestion.hint,
-          style: AppStyles.regular13interLightGray,
-        ),
+        Text(_currentQuestion.hint, style: AppStyles.regular13interLightGray),
         SizedBox(height: 28.h),
 
         // ─ Options ─
@@ -233,26 +227,26 @@ class _ProfilingTestScreenState extends State<ProfilingTestScreen> {
   /// A single answer option card (A / B / C / D).
   Widget _buildOptionCard({required int index, required String text}) {
     final bool isSelected = _selectedAnswer == index;
-    final bool isCorrect = _hasAnswered &&
-        index == _currentQuestion.correctIndex;
+    final bool isCorrect =
+        _hasAnswered && index == _currentQuestion.correctIndex;
     final bool isWrong = _hasAnswered && isSelected && !isCorrect;
 
     // After answering: correct = green, wrong = red, rest = default.
     final Color borderColor = isCorrect
         ? const Color(0xFF5AC1B7)
         : isWrong
-            ? Colors.redAccent
-            : isSelected
-                ? AppColors.lightBlue
-                : Colors.transparent;
+        ? Colors.redAccent
+        : isSelected
+        ? AppColors.lightBlue
+        : Colors.transparent;
 
     final Color bgColor = isCorrect
         ? const Color(0xFF5AC1B7).withValues(alpha: 0.1)
         : isWrong
-            ? Colors.redAccent.withValues(alpha: 0.1)
-            : isSelected
-                ? AppColors.lightBlue.withValues(alpha: 0.08)
-                : AppColors.darkGray;
+        ? Colors.redAccent.withValues(alpha: 0.1)
+        : isSelected
+        ? AppColors.lightBlue.withValues(alpha: 0.08)
+        : AppColors.darkGray;
 
     return GestureDetector(
       onTap: () => _selectAnswer(index),
@@ -280,7 +274,9 @@ class _ProfilingTestScreenState extends State<ProfilingTestScreen> {
                 child: Text(
                   _optionLabels[index],
                   style: TextStyle(
-                    color: isSelected ? AppColors.lightBlue : AppColors.lightGray,
+                    color: isSelected
+                        ? AppColors.lightBlue
+                        : AppColors.lightGray,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.bold,
                   ),

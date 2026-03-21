@@ -27,10 +27,7 @@ class LevelProgressCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.darkGray,
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(
-          color: AppColors.lightBlue,
-          width: 2,
-        ),
+        border: Border.all(color: AppColors.lightBlue, width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

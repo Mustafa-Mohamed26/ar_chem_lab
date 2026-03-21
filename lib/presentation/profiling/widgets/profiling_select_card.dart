@@ -57,10 +57,7 @@ class ProfilingSelectCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: AppStyles.bold14whiteSecondary,
-                  ),
+                  Text(title, style: AppStyles.bold14whiteSecondary),
                   SizedBox(height: 2.h),
                   Text(
                     subtitle,

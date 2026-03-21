@@ -13,16 +13,14 @@ class AuthViewModel extends Cubit<AuthState> {
   final GetProfileUseCase getProfileUseCase;
 
   final formKey = GlobalKey<FormState>();
-  
+
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  AuthViewModel({
-    required this.authUseCase,
-    required this.getProfileUseCase,
-  }) : super(AuthInitial());
+  AuthViewModel({required this.authUseCase, required this.getProfileUseCase})
+    : super(AuthInitial());
 
   @override
   Future<void> close() {
@@ -37,7 +35,7 @@ class AuthViewModel extends Cubit<AuthState> {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    
+
     emit(AuthLoading());
     try {
       final responseMessage = await authUseCase.register(
@@ -45,9 +43,28 @@ class AuthViewModel extends Cubit<AuthState> {
         emailController.text,
         passwordController.text,
       );
-      
-      if (responseMessage.toLowerCase().contains("successfully") || 
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
           responseMessage == "User registered successfully") {
+        emit(AuthSuccess(responseMessage));
+      } else {
+        emit(AuthError(responseMessage));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> verifyEmail(String code) async {
+    emit(AuthLoading());
+    try {
+      final responseMessage = await authUseCase.verifyEmail(
+        emailController.text,
+        code,
+      );
+
+      if (responseMessage.toLowerCase().contains("successfully") ||
+          responseMessage == "Email verified successfully") {
         emit(AuthSuccess(responseMessage));
       } else {
         emit(AuthError(responseMessage));
@@ -88,20 +105,20 @@ class AuthViewModel extends Cubit<AuthState> {
     try {
       final prefs = await SharedPreferences.getInstance();
       final currentRefreshToken = prefs.getString('refresh_token');
-      
+
       if (currentRefreshToken == null) {
         throw Exception("No refresh token found");
       }
 
       final response = await authUseCase.refreshToken(currentRefreshToken);
-      
+
       if (response.accessToken != null) {
         await prefs.setString('access_token', response.accessToken!);
       }
       if (response.refreshToken != null) {
         await prefs.setString('refresh_token', response.refreshToken!);
       }
-      
+
       emit(AuthSuccess("Token refreshed successfully"));
     } catch (e) {
       // In case of refresh failure, we might want to logout the user

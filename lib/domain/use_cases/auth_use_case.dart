@@ -8,8 +8,16 @@ class AuthUseCase {
 
   AuthUseCase({required this.repository});
 
-  Future<String> register(String username, String email, String password) async {
+  Future<String> register(
+    String username,
+    String email,
+    String password,
+  ) async {
     return await repository.register(username, email, password);
+  }
+
+  Future<String> verifyEmail(String email, String code) async {
+    return await repository.verifyEmail(email, code);
   }
 
   Future<LoginResponseDto> login(String email, String password) async {

@@ -1,5 +1,6 @@
 import 'package:ar_chem_lab/api/web_services.dart';
 import 'package:ar_chem_lab/api/models/request/register_request_dto.dart';
+import 'package:ar_chem_lab/api/models/request/verify_email_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/refresh_token_request_dto.dart';
 import 'package:ar_chem_lab/api/models/response/login_response_dto.dart';
@@ -16,7 +17,11 @@ class AuthDataSourceImpl implements AuthDataSource {
   AuthDataSourceImpl({required this.webServices});
 
   @override
-  Future<String> register(String username, String email, String password) async {
+  Future<String> register(
+    String username,
+    String email,
+    String password,
+  ) async {
     try {
       final request = RegisterRequestDto(
         username: username,
@@ -45,12 +50,34 @@ class AuthDataSourceImpl implements AuthDataSource {
   }
 
   @override
+  Future<String> verifyEmail(String email, String code) async {
+    try {
+      final request = VerifyEmailRequestDto(email: email, code: code);
+      return await webServices.verifyEmail(request);
+    } on DioException catch (e) {
+      String message = "Server Error";
+      if (e.response?.data != null) {
+        final data = e.response!.data;
+        if (data is Map) {
+          message = data['detail']?.toString() ?? data.toString();
+        } else {
+          message = data.toString();
+        }
+      } else if (e.error is AppExceptions) {
+        message = (e.error as AppExceptions).message;
+      } else if (e.message != null) {
+        message = e.message!;
+      }
+      throw ServerException(message: message);
+    } catch (e) {
+      throw UnexpectedException(message: e.toString());
+    }
+  }
+
+  @override
   Future<LoginResponseDto> login(String email, String password) async {
     try {
-      final request = LoginRequestDto(
-        email: email,
-        password: password,
-      );
+      final request = LoginRequestDto(email: email, password: password);
       return await webServices.login(request);
     } on DioException catch (e) {
       String message = "Server Error";

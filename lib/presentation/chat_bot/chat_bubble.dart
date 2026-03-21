@@ -48,22 +48,22 @@ class ChatBubble extends StatelessWidget {
                   child: isThinking
                       ? const ThinkingDots()
                       : isUser
-                          ? Text(text, style: AppStyles.medium14whiteInter)
-                          : MarkdownBody(
-                              data: text,
-                              styleSheet: MarkdownStyleSheet(
-                                p: AppStyles.medium14whiteInter,
-                                strong: AppStyles.medium14whiteInter.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.lightBlue,
-                                ),
-                                h1: AppStyles.bold20whiteOrbitron,
-                                h2: AppStyles.bold18whiteOrbitron,
-                                h3: AppStyles.bold14whiteInter,
-                                listBullet: AppStyles.medium14whiteInter,
-                                blockSpacing: 10.h,
-                              ),
+                      ? Text(text, style: AppStyles.medium14whiteInter)
+                      : MarkdownBody(
+                          data: text,
+                          styleSheet: MarkdownStyleSheet(
+                            p: AppStyles.medium14whiteInter,
+                            strong: AppStyles.medium14whiteInter.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.lightBlue,
                             ),
+                            h1: AppStyles.bold20whiteOrbitron,
+                            h2: AppStyles.bold18whiteOrbitron,
+                            h3: AppStyles.bold14whiteInter,
+                            listBullet: AppStyles.medium14whiteInter,
+                            blockSpacing: 10.h,
+                          ),
+                        ),
                 ),
               ),
             ),

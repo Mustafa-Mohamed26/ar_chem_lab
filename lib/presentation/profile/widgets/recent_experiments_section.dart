@@ -35,10 +35,7 @@ class RecentExperimentsSection extends StatelessWidget {
                 letterSpacing: 1.1,
               ),
             ),
-            Text(
-              "View All",
-              style: AppStyles.semiBold12lightBlueInter,
-            ),
+            Text("View All", style: AppStyles.semiBold12lightBlueInter),
           ],
         ),
         SizedBox(height: 16.h),
@@ -70,14 +67,19 @@ class RecentExperimentsSection extends StatelessWidget {
                             top: 8.h,
                             right: 8.w,
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8.w,
+                                vertical: 4.h,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.black.withValues(alpha: 0.4),
                                 borderRadius: BorderRadius.circular(8.r),
                               ),
                               child: Text(
                                 item.badge,
-                                style: AppStyles.bold10whitePrimary.copyWith(fontSize: 9.sp),
+                                style: AppStyles.bold10whitePrimary.copyWith(
+                                  fontSize: 9.sp,
+                                ),
                               ),
                             ),
                           ),
@@ -87,14 +89,18 @@ class RecentExperimentsSection extends StatelessWidget {
                     SizedBox(height: 12.h),
                     Text(
                       item.title,
-                      style: AppStyles.bold14whiteInter.copyWith(fontSize: 13.sp),
+                      style: AppStyles.bold14whiteInter.copyWith(
+                        fontSize: 13.sp,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: 4.h),
                     Text(
                       item.date,
-                      style: AppStyles.regular12graySecondary.copyWith(fontSize: 10.sp),
+                      style: AppStyles.regular12graySecondary.copyWith(
+                        fontSize: 10.sp,
+                      ),
                     ),
                   ],
                 ),

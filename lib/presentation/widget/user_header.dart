@@ -26,7 +26,8 @@ class UserHeader extends StatelessWidget {
         Row(
           children: [
             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, AppRoutes.profileScreen),
+              onTap: () =>
+                  Navigator.pushNamed(context, AppRoutes.profileScreen),
               child: Image.asset(
                 imageUrl,
                 // You might want to add width/height here to keep it consistent

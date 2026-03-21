@@ -23,7 +23,6 @@ class AppColors {
 
   static const Color transparent = Colors.transparent;
 
-
   // Add more colors as needed
 
   static const Color lightBlue = Color(0xFF7BA4F7);

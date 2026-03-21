@@ -4,6 +4,7 @@ import 'package:ar_chem_lab/api/models/response/periodic_table_response_dto.dart
 import 'package:ar_chem_lab/api/models/response/gemini_response_dto.dart';
 import 'package:ar_chem_lab/api/models/response/login_response_dto.dart';
 import 'package:dio/dio.dart';
+import 'package:ar_chem_lab/api/models/request/verify_email_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/register_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/login_request_dto.dart';
 import 'package:ar_chem_lab/api/models/request/refresh_token_request_dto.dart';
@@ -24,6 +25,21 @@ class WebServices {
         return response.data['message'] ?? "success";
       }
       return "Registration failed";
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> verifyEmail(VerifyEmailRequestDto request) async {
+    try {
+      final response = await dio.post(
+        ApiEndpoints.verifyEmail,
+        data: request.toJson(),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return response.data['message'] ?? "success";
+      }
+      return "Verification failed";
     } catch (e) {
       rethrow;
     }

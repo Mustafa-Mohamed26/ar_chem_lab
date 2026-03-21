@@ -10,69 +10,71 @@ class AuthInterceptor extends Interceptor {
   AuthInterceptor(this._dio, this._logger);
 
   @override
-void onRequest(
-  RequestOptions options,
-  RequestInterceptorHandler handler,
-) async {
-  // ✅ Skip Gemini requests
-  if (options.uri.host.contains('generativelanguage.googleapis.com')) {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    // ✅ Skip Gemini requests
+    if (options.uri.host.contains('generativelanguage.googleapis.com')) {
+      return handler.next(options);
+    }
+
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('access_token');
+
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+
     return handler.next(options);
   }
 
-  final prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString('access_token');
-
-  if (token != null) {
-    options.headers['Authorization'] = 'Bearer $token';
-  }
-
-  return handler.next(options);
-}
-
   @override
-void onError(DioException err, ErrorInterceptorHandler handler) async {
-  // ✅ Skip Gemini requests
-  if (err.requestOptions.uri.host.contains('generativelanguage.googleapis.com')) {
-    return handler.next(err);
-  }
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
+    // ✅ Skip Gemini requests
+    if (err.requestOptions.uri.host.contains(
+      'generativelanguage.googleapis.com',
+    )) {
+      return handler.next(err);
+    }
 
-  // Handle 401 Unauthorized
-  if (err.response?.statusCode == 401) {
-    final prefs = await SharedPreferences.getInstance();
-    final refreshToken = prefs.getString('refresh_token');
+    // Handle 401 Unauthorized
+    if (err.response?.statusCode == 401) {
+      final prefs = await SharedPreferences.getInstance();
+      final refreshToken = prefs.getString('refresh_token');
 
-    if (refreshToken != null) {
-      try {
-        final refreshDio = Dio();
-        refreshDio.interceptors.add(_logger);
+      if (refreshToken != null) {
+        try {
+          final refreshDio = Dio();
+          refreshDio.interceptors.add(_logger);
 
-        final response = await refreshDio.post(
-          ApiEndpoints.refreshToken,
-          data: {'refresh_token': refreshToken},
-        );
+          final response = await refreshDio.post(
+            ApiEndpoints.refreshToken,
+            data: {'refresh_token': refreshToken},
+          );
 
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          final newAccessToken = response.data['access_token'];
-          final newRefreshToken = response.data['refresh_token'];
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            final newAccessToken = response.data['access_token'];
+            final newRefreshToken = response.data['refresh_token'];
 
-          await prefs.setString('access_token', newAccessToken);
-          if (newRefreshToken != null) {
-            await prefs.setString('refresh_token', newRefreshToken);
+            await prefs.setString('access_token', newAccessToken);
+            if (newRefreshToken != null) {
+              await prefs.setString('refresh_token', newRefreshToken);
+            }
+
+            final options = err.requestOptions;
+            options.headers['Authorization'] = 'Bearer $newAccessToken';
+
+            final retryResponse = await _dio.fetch(options);
+            return handler.resolve(retryResponse);
           }
-
-          final options = err.requestOptions;
-          options.headers['Authorization'] = 'Bearer $newAccessToken';
-
-          final retryResponse = await _dio.fetch(options);
-          return handler.resolve(retryResponse);
+        } catch (e) {
+          await prefs.remove('access_token');
+          await prefs.remove('refresh_token');
         }
-      } catch (e) {
-        await prefs.remove('access_token');
-        await prefs.remove('refresh_token');
       }
     }
-  }
 
-  return handler.next(err);
-}
+    return handler.next(err);
+  }
 }

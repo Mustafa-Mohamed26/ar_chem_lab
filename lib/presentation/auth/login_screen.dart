@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
-import 'package:ar_chem_lab/config/di/di.dart';
 import 'package:ar_chem_lab/core/utils/dialog_helper.dart';
 import 'package:ar_chem_lab/core/utils/validators.dart';
 
@@ -35,55 +34,54 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         centerTitle: false,
       ),
-      body: BlocProvider(
-        create: (context) => getIt<AuthViewModel>(),
-        child: BlocConsumer<AuthViewModel, AuthState>(
-          listener: (context, state) {
-            if (state is AuthSuccess) {
-              DialogHelper.showSuccessDialog(
-                context: context,
-                title: "Login Successful",
-                desc: state.message,
-                onOkPress: () {
-                  Future.delayed(const Duration(milliseconds: 300), () {
-                    if (context.mounted) {
-                      Navigator.pushReplacementNamed(
-                          context, AppRoutes.homeScreen);
-                    }
-                  });
-                },
-              );
-            } else if (state is AuthError) {
-              DialogHelper.showErrorDialog(
-                context: context,
-                title: "Login Failed",
-                desc: state.message,
-              );
-            }
-          },
-          builder: (context, state) {
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildHeader(),
-                          SizedBox(height: 32.h),
-                          _buildFormSection(context, state),
-                          SizedBox(height: 24.h),
-                          _buildFooter(context),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+      body: BlocListener<AuthViewModel, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLoading) {
+            DialogHelper.showLoadingDialog(context);
+          } else if (state is AuthSuccess) {
+            DialogHelper.hideLoadingDialog(context);
+            DialogHelper.showSuccessDialog(
+              context: context,
+              title: "Login Successful",
+              desc: state.message,
+              onOkPress: () {
+                Future.delayed(const Duration(milliseconds: 300), () {
+                  if (context.mounted) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.homeScreen,
+                    );
+                  }
+                });
               },
+            );
+          } else if (state is AuthError) {
+            DialogHelper.hideLoadingDialog(context);
+            DialogHelper.showErrorDialog(
+              context: context,
+              title: "Login Failed",
+              desc: state.message,
+            );
+          }
+        },
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildHeader(),
+                      SizedBox(height: 32.h),
+                      _buildFormSection(context),
+                      SizedBox(height: 24.h),
+                      _buildFooter(context),
+                    ],
+                  ),
+                ),
+              ),
             );
           },
         ),
@@ -96,10 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
         children: [
-          Text(
-            "Welcome Back",
-            style: AppStyles.bold29whiteOrbitron,
-          ),
+          Text("Welcome Back", style: AppStyles.bold29whiteOrbitron),
           SizedBox(height: 12.h),
           Text(
             "Sign in to continue your experiments",
@@ -111,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildFormSection(BuildContext context, AuthState state) {
+  Widget _buildFormSection(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 24.w),
       padding: EdgeInsets.all(24.w),
@@ -144,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       children: [
         AuthTextField(
-          label: "Email Address",  
+          label: "Email Address",
           prefixIcon: Icons.email_outlined,
           controller: viewModel.emailController,
           validator: Validators.validateEmail,
@@ -193,9 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           child: Text(
             "Forgot Password?",
-            style: AppStyles.semiBold14lightBlueInter.copyWith(
-              fontSize: 12.sp,
-            ),
+            style: AppStyles.semiBold14lightBlueInter.copyWith(fontSize: 12.sp),
           ),
         ),
       ],

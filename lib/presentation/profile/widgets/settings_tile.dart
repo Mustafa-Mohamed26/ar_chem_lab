@@ -40,11 +40,7 @@ class SettingsTile extends StatelessWidget {
                 ),
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: Colors.white38,
-              size: 20.sp,
-            ),
+            Icon(Icons.chevron_right, color: Colors.white38, size: 20.sp),
           ],
         ),
       ),

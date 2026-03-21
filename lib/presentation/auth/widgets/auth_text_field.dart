@@ -16,7 +16,7 @@ class AuthTextField extends StatefulWidget {
   const AuthTextField({
     super.key,
     this.label,
-     this.hintText,
+    this.hintText,
     this.isPassword = false,
     this.prefixIcon,
     this.controller,
@@ -37,11 +37,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildLabel(),
-        _buildInputBox(),
-        _buildError(),
-      ],
+      children: [_buildLabel(), _buildInputBox(), _buildError()],
     );
   }
 
@@ -65,10 +61,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
       decoration: BoxDecoration(
         color: AppColors.darkGray,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: AppColors.secondaryDarkGray,
-          width: 1.w,
-        ),
+        border: Border.all(color: AppColors.secondaryDarkGray, width: 1.w),
       ),
       child: TextFormField(
         controller: widget.controller,
@@ -89,21 +82,14 @@ class _AuthTextFieldState extends State<AuthTextField> {
       suffixIcon: _buildSuffixIcon(),
       border: InputBorder.none,
       errorStyle: const TextStyle(height: 0, fontSize: 0),
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 8.h,
-      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
     );
   }
 
   /// Icon at the start of the field
   Widget? _buildPrefixIcon() {
     if (widget.prefixIcon == null) return null;
-    return Icon(
-      widget.prefixIcon,
-      color: AppColors.white,
-      size: 20.sp,
-    );
+    return Icon(widget.prefixIcon, color: AppColors.white, size: 20.sp);
   }
 
   /// Toggle visibility icon for password fields

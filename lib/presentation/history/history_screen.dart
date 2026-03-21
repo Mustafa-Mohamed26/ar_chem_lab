@@ -66,7 +66,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       } else if (_selectedFilterIndex == 2) {
         return exp.status == ExperimentStatus.failed;
       }
-      
+
       return true; // "All" or "Recent" (Recent assumes the list is already ordered)
     }).toList();
   }
@@ -127,7 +127,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
         Row(
           children: [
             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, AppRoutes.profileScreen),
+              onTap: () =>
+                  Navigator.pushNamed(context, AppRoutes.profileScreen),
               child: Container(
                 width: 50.w,
                 height: 50.w,
@@ -143,22 +144,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "EXPERIMENT ",
-                  style: AppStyles.bold18whiteOrbitron,
-                ),
+                Text("EXPERIMENT ", style: AppStyles.bold18whiteOrbitron),
                 Text(
                   "HISTORY",
                   style: AppStyles.bold18whiteOrbitron.copyWith(
                     color: AppColors.lightBlue,
-                    
                   ),
                 ),
               ],
             ),
           ],
         ),
-        AppBackButton()
+        AppBackButton(),
       ],
     );
   }
@@ -176,8 +173,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
         style: AppStyles.medium14whiteInter,
         decoration: InputDecoration(
           hintText: "Search archive...",
-          hintStyle: AppStyles.regular13interLightGray.copyWith(color: AppColors.lightBlue),
-          prefixIcon: Icon(Icons.search, color: AppColors.lightBlue, size: 20.sp),
+          hintStyle: AppStyles.regular13interLightGray.copyWith(
+            color: AppColors.lightBlue,
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: AppColors.lightBlue,
+            size: 20.sp,
+          ),
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(vertical: 12.h),
         ),

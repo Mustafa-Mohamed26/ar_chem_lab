@@ -56,21 +56,24 @@ class ProfilingStep3Knowledge extends StatelessWidget {
     _KnowledgeOption(
       icon: Icons.eco_outlined,
       title: 'Beginner',
-      subtitle: 'I am new to chemistry. I know basic concepts like pH and atoms.',
+      subtitle:
+          'I am new to chemistry. I know basic concepts like pH and atoms.',
       badge: 'Foundation',
       accentColor: AppColors.lightBlue,
     ),
     _KnowledgeOption(
       icon: Icons.science_outlined,
       title: 'Intermediate',
-      subtitle: 'I understand the periodic table, chemical bonding, and reactions.',
+      subtitle:
+          'I understand the periodic table, chemical bonding, and reactions.',
       badge: 'Advanced Theory',
       accentColor: Color(0xFF9C7DE7),
     ),
     _KnowledgeOption(
       icon: Icons.biotech_outlined,
       title: 'Advanced',
-      subtitle: 'I can balance complex reactions and understand thermodynamics.',
+      subtitle:
+          'I can balance complex reactions and understand thermodynamics.',
       badge: 'Mastery',
       accentColor: Color(0xFF5AC1B7),
     ),

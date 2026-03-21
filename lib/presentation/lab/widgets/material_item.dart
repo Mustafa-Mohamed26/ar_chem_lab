@@ -7,11 +7,7 @@ class MaterialItem extends StatelessWidget {
   final String name;
   final IconData icon;
 
-  const MaterialItem({
-    super.key,
-    required this.name,
-    required this.icon,
-  });
+  const MaterialItem({super.key, required this.name, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +19,11 @@ class MaterialItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.darkGray,
             borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(color: AppColors.lightBlue.withValues(alpha: 0.3)),
+            border: Border.all(
+              color: AppColors.lightBlue.withValues(alpha: 0.3),
+            ),
           ),
-          child: Icon(
-            icon,
-            color: AppColors.lightBlue,
-            size: 28.sp,
-          ),
+          child: Icon(icon, color: AppColors.lightBlue, size: 28.sp),
         ),
         SizedBox(height: 8.h),
         Text(

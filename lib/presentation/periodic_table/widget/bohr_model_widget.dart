@@ -28,21 +28,24 @@ class _BohrModelWidgetState extends State<BohrModelWidget>
       vsync: this,
       duration: const Duration(seconds: 20),
     )..repeat();
-    
+
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     )..repeat(reverse: true);
 
-    _shells = _parseElectronConfiguration(widget.element.electronicConfiguration);
+    _shells = _parseElectronConfiguration(
+      widget.element.electronicConfiguration,
+    );
   }
 
   @override
   void didUpdateWidget(BohrModelWidget oldWidget) {
     if (oldWidget.element.electronicConfiguration !=
         widget.element.electronicConfiguration) {
-      _shells =
-          _parseElectronConfiguration(widget.element.electronicConfiguration);
+      _shells = _parseElectronConfiguration(
+        widget.element.electronicConfiguration,
+      );
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -86,7 +89,7 @@ class _BohrModelWidgetState extends State<BohrModelWidget>
     // Standard shell capacities (Max electrons in shell n = 2n^2)
     // But we need to parse the actual configuration string to be accurate
     // Example: [Ar] 3d10 4s2 4p2
-    
+
     Map<int, int> shellMap = {};
 
     // Handle Noble Gas shorthand
@@ -122,22 +125,30 @@ class _BohrModelWidgetState extends State<BohrModelWidget>
     List<int> result = [];
     int maxShell = shellMap.keys.fold(0, math.max);
     for (int i = 1; i <= maxShell; i++) {
-        result.add(shellMap[i] ?? 0);
+      result.add(shellMap[i] ?? 0);
     }
-    
+
     return result;
   }
 
   List<int> _getNobleGasShells(String symbol) {
     switch (symbol) {
-      case 'He': return [2];
-      case 'Ne': return [2, 8];
-      case 'Ar': return [2, 8, 8];
-      case 'Kr': return [2, 8, 18, 8];
-      case 'Xe': return [2, 8, 18, 18, 8];
-      case 'Rn': return [2, 8, 18, 32, 18, 8];
-      case 'Og': return [2, 8, 18, 32, 32, 18, 8];
-      default: return [];
+      case 'He':
+        return [2];
+      case 'Ne':
+        return [2, 8];
+      case 'Ar':
+        return [2, 8, 8];
+      case 'Kr':
+        return [2, 8, 18, 8];
+      case 'Xe':
+        return [2, 8, 18, 18, 8];
+      case 'Rn':
+        return [2, 8, 18, 32, 18, 8];
+      case 'Og':
+        return [2, 8, 18, 32, 32, 18, 8];
+      default:
+        return [];
     }
   }
 
@@ -182,7 +193,11 @@ class BohrPainter extends CustomPainter {
     final nucleusGlowPaint = Paint()
       ..color = AppColors.lightBlue.withValues(alpha: (0.1 + (pulse * 0.1)))
       ..maskFilter = MaskFilter.blur(BlurStyle.normal, 20 + (pulse * 10));
-    canvas.drawCircle(center, baseRadius * (0.8 + pulse * 0.1), nucleusGlowPaint);
+    canvas.drawCircle(
+      center,
+      baseRadius * (0.8 + pulse * 0.1),
+      nucleusGlowPaint,
+    );
 
     // 2. Draw Nucleus Core
     final nucleusGradient = RadialGradient(
@@ -248,43 +263,61 @@ class BohrPainter extends CustomPainter {
         final double angleStep = 2 * math.pi / electronCount;
         final double speedMultiplier = (shells.length - i) * 1.2;
         final double currentRotation = (i % 2 == 0) ? rotation : -rotation;
-        
+
         for (int j = 0; j < electronCount; j++) {
-          final double angle = j * angleStep + (currentRotation * speedMultiplier * 2 * math.pi);
-          
+          final double angle =
+              j * angleStep + (currentRotation * speedMultiplier * 2 * math.pi);
+
           // Draw a small "trail" for the electron
-          _drawTrail(canvas, center, orbitRect, angle, currentRotation * speedMultiplier);
+          _drawTrail(
+            canvas,
+            center,
+            orbitRect,
+            angle,
+            currentRotation * speedMultiplier,
+          );
 
           // Position on ellipse
           final electronX = center.dx + (orbitRect.width / 2) * math.cos(angle);
-          final electronY = center.dy + (orbitRect.height / 2) * math.sin(angle);
-          
+          final electronY =
+              center.dy + (orbitRect.height / 2) * math.sin(angle);
+
           final double depthScale = 0.7 + (math.sin(angle) + 1) * 0.2;
-          _drawEnhancedElectron(canvas, Offset(electronX, electronY), depthScale);
+          _drawEnhancedElectron(
+            canvas,
+            Offset(electronX, electronY),
+            depthScale,
+          );
         }
       }
       canvas.restore();
     }
   }
 
-  void _drawTrail(Canvas canvas, Offset center, Rect rect, double currentAngle, double direction) {
+  void _drawTrail(
+    Canvas canvas,
+    Offset center,
+    Rect rect,
+    double currentAngle,
+    double direction,
+  ) {
     const int trailSteps = 5;
     for (int t = 1; t <= trailSteps; t++) {
       final double trailAngle = currentAngle - (direction * t * 0.05);
       final double tx = center.dx + (rect.width / 2) * math.cos(trailAngle);
       final double ty = center.dy + (rect.height / 2) * math.sin(trailAngle);
-      
+
       final trailPaint = Paint()
         ..color = AppColors.lightBlue.withValues(alpha: (0.3 / t))
         ..style = PaintingStyle.fill;
-      
+
       canvas.drawCircle(Offset(tx, ty), 3.0 / t, trailPaint);
     }
   }
 
   void _drawEnhancedElectron(Canvas canvas, Offset position, double scale) {
     final double radius = 3.5 * scale;
-    
+
     // Glow
     final glowPaint = Paint()
       ..color = AppColors.lightBlue.withValues(alpha: 0.4)

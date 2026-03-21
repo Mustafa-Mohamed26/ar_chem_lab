@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:ar_chem_lab/presentation/chat_bot/cubit/chat_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => getIt<AuthViewModel>()),
+        BlocProvider(create: (context) => getIt<ChatCubit>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

@@ -38,10 +38,10 @@ class _UserProfilingScreenState extends State<UserProfilingScreen> {
 
   /// Labels shown in the AppBar for each step (1-indexed).
   static const List<String> _stepTitles = [
-    'Personalize',   // Step 1
-    'Education',     // Step 2
-    'Proficiency',   // Step 3
-    'Level Assess',  // Step 4
+    'Personalize', // Step 1
+    'Education', // Step 2
+    'Proficiency', // Step 3
+    'Level Assess', // Step 4
   ];
 
   // ─── Step State ────────────────────────────────────────────────────────────

@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
                   name: "Mike",
                   rank: "Advanced Lab Apprentice",
                 ),
-                SizedBox(height:  14.h),
+                SizedBox(height: 14.h),
                 const ProfileStatsCard(
                   experimentsCount: 24,
                   labHours: 12.5,
@@ -45,10 +45,7 @@ class ProfileScreen extends StatelessWidget {
                   progress: 0.9,
                 ),
                 SizedBox(height: 32.h),
-                Text(
-                  "ACCOUNT & SAFETY",
-                  style: AppStyles.bold12whiteInter
-                ),
+                Text("ACCOUNT & SAFETY", style: AppStyles.bold12whiteInter),
                 SizedBox(height: 16.h),
                 SettingsTile(
                   icon: Icons.shield_outlined,

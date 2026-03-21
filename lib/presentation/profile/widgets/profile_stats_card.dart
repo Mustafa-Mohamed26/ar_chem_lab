@@ -43,15 +43,14 @@ class ProfileStatsCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16.h),
-          Text(
-            "TOPICS MASTERED",
-            style: AppStyles.bold12whiteInter
-          ),
+          Text("TOPICS MASTERED", style: AppStyles.bold12whiteInter),
           SizedBox(height: 16.h),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: masteredTopics.map((topic) => _buildTopicChip(topic)).toList(),
+              children: masteredTopics
+                  .map((topic) => _buildTopicChip(topic))
+                  .toList(),
             ),
           ),
         ],
@@ -71,17 +70,11 @@ class ProfileStatsCard extends StatelessWidget {
           children: [
             Icon(icon, color: Colors.white70, size: 24.sp),
             SizedBox(width: 8.w),
-            Text(
-              label,
-              style: AppStyles.bold12whiteInter
-            ),
+            Text(label, style: AppStyles.bold12whiteInter),
           ],
         ),
         SizedBox(height: 8.h),
-        Text(
-          value,
-          style: AppStyles.bold24whiteInter,
-        ),
+        Text(value, style: AppStyles.bold24whiteInter),
       ],
     );
   }
@@ -95,10 +88,7 @@ class ProfileStatsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: AppColors.lightBlue.withValues(alpha: 0.2)),
       ),
-      child: Text(
-        topic,
-        style: AppStyles.semiBold12lightBlueInter,
-      ),
+      child: Text(topic, style: AppStyles.semiBold12lightBlueInter),
     );
   }
 }

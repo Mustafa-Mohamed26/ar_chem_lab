@@ -102,8 +102,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   _buildDotsIndicator(),
                   SizedBox(height: 10.h),
                   _buildButton(),
-                  SizedBox(height: 10.h)
-                  
+                  SizedBox(height: 10.h),
                 ],
               ),
             ),
@@ -183,10 +182,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildButton() {
-    return AppButton(
-      text: buttonTexts[currentIndex],
-      onTap: _nextPage,
-    );
+    return AppButton(text: buttonTexts[currentIndex], onTap: _nextPage);
   }
 
   /// Back button

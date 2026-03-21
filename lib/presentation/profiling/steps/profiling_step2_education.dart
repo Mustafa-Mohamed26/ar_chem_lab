@@ -131,10 +131,7 @@ class ProfilingStep2Education extends StatelessWidget {
   Widget _buildFooter() {
     return Column(
       children: [
-        AppButton(
-          text: 'Continue',
-          onTap: _hasSelection ? onNext : null,
-        ),
+        AppButton(text: 'Continue', onTap: _hasSelection ? onNext : null),
         SizedBox(height: 12.h),
         Text(
           'SELECT A LEVEL TO PROCEED WITH YOUR PERSONALIZED JOURNEY',

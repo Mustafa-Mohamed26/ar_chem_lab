@@ -13,7 +13,7 @@ class HistoryCard extends StatelessWidget {
     final isSuccess = data.status == ExperimentStatus.success;
     final statusColor = isSuccess ? AppColors.lightBlue : AppColors.redAccent;
     final statusText = isSuccess ? "SUCCESS" : "FAILED";
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: 16.h),
       padding: EdgeInsets.all(16.w),
@@ -30,12 +30,12 @@ class HistoryCard extends StatelessWidget {
             width: 56.w,
             height: 56.w,
             decoration: BoxDecoration(
-              color: isSuccess 
+              color: isSuccess
                   ? AppColors.lightBlue.withValues(alpha: 0.15)
                   : AppColors.redAccent.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(16.r),
               border: Border.all(
-                color: isSuccess 
+                color: isSuccess
                     ? AppColors.lightBlue.withValues(alpha: 0.3)
                     : AppColors.redAccent.withValues(alpha: 0.3),
               ),
@@ -47,7 +47,7 @@ class HistoryCard extends StatelessWidget {
             ),
           ),
           SizedBox(width: 16.w),
-          
+
           // Center Info
           Expanded(
             child: Column(
@@ -133,7 +133,11 @@ class HistoryCard extends StatelessWidget {
     } else {
       return Row(
         children: [
-          Icon(Icons.warning_amber_rounded, size: 14.sp, color: AppColors.redAccent),
+          Icon(
+            Icons.warning_amber_rounded,
+            size: 14.sp,
+            color: AppColors.redAccent,
+          ),
           SizedBox(width: 6.w),
           Text(
             "Reason: ${data.reason ?? 'Unknown'}",

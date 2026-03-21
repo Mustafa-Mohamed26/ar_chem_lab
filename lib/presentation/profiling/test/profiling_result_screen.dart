@@ -11,11 +11,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _LevelResult {
-  final String label;          // e.g. "BEGINNER"
-  final String description;   // shown below the level label
-  final Color accentColor;    // icon + badge tint
+  final String label; // e.g. "BEGINNER"
+  final String description; // shown below the level label
+  final Color accentColor; // icon + badge tint
   final IconData icon;
-  final List<String> topics;  // unlocked topics list
+  final List<String> topics; // unlocked topics list
 
   const _LevelResult({
     required this.label,
@@ -30,15 +30,22 @@ _LevelResult _resolveLevel(double accuracy) {
   if (accuracy >= 0.71) {
     return const _LevelResult(
       label: 'ADVANCED',
-      description: "Outstanding! You have mastery-level understanding of chemistry. You're ready for our most complex AR synthesis experiments.",
+      description:
+          "Outstanding! You have mastery-level understanding of chemistry. You're ready for our most complex AR synthesis experiments.",
       accentColor: Color(0xFF5AC1B7),
       icon: Icons.military_tech_outlined,
-      topics: ['Organic Synthesis', 'Thermodynamics', 'Electrochemistry', 'Quantum Chemistry'],
+      topics: [
+        'Organic Synthesis',
+        'Thermodynamics',
+        'Electrochemistry',
+        'Quantum Chemistry',
+      ],
     );
   } else if (accuracy >= 0.41) {
     return const _LevelResult(
       label: 'INTERMEDIATE',
-      description: "Impressive! You have a solid grasp of atomic structures and stoichiometry. You're ready for complex AR synthesis experiments.",
+      description:
+          "Impressive! You have a solid grasp of atomic structures and stoichiometry. You're ready for complex AR synthesis experiments.",
       accentColor: Color(0xFF9C7DE7),
       icon: Icons.emoji_events_outlined,
       topics: ['Organic Chem', 'Gas Laws', 'Redox Reactions', 'Lab Safety AR'],
@@ -46,10 +53,16 @@ _LevelResult _resolveLevel(double accuracy) {
   } else {
     return const _LevelResult(
       label: 'BEGINNER',
-      description: "Great start! We'll guide you through the fundamentals of chemistry step by step with interactive AR experiments.",
+      description:
+          "Great start! We'll guide you through the fundamentals of chemistry step by step with interactive AR experiments.",
       accentColor: AppColors.lightBlue,
       icon: Icons.science_outlined,
-      topics: ['Atomic Structure', 'Periodic Table', 'Simple Bonding', 'Lab Basics AR'],
+      topics: [
+        'Atomic Structure',
+        'Periodic Table',
+        'Simple Bonding',
+        'Lab Basics AR',
+      ],
     );
   }
 }
@@ -85,7 +98,8 @@ class ProfilingResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Read arguments passed from ProfilingTestScreen.
-    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int correct = args['correctAnswers'] as int;
     final int total = args['totalQuestions'] as int;
     final Duration elapsed = args['duration'] as Duration;
@@ -170,7 +184,10 @@ class ProfilingResultScreen extends StatelessWidget {
           decoration: BoxDecoration(
             color: level.accentColor.withValues(alpha: 0.12),
             shape: BoxShape.circle,
-            border: Border.all(color: level.accentColor.withValues(alpha: 0.3), width: 1.5),
+            border: Border.all(
+              color: level.accentColor.withValues(alpha: 0.3),
+              width: 1.5,
+            ),
           ),
           child: Icon(level.icon, color: level.accentColor, size: 34.sp),
         ),
@@ -218,9 +235,21 @@ class ProfilingResultScreen extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(child: _buildStatBox(icon: Icons.track_changes_outlined, label: 'ACCURACY', value: accuracyLabel)),
+        Expanded(
+          child: _buildStatBox(
+            icon: Icons.track_changes_outlined,
+            label: 'ACCURACY',
+            value: accuracyLabel,
+          ),
+        ),
         SizedBox(width: 14.w),
-        Expanded(child: _buildStatBox(icon: Icons.timer_outlined, label: 'PACE', value: paceLabel)),
+        Expanded(
+          child: _buildStatBox(
+            icon: Icons.timer_outlined,
+            label: 'PACE',
+            value: paceLabel,
+          ),
+        ),
       ],
     );
   }

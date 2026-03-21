@@ -20,9 +20,9 @@ class UserResponseDto {
 
   User toEntity() {
     return User(
-      id: -1, 
+      id: -1,
       username: username ?? '',
-      hashedPassword: '', 
+      hashedPassword: '',
       email: null,
       disabled: false,
       resetCode: null,

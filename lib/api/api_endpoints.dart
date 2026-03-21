@@ -8,6 +8,7 @@ class ApiEndpoints {
 
   static String get register => "$baseUrl/register";
   static String get login => "$baseUrl/login";
+  static String get verifyEmail => "$baseUrl/verify-email";
   static String get refreshToken => "$baseUrl/refresh";
   static String get profile => "$baseUrl/profile";
   static String get forgotPassword => "$baseUrl/forgot-password";

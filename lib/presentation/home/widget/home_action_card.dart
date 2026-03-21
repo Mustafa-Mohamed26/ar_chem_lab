@@ -56,11 +56,7 @@ class HomeActionCard extends StatelessWidget {
                 children: [
                   Text(title, style: AppStyles.bold18whiteOrbitron),
                   SizedBox(height: 4.h),
-                  Text(
-                    description,
-                    style: AppStyles.regular12interWhite,
-                    
-                  ),
+                  Text(description, style: AppStyles.regular12interWhite),
                 ],
               ),
             ),
@@ -73,7 +69,11 @@ class HomeActionCard extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(12.r)),
                 boxShadow: [],
               ),
-              child: Icon(actionIcon, color: AppColors.midnightBlue, size: 24.w),
+              child: Icon(
+                actionIcon,
+                color: AppColors.midnightBlue,
+                size: 24.w,
+              ),
             ),
           ],
         ),
