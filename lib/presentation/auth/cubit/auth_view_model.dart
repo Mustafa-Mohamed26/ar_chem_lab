@@ -12,8 +12,6 @@ class AuthViewModel extends Cubit<AuthState> {
   final AuthUseCase authUseCase;
   final GetProfileUseCase getProfileUseCase;
 
-  final formKey = GlobalKey<FormState>();
-
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -34,10 +32,6 @@ class AuthViewModel extends Cubit<AuthState> {
   }
 
   Future<void> register() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-
     emit(AuthLoading());
     try {
       final responseMessage = await authUseCase.register(
@@ -134,11 +128,7 @@ class AuthViewModel extends Cubit<AuthState> {
     }
   }
 
-  Future<void> login() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-
+  Future<void> login({bool rememberMe = false}) async {
     emit(AuthLoading());
     try {
       final response = await authUseCase.login(
@@ -146,7 +136,7 @@ class AuthViewModel extends Cubit<AuthState> {
         passwordController.text,
       );
 
-      // Store tokens in shared preferences
+      // Store tokens and rememberMe preference
       final prefs = await SharedPreferences.getInstance();
       if (response.accessToken != null) {
         await prefs.setString('access_token', response.accessToken!);
@@ -154,11 +144,29 @@ class AuthViewModel extends Cubit<AuthState> {
       if (response.refreshToken != null) {
         await prefs.setString('refresh_token', response.refreshToken!);
       }
+      
+      // Store the rememberMe flag
+      await prefs.setBool('remember_me', rememberMe);
 
       emit(AuthSuccess("Logged in successfully"));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
+  }
+
+  Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('access_token');
+    await prefs.remove('refresh_token');
+    await prefs.remove('remember_me');
+    
+    // Clear controllers
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+    
+    emit(AuthInitial());
   }
 
   Future<void> refreshToken() async {

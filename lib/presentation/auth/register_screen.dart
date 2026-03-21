@@ -19,6 +19,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
   bool _agreeToTerms = false;
 
   @override
@@ -83,14 +84,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: AppButton(
                           text: "Create Account",
                           onTap: () {
-                            if (_agreeToTerms) {
-                              context.read<AuthViewModel>().register();
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Please agree to terms"),
-                                ),
-                              );
+                            if (_formKey.currentState!.validate()) {
+                              if (_agreeToTerms) {
+                                context.read<AuthViewModel>().register();
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Please agree to terms"),
+                                  ),
+                                );
+                              }
                             }
                           },
                         ),
@@ -134,7 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         borderRadius: BorderRadius.circular(24.r),
       ),
       child: Form(
-        key: context.read<AuthViewModel>().formKey,
+        key: _formKey,
         child: Column(
           children: [
             _buildInputFields(context),

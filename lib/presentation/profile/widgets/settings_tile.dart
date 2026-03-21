@@ -7,12 +7,14 @@ class SettingsTile extends StatelessWidget {
   final IconData icon;
   final String title;
   final VoidCallback onTap;
+  final Color? color;
 
   const SettingsTile({
     super.key,
     required this.icon,
     required this.title,
     required this.onTap,
+    this.color,
   });
 
   @override
@@ -29,7 +31,7 @@ class SettingsTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: Colors.white70, size: 22.sp),
+            Icon(icon, color: color ?? Colors.white70, size: 22.sp),
             SizedBox(width: 16.w),
             Expanded(
               child: Text(
@@ -37,10 +39,15 @@ class SettingsTile extends StatelessWidget {
                 style: AppStyles.bold14whiteInter.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: 15.sp,
+                  color: color ?? Colors.white,
                 ),
               ),
             ),
-            Icon(Icons.chevron_right, color: Colors.white38, size: 20.sp),
+            Icon(
+              Icons.chevron_right,
+              color: color?.withValues(alpha: 0.5) ?? Colors.white38,
+              size: 20.sp,
+            ),
           ],
         ),
       ),

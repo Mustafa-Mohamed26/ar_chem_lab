@@ -19,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
   bool _rememberMe = false;
 
   @override
@@ -115,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
         borderRadius: BorderRadius.circular(24.r),
       ),
       child: Form(
-        key: context.read<AuthViewModel>().formKey,
+        key: _formKey,
         child: Column(
           children: [
             _buildInputFields(context),
@@ -125,7 +126,9 @@ class _LoginScreenState extends State<LoginScreen> {
             AppButton(
               text: "Sign In",
               onTap: () {
-                context.read<AuthViewModel>().login();
+                if (_formKey.currentState!.validate()) {
+                  context.read<AuthViewModel>().login(rememberMe: _rememberMe);
+                }
               },
             ),
           ],
