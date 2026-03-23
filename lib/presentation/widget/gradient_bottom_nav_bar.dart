@@ -3,6 +3,7 @@ import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/circular_gradients_painter.dart';
 import 'package:ar_chem_lab/presentation/widget/notch_painter.dart';
+import 'package:ar_chem_lab/core/services/ar_unity_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -50,7 +51,9 @@ class GradientBottomNavBar extends StatelessWidget {
           Positioned(
             top: 1, // Lifts the button out of the bar
             child: GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                await ARUnityService.launchUnity("ExpertScene");
+              },
               child: CustomPaint(
                 painter: CircleGradientPainter(), // Drawing the button's border
                 child: Container(
