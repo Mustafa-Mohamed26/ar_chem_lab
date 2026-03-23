@@ -1,0 +1,228 @@
+Folder PATH listing
+Volume serial number is 74EB-9B97
+D:\MY PROGRAMMING PROJECTS\VS CODE\FLUTTER\AR_CHEM_LAB\LIB
+|   main.dart
+|   
++---api
+|   |   api_endpoints.dart
+|   |   web_services.dart
+|   |   
+|   +---data_sources
+|   |   +---local
+|   |   \---remote
+|   |           ai_data_source_impl.dart
+|   |           auth_data_source_impl.dart
+|   |           periodic_table_data_source_impl.dart
+|   |           
+|   +---dio
+|   |       auth_interceptor.dart
+|   |       dio_interceptors.dart
+|   |       dio_module.dart
+|   |       
+|   +---mapper
+|   |       gemini_mapper.dart
+|   |       periodic_table_response_mapper.dart
+|   |       
+|   \---models
+|       +---request
+|       |       forgot_password_request_dto.dart
+|       |       gemini_request_dto.dart
+|       |       login_request_dto.dart
+|       |       refresh_token_request_dto.dart
+|       |       register_request_dto.dart
+|       |       reset_password_request_dto.dart
+|       |       verify_email_request_dto.dart
+|       |       
+|       \---response
+|               gemini_response_dto.dart
+|               login_response_dto.dart
+|               periodic_table_response_dto.dart
+|               user_response_dto.dart
+|               
++---config
+|   |   bloc_observer.dart
+|   |   
+|   \---di
+|           di.config.dart
+|           di.dart
+|           
++---core
+|   +---constants
+|   |       app_assets.dart
+|   |       strings.dart
+|   |       
+|   +---errors
+|   |       error_handler.dart
+|   |       failures.dart
+|   |       
+|   +---exceptions
+|   |       app_exceptions.dart
+|   |       exception_mapper.dart
+|   |       
+|   +---routes
+|   |       app_routes.dart
+|   |       app_route_generator.dart
+|   |       
+|   +---services
+|   |       app_initialization_service.dart
+|   |       ar_unity_service.dart
+|   |       initial_route_resolver.dart
+|   |       onboarding_service.dart
+|   |       view_history_service.dart
+|   |       
+|   +---theme
+|   |       app_colors.dart
+|   |       app_gradients.dart
+|   |       app_padding.dart
+|   |       app_styles.dart
+|   |       app_theme.dart
+|   |       
+|   \---utils
+|           dialog_helper.dart
+|           formatters.dart
+|           helpers.dart
+|           validators.dart
+|           
++---data
+|   +---data_sources
+|   |   +---local
+|   |   \---remote
+|   |           ai_data_source.dart
+|   |           auth_data_source.dart
+|   |           periodic_table_data_source.dart
+|   |           
+|   \---repositories
+|           ai_repository_impl.dart
+|           auth_repository_impl.dart
+|           periodic_table_repository_imp.dart
+|           
++---domain
+|   +---entities
+|   |   |   ai_message.dart
+|   |   |   periodic_table_response.dart
+|   |   |   user.dart
+|   |   |   
+|   |   \---lab
+|   |           experiment_entity.dart
+|   |           lab_level_entity.dart
+|   |           
+|   +---repositories
+|   |       ai_repository.dart
+|   |       auth_repository.dart
+|   |       periodic_table_repository.dart
+|   |       
+|   \---use_cases
+|           auth_use_case.dart
+|           chat_bot_use_case.dart
+|           get_periodic_table_use_case.dart
+|           get_profile_use_case.dart
+|           
+\---presentation
+    +---auth
+    |   |   create_new_password_screen.dart
+    |   |   email_verification_screen.dart
+    |   |   forgot_password_screen.dart
+    |   |   login_screen.dart
+    |   |   otp_verification_screen.dart
+    |   |   password_changed_screen.dart
+    |   |   register_screen.dart
+    |   |   welcome_screen.dart
+    |   |   
+    |   +---cubit
+    |   |       auth_states.dart
+    |   |       auth_view_model.dart
+    |   |       
+    |   \---widgets
+    |           auth_button.dart
+    |           auth_form_container.dart
+    |           auth_text_field.dart
+    |           gradient_border_container.dart
+    |           
+    +---chat_bot
+    |   |   chat_bot_screen.dart
+    |   |   chat_bubble.dart
+    |   |   thinking_dots.dart
+    |   |   typewriter_text.dart
+    |   |   
+    |   \---cubit
+    |           chat_cubit.dart
+    |           chat_state.dart
+    |           
+    +---history
+    |       experiment_data.dart
+    |       history_screen.dart
+    |       
+    +---home
+    |   |   home_screen.dart
+    |   |   
+    |   \---widget
+    |           home_action_card.dart
+    |           home_header.dart
+    |           level_progress_card.dart
+    |           
+    +---lab
+    |   |   experiment_detail_screen.dart
+    |   |   lab_main_screen.dart
+    |   |   
+    |   \---widgets
+    |           experiment_step_item.dart
+    |           lab_level_card.dart
+    |           material_item.dart
+    |           
+    +---onboarding
+    |       onboarding_screen.dart
+    |       
+    +---periodic_table
+    |   |   elements_data.dart
+    |   |   element_detail_screen.dart
+    |   |   element_tile.dart
+    |   |   periodic_table_screen.dart
+    |   |   screen_title.dart
+    |   |   
+    |   +---cubit
+    |   |       periodic_table_states.dart
+    |   |       periodic_table_view_model.dart
+    |   |       
+    |   \---widget
+    |           bohr_model_widget.dart
+    |           
+    +---profile
+    |   |   profile_screen.dart
+    |   |   
+    |   \---widgets
+    |           lab_access_card.dart
+    |           profile_header.dart
+    |           profile_stats_card.dart
+    |           recent_experiments_section.dart
+    |           settings_tile.dart
+    |           
+    +---profiling
+    |   |   user_profiling_screen.dart
+    |   |   
+    |   +---steps
+    |   |       profiling_step1_goal.dart
+    |   |       profiling_step2_education.dart
+    |   |       profiling_step3_knowledge.dart
+    |   |       profiling_step4_assessment.dart
+    |   |       
+    |   +---test
+    |   |       profiling_result_screen.dart
+    |   |       profiling_test_screen.dart
+    |   |       quiz_question.dart
+    |   |       
+    |   \---widgets
+    |           profiling_grid_card.dart
+    |           profiling_progress_bar.dart
+    |           profiling_select_card.dart
+    |           
+    \---widget
+            app_back_button.dart
+            app_button.dart
+            circular_gradients_painter.dart
+            gradient_bottom_nav_bar.dart
+            gradient_button.dart
+            gradient_container.dart
+            history_card.dart
+            notch_painter.dart
+            user_header.dart
+            
