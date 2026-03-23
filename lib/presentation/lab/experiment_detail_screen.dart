@@ -6,6 +6,7 @@ import 'package:ar_chem_lab/presentation/lab/widgets/experiment_step_item.dart';
 import 'package:ar_chem_lab/presentation/lab/widgets/material_item.dart';
 import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
+import 'package:ar_chem_lab/core/services/ar_unity_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -61,7 +62,15 @@ class ExperimentDetailScreen extends StatelessWidget {
                       style: AppStyles.bold20whiteOrbitron,
                     ),
                     SizedBox(height: 24.h),
-                    AppButton(text: "Start the Experiment", onTap: () {}),
+                    AppButton(
+                      text: "Start the Experiment", 
+                      onTap: () async {
+                        String targetScene = experiment.title.toLowerCase().contains("intermediate")
+                            ? "IntermediateScene"
+                            : "BeginnerScene";
+                        await ARUnityService.launchUnity(targetScene);
+                      }
+                    ),
                     SizedBox(height: 24.h),
                     ...experiment.path.asMap().entries.map((entry) {
                       return ExperimentStepItem(

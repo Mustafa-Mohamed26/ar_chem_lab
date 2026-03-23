@@ -15,16 +15,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
+    // kotlinOptions { jvmTarget } was deprecated.
+    // The top-level kotlin block is now utilized to declare the compiler jvmTarget.
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.ar_chem_lab"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 30 // Required by Unity AR plugin (API 30+)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -39,6 +38,17 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
+}
+
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation(project(":unityLibrary"))
+    implementation(fileTree(mapOf("dir" to "../unityExport/unityLibrary/libs", "include" to listOf("*.jar"))))
 }
