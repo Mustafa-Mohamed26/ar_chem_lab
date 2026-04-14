@@ -1,131 +1,130 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white" alt="Flutter" />
-  <img src="https://img.shields.io/badge/Dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
-  <img src="https://img.shields.io/badge/Unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white" alt="Unity" />
-  <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
-  <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white" alt="iOS" />
+  <img src="assets/images/readme_banner.png" alt="AR Chem Lab Banner" width="100%" />
+
+  <br />
+
+  [![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://flutter.dev/)
+  [![Dart](https://img.shields.io/badge/Dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
+  [![Unity](https://img.shields.io/badge/Unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white)](https://unity.com/)
+  [![Clean Architecture](https://img.shields.io/badge/Clean-Architecture-blue?style=for-the-badge)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+  <h1>🧪 AR Chem Lab</h1>
+
+  <p>
+    <strong>A high-fidelity Augmented Reality Chemistry Laboratory.</strong><br />
+    Bringing the wonders of science to life through Flutter and Unity integration.
+  </p>
 </div>
-
-<h1 align="center">🧪 AR Chem Lab</h1>
-
-<p align="center">
-  <strong>An immersive, beautifully designed Augmented Reality Chemistry Laboratory built with Flutter and Unity.</strong>
-</p>
 
 ---
 
-## 📖 About The Project
+## 🌟 Overview
 
-**AR Chem Lab** reimagines how students and enthusiasts learn chemistry by bringing a fully interactive simulation lab right to their mobile devices.
+**AR Chem Lab** is a cutting-edge educational application designed to bridge the gap between theoretical chemistry and practical experimentation. By leveraging **Augmented Reality (AR)**, the app allows users to perform dangerous, expensive, or complex chemical reactions safely within their own environment.
 
-By combining the cross-platform power of **Flutter** with the profound 3D rendering and augmented reality capabilities of **Unity**, this app provides a safe, highly-engaging environment to conduct chemical experiments, inspect molecular structures, and learn scientific concepts without the need for physical lab equipment.
+Built with a **Premium UI/UX** philosophy, it combines the fluid animations of Flutter with the powerful 3D rendering capabilities of Unity to create an immersive learning ecosystem.
 
-## ✨ Key Features
+---
 
-- 🥽 **Augmented Reality Lab:** Perform interactive chemistry experiments safely using your device's camera. Unity integration smoothly overlays chemical reactions into your real-world environment.
-- 🧬 **Interactive 3D Viewer:** Inspect and manipulate intricate 3D molecular structures in high detail using `model_viewer_plus`.
-- 🤖 **AI Chemistry Assistant:** Get immediate help and guided walkthroughs. The built-in AI chatbot fully supports markdown rendering for structured, easy-to-read scientific explanations.
-- 🎓 **Adaptive Difficulty:** Progress at your own pace through tailored scenes—from _Beginner_ to _Intermediate_ and _Expert_ levels.
-- 🔐 **Secure Authentication:** Robust user management featuring login, registration, and secure password reset workflows.
-- 💎 **Premium UI Design:** A modern, sleek, and responsive interface designed with Google Fonts, custom themes, and refined animations to provide a top-tier user experience.
+## ✨ Core Features
+
+### 🥽 Augmented Reality Laboratory
+- **Native Unity Integration:** Seamlessly transition between Flutter UI and Unity AR scenes.
+- **Interactive Experiments:** Conduct real-time chemical reactions with accurate visual effects.
+- **Safety First:** Explore high-risk reactions (like alkali metals in water) without physical danger.
+
+### 🧬 Professional 3D Molecular Viewer
+- **Interactive Models:** Rotate, zoom, and inspect 100+ molecular structures.
+- **Atomic Precision:** High-fidelity 3D assets ensuring scientific accuracy.
+- **Powered by `model_viewer_plus`:** Utilizing modern glTF rendering for smooth performance.
+
+### 🤖 AI Chemistry Assistant
+- **Smart Tutor:** Integrated chatbot to assist with experiment walkthroughs and scientific queries.
+- **Markdown Support:** Clean rendering of chemical formulas ($H_2O$), tables, and structured data.
+- **Thinking Animations:** Engaging UI feedback while the AI processes complex answers.
+
+### 📊 Dynamic Periodic Table
+- **Interactive Elements:** Comprehensive data on every element, including atomic mass, boiling points, and electron configurations.
+- **Deep Dives:** Dedicated detail screens for each element with beautifully styled data cards.
+
+### 🎓 Gamified Learning Paths
+- **Level-Based Progression:** Adaptive difficulty across *Beginner*, *Intermediate*, and *Expert* levels.
+- **Progress Tracking:** Secure user profiling and experiment history.
 
 ---
 
 ## 🛠️ Technology Stack
 
-The application leverages a modern technology stack to ensure performance, scalability, and an excellent developer experience:
-
-- **Frontend Framework:** [Flutter](https://flutter.dev/)
-- **AR Engine:** [Unity](https://unity.com/) via Flutter-Unity Bridge
-- **State Management:** [BLoC / Cubit](https://bloclibrary.dev/)
-- **Dependency Injection:** `get_it` and `injectable`
-- **Networking API:** `dio`
-- **UI/UX Tools:** `flutter_screenutil`, `google_fonts`, `flutter_markdown`
-
----
-
-## 🏗️ Architecture & Design Patterns
-
-This project follows **Clean Architecture** principles and **Layered/Feature-First** design to ensure separation of concerns, scalability, and testability.
-
-- **Clean Architecture:** Divided into distinct layers (`presentation`, `domain`, `data`, `core`) allowing UI and business logic to evolve independently.
-- **Repository Pattern:** Abstracted data sources ensure the rest of the application is agnostic to where the data comes from (e.g., local storage or remote API).
-- **Dependency Injection:** Utilizing `get_it` combined with `injectable` for robust, code-generated service locators and factories.
-- **State Management:** Powered by **BLoC (Business Logic Component)** and **Cubit**, separating the application state from the UI presentation layer, providing predictable and reactive state transitions across features.
+| Layer | Technology |
+|---|---|
+| **Frontend** | [Flutter](https://flutter.dev/) |
+| **AR/3D Engine** | [Unity](https://unity.com/) (UaaL) |
+| **State Management** | [BLoC / Cubit](https://bloclibrary.dev/) |
+| **Dependency Injection** | `get_it` & `injectable` |
+| **Networking** | `Dio` with interceptors |
+| **UI Utilities** | `flutter_screenutil`, `google_fonts`, `awesome_dialog` |
 
 ---
 
-## 📂 Folder Structure
+## 🏗️ Architecture
 
-The core `lib/` directory is cleanly organized around these architectural layers:
+The project adheres to **Clean Architecture** principles, ensuring a scalable and maintainable codebase:
 
-```text
-lib/
-├── api/             # Network configurations, Dio client setup, Interceptors
-├── config/          # App-wide routing, Theme configs, Dependency Injection scripts
-├── core/            # Shared utilities, constants, exceptions, global helpers
-├── data/            # Data layer: Repositories implementations, Data Sources, DTOs
-├── domain/          # Domain layer: Core Entities, Use Cases, Repository Interfaces
-├── presentation/    # UI layer: Screens, Reusable Widgets, BLoCs, Cubits, ViewModels
-└── main.dart        # Application entry point & MultiBlocProvider initialization
-```
+- **Presentation Layer:** Feature-first organization. Each feature (auth, lab, chat) contains its own Cubits/BLoCs and Screens.
+- **Domain Layer:** Pure Dart logic containing Entities, Use Case definitions, and Repository interfaces.
+- **Data Layer:** Implementation of repositories, DTOs (Data Transfer Objects), and various data sources (API/Local).
+- **Core Layer:** Shared components, theme constants, and cross-cutting utilities.
 
 ---
 
 ## 🚀 Getting Started
 
-To get a local copy up and running, follow these simple steps.
-
 ### Prerequisites
-
-- **Flutter SDK**: [Install Flutter](https://docs.flutter.dev/get-started/install) (Version `^3.10.7` recommended)
-- **Unity Hub / Editor**: Required for modifying or building the AR scenes (Make sure Android build support and NDK are installed)
-- **Android Studio / Xcode**: For device emulation and compilation.
+- **Flutter SDK:** `^3.10.7`
+- **Unity Hub:** Version `2022.3.x` (recommended)
+- **NDK:** `23.1.7779620` (required for Unity integration)
 
 ### Installation
 
-1.  **Clone the repository**
+1. **Clone the Project**
+   ```bash
+   git clone https://github.com/Mustafa-Mohamed26/ar_chem_lab.git
+   ```
 
-    ```sh
-    git clone https://github.com/Mustafa-Mohamed26/ar_chem_lab.git
-    cd ar_chem_lab
-    ```
+2. **Initialize Flutter Dependencies**
+   ```bash
+   flutter pub get
+   ```
 
-2.  **Install Flutter Dependencies**
+3. **Generate Source Code (DI & Routing)**
+   ```bash
+   flutter pub run build_runner build --delete-conflicting-outputs
+   ```
 
-    ```sh
-    flutter pub get
-    ```
+4. **Unity Integration**
+   - Ensure the `unityExport` folder is correctly linked as per the [Unity Integration Guide](UNITY_INTEGRATION_README.md).
+   - Set up the NDK path in your local environment.
 
-3.  **Generate DI and Routes (if applicable)**
-
-    ```sh
-    flutter pub run build_runner build --delete-conflicting-outputs
-    ```
-
-4.  **Run the app**
-    ```sh
-    flutter run
-    ```
-    _Note: AR features require testing on a physical device, as emulators do not fully support ARCore/ARKit._
+5. **Run the App**
+   ```bash
+   flutter run
+   ```
 
 ---
 
-## 📸 Screenshots _(Placeholders)_
-
-_(Add actual screenshots of the app here once available)_
+## 📸 Visual Identity
 
 <div align="center">
   <table>
     <tr>
-      <td><p align="center"><b>Home Dashboard</b></p></td>
-      <td><p align="center"><b>AR Experiment</b></p></td>
-      <td><p align="center"><b>AI Assistant</b></p></td>
+      <td><b>Dashboard</b></td>
+      <td><b>AR Lab</b></td>
+      <td><b>AI Assistant</b></td>
     </tr>
     <tr>
-      <td><img src="https://via.placeholder.com/250x500?text=Home+Screen" width="200" alt="Home"></td>
-      <td><img src="https://via.placeholder.com/250x500?text=AR+Lab" width="200" alt="AR Lab"></td>
-      <td><img src="https://via.placeholder.com/250x500?text=AI+Chat" width="200" alt="AI Chat"></td>
+      <td><img src="https://via.placeholder.com/300x600?text=Dashboard+Mockup" width="200" /></td>
+      <td><img src="https://via.placeholder.com/300x600?text=AR+Experience" width="200" /></td>
+      <td><img src="https://via.placeholder.com/300x600?text=AI+Chat" width="200" /></td>
     </tr>
   </table>
 </div>
@@ -133,8 +132,7 @@ _(Add actual screenshots of the app here once available)_
 ---
 
 ## 🤝 Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+We welcome contributions! Please follow the standard fork-and-pull-request workflow.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -144,12 +142,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ---
 
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
 <p align="center">
-  <i>Built with ❤️ to make learning chemistry fun and accessible.</i>
+  <i>Developed with ❤️ by the Mustafa Mohamed's Team.</i><br />
+  <i>Making Chemistry Interactive, Immersive, and Accessible.</i>
 </p>
