@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: 'android-library'
 
 dependencies {
     implementation fileTree(dir: 'bin', include: ['*.jar'])
@@ -17,11 +17,11 @@ android {
         }
     }
 
-    compileSdk 36
+    compileSdkVersion 36
     buildToolsVersion '34.0.0'
     defaultConfig {
-        minSdk 30
-        targetSdk 22
+        minSdkVersion 30
+        targetSdkVersion 22
     }
 
     lintOptions {
