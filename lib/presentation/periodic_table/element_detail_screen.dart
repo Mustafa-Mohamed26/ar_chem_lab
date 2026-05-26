@@ -113,11 +113,11 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildStatItem("Electron", "${element.electrons}"),
+          Expanded(child: _buildStatItem("Electron", "${element.electrons}")),
           Container(height: 30.h, width: 1, color: AppColors.white),
-          _buildStatItem("Proton", "${element.protons}"),
+          Expanded(child: _buildStatItem("Proton", "${element.protons}")),
           Container(height: 30.h, width: 1, color: AppColors.white),
-          _buildStatItem("Neutron", "${element.neutrons}"),
+          Expanded(child: _buildStatItem("Neutron", "${element.neutrons}")),
         ],
       ),
     );
@@ -257,10 +257,18 @@ class _ElementDetailScreenState extends State<ElementDetailScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: AppStyles.bold16whiteSecondary),
-          Text(
-            value.isNotEmpty ? value : "N/A",
-            style: AppStyles.bold16whiteSecondary,
+          Expanded(
+            flex: 3,
+            child: Text(label, style: AppStyles.bold16whiteSecondary),
+          ),
+          SizedBox(width: 8.w),
+          Expanded(
+            flex: 2,
+            child: Text(
+              value.isNotEmpty ? value : "N/A",
+              style: AppStyles.bold16whiteSecondary,
+              textAlign: TextAlign.end,
+            ),
           ),
         ],
       ),

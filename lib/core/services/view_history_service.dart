@@ -58,7 +58,7 @@ class ViewHistoryService {
     }
   }
 
-  void addElement(PeriodicTableResponse element) {
+  Future<void> addElement(PeriodicTableResponse element) async {
     if (element.isEmpty) return;
 
     List<PeriodicTableResponse> currentList = List.from(
@@ -77,6 +77,6 @@ class ViewHistoryService {
     }
 
     mostViewedElements.value = currentList;
-    _saveHistory();
+    await _saveHistory();
   }
 }
