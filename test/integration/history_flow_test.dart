@@ -81,6 +81,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Tap "Successful" chip
+      await tester.ensureVisible(find.text("Successful"));
       await tester.tap(find.text("Successful"));
       await tester.pumpAndSettle();
 
@@ -100,6 +101,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // Tap "Failed" chip
+      await tester.drag(find.text("Successful"), const Offset(-500, 0));
+      await tester.pumpAndSettle();
       await tester.tap(find.text("Failed"));
       await tester.pumpAndSettle();
 

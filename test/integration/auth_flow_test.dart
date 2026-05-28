@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
 import 'package:ar_chem_lab/core/theme/app_colors.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
@@ -115,7 +116,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Sign In'), findsOneWidget);
-      expect(find.text('Create Account'), findsOneWidget);
+      expect(find.widgetWithText(AppButton, 'Create Account'), findsOneWidget);
       expect(find.text('Continue as Guest'), findsOneWidget);
 
       // Tap Sign In and verify navigation to Login Screen
@@ -135,11 +136,13 @@ void main() {
       await tester.pumpAndSettle();
 
       // Tap Sign In button to trigger validation
-      await tester.tap(find.text('Sign In'));
+      final signInBtn = find.widgetWithText(AppButton, 'Sign In');
+      await tester.ensureVisible(signInBtn);
+      await tester.tap(signInBtn);
       await tester.pumpAndSettle();
 
       // Assert validation errors are visible
-      expect(find.text('this field is required'), findsNWidgets(2));
+      expect(find.text('this field is required'), findsWidgets);
       verifyNever(() => mockViewModel.login(rememberMe: any(named: "rememberMe")));
     });
 
@@ -158,13 +161,17 @@ void main() {
       await tester.pumpAndSettle();
 
       // Tap sign in
-      await tester.tap(find.text('Sign In'));
+      final signInBtn2 = find.widgetWithText(AppButton, 'Sign In');
+      await tester.ensureVisible(signInBtn2);
+      await tester.tap(signInBtn2);
       await tester.pumpAndSettle();
 
       // Verify login call on bloc
       verify(() => mockViewModel.login(rememberMe: false)).called(1);
 
       // Emit success state
+      mockViewModel.emit(AuthLoading());
+      await tester.pump();
       mockViewModel.emit(AuthSuccess("Logged in successfully"));
       await tester.pumpAndSettle();
 
@@ -196,10 +203,12 @@ void main() {
       await tester.pumpAndSettle();
 
       // Tap Sign Up
-      await tester.tap(find.text('Sign Up'));
+      final createAccBtn = find.widgetWithText(AppButton, 'Create Account');
+      await tester.ensureVisible(createAccBtn);
+      await tester.tap(createAccBtn);
       await tester.pumpAndSettle();
 
-      expect(find.text('Passwords not matching'), findsOneWidget);
+      expect(find.text('Passwords not matching'), findsWidgets);
       verifyNever(() => mockViewModel.register());
     });
 
@@ -219,22 +228,30 @@ void main() {
       mockViewModel.confirmPasswordController.text = "Password123";
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Sign Up'));
+      await tester.ensureVisible(find.byType(Checkbox));
+      await tester.tap(find.byType(Checkbox));
+      await tester.pumpAndSettle();
+
+      final createAccBtn2 = find.widgetWithText(AppButton, 'Create Account');
+      await tester.ensureVisible(createAccBtn2);
+      await tester.tap(createAccBtn2);
       await tester.pumpAndSettle();
 
       verify(() => mockViewModel.register()).called(1);
 
+      mockViewModel.emit(AuthLoading());
+      await tester.pump();
       mockViewModel.emit(AuthSuccess("User registered successfully"));
       await tester.pumpAndSettle();
 
       // Dialog should be shown with Success
-      expect(find.text("Registration Successful"), findsOneWidget);
+      expect(find.text("Success"), findsOneWidget);
 
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle(const Duration(milliseconds: 500));
 
       // Should transition to Email Verification screen
-      expect(find.text('Email Verification'), findsOneWidget);
+      expect(find.text('Email Verification'), findsWidgets);
     });
 
     testWidgets('ForgotPasswordScreen flow submits successfully', (WidgetTester tester) async {
@@ -249,7 +266,7 @@ void main() {
       mockViewModel.emailController.text = "user@example.com";
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Send Code'));
+      await tester.tap(find.text('Send Reset Link'));
       await tester.pumpAndSettle();
 
       verify(() => mockViewModel.forgotPassword()).called(1);

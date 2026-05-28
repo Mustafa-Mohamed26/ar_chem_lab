@@ -28,8 +28,9 @@ class WelcomeScreen extends StatelessWidget {
   Widget _buildHeaderSection() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(AppAssets.appLogo, height: 160.h, fit: BoxFit.contain),
           Text(
@@ -44,6 +45,7 @@ class WelcomeScreen extends StatelessWidget {
             style: AppStyles.bold13interWhite,
           ),
         ],
+        ),
       ),
     );
   }
