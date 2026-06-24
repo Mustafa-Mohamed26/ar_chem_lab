@@ -7,6 +7,9 @@ import 'package:ar_chem_lab/presentation/lab/widgets/material_item.dart';
 import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:ar_chem_lab/core/services/ar_unity_service.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -65,10 +68,16 @@ class ExperimentDetailScreen extends StatelessWidget {
                     AppButton(
                       text: "Start the Experiment", 
                       onTap: () async {
+                        final authState = context.read<AuthViewModel>().state;
+                        String username = "Alchemist";
+                        if (authState is ProfileSuccess) {
+                          username = authState.user.username;
+                        }
+
                         String targetScene = experiment.title.toLowerCase().contains("intermediate")
                             ? "IntermediateScene"
                             : "BeginnerScene";
-                        await ARUnityService.launchUnity(targetScene);
+                        await ARUnityService.launchUnity(targetScene, username);
                       }
                     ),
                     SizedBox(height: 24.h),

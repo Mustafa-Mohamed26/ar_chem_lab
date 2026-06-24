@@ -58,12 +58,14 @@ class GradientBottomNavBar extends StatelessWidget {
               onTap: () async {
                 final authState = context.read<AuthViewModel>().state;
                 bool isExpert = false;
+                String username = "Alchemist";
                 if (authState is ProfileSuccess) {
                   isExpert = authState.user.level.toLowerCase() == 'expert';
+                  username = authState.user.username;
                 }
                 
                 if (isExpert) {
-                  await ARUnityService.launchUnity("ExpertScene");
+                  await ARUnityService.launchUnity("ExpertScene", username);
                 } else {
                   DialogHelper.showErrorDialog(
                     context: context,
