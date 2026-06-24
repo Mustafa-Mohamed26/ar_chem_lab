@@ -32,28 +32,29 @@ class LevelProgressCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            clipBehavior: Clip.none,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(level, style: AppStyles.bold32whiteOrbitron),
-                  SizedBox(height: 10.h),
-                ],
-              ),
-              Positioned(
-                right: -90.w,
-                top: -40.h,
-                child: Image.asset(
-                  AppAssets.testTubeImage,
-                  height: 110.h,
-                  fit: BoxFit.contain,
+              Expanded(
+                child: Text(
+                  level,
+                  style: AppStyles.bold32whiteOrbitron.copyWith(
+                    
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
+              ),
+              SizedBox(width: 10.w),
+              Image.asset(
+                AppAssets.testTubeImage,
+                height: 100.h,
+                fit: BoxFit.contain,
               ),
             ],
           ),
-          SizedBox(height: 15.h),
+          SizedBox(height: 10.h),
           Text(
             '"$helperText"',
             style: AppStyles.regular11interLightGray.copyWith(

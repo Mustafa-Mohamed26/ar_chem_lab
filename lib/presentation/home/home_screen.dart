@@ -65,13 +65,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               SizedBox(height: 20.h),
-              LevelProgressCard(
-                level: "Intermediate",
-                progress: 0.82,
-                helperText:
-                    "Complete 3 more challenges to unlock Organic Chemistry modules.",
-                onContinue: () {
-                  Navigator.pushNamed(context, AppRoutes.labMainScreen);
+              BlocBuilder<AuthViewModel, AuthState>(
+                builder: (context, state) {
+                  String level = "Beginner";
+                  if (state is ProfileSuccess) {
+                    final userLevel = state.user.level;
+                    if (userLevel.isNotEmpty) {
+                      level = "${userLevel[0].toUpperCase()}${userLevel.substring(1).toLowerCase()} Level";
+                    }
+                  }
+                  return LevelProgressCard(
+                    level: level,
+                    progress: 0.82,
+                    helperText:
+                        "Complete 3 more challenges to unlock Organic Chemistry modules.",
+                    onContinue: () {
+                      Navigator.pushNamed(context, AppRoutes.labMainScreen);
+                    },
+                  );
                 },
               ),
               SizedBox(height: 16.h),

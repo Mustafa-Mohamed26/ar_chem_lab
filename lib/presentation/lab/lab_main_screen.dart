@@ -6,6 +6,9 @@ import 'package:ar_chem_lab/domain/entities/lab/experiment_entity.dart';
 import 'package:ar_chem_lab/domain/entities/lab/lab_level_entity.dart';
 import 'package:ar_chem_lab/presentation/lab/widgets/lab_level_card.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,15 +17,22 @@ class LabMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final levels = _getDummyLevels();
-
     return Scaffold(
       backgroundColor: AppColors.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
+        child: BlocBuilder<AuthViewModel, AuthState>(
+          builder: (context, state) {
+            String userLevel = 'beginner';
+            if (state is ProfileSuccess) {
+              userLevel = state.user.level.toLowerCase();
+            }
+
+            final levels = _getDummyLevels(userLevel);
+
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 16.h),
@@ -68,12 +78,15 @@ class LabMainScreen extends StatelessWidget {
               ],
             ),
           ),
-        ),
+        );
+      }),
       ),
     );
   }
 
-  List<LabLevelEntity> _getDummyLevels() {
+  List<LabLevelEntity> _getDummyLevels(String userLevel) {
+    final isIntermediateOpen = userLevel == 'intermediate' || userLevel == 'expert';
+
     return [
       LabLevelEntity(
         id: "1",
@@ -114,14 +127,14 @@ class LabMainScreen extends StatelessWidget {
           ),
         ],
       ),
-      const LabLevelEntity(
+      LabLevelEntity(
         id: "2",
         title: "Intermediate level",
         description:
             "Full access to the Quantum Lab. Design your own molecules, run sub-atomic stability tests, and contribute to the global leaderboard.",
-        status: LabLevelStatus.locked,
+        status: isIntermediateOpen ? LabLevelStatus.active : LabLevelStatus.locked,
         progress: 0.0,
-        experiments: [],
+        experiments: const [],
         prerequisite: "Beginner : Organic Synthesis",
       ),
     ];

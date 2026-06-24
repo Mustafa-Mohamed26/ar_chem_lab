@@ -4,6 +4,10 @@ import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/widget/circular_gradients_painter.dart';
 import 'package:ar_chem_lab/presentation/widget/notch_painter.dart';
 import 'package:ar_chem_lab/core/services/ar_unity_service.dart';
+import 'package:ar_chem_lab/core/utils/dialog_helper.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -52,7 +56,21 @@ class GradientBottomNavBar extends StatelessWidget {
             top: 1, // Lifts the button out of the bar
             child: GestureDetector(
               onTap: () async {
-                await ARUnityService.launchUnity("ExpertScene");
+                final authState = context.read<AuthViewModel>().state;
+                bool isExpert = false;
+                if (authState is ProfileSuccess) {
+                  isExpert = authState.user.level.toLowerCase() == 'expert';
+                }
+                
+                if (isExpert) {
+                  await ARUnityService.launchUnity("ExpertScene");
+                } else {
+                  DialogHelper.showErrorDialog(
+                    context: context,
+                    title: "Access Denied",
+                    desc: "You must be expert level to enter the My Lab.",
+                  );
+                }
               },
               child: CustomPaint(
                 painter: CircleGradientPainter(), // Drawing the button's border

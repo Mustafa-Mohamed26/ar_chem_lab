@@ -4,6 +4,8 @@ class User {
   final String? email;
   final String hashedPassword;
   final bool disabled;
+  final bool isVerified;
+  final String level;
   final String? resetCode;
 
   User({
@@ -12,6 +14,8 @@ class User {
     this.email,
     required this.hashedPassword,
     this.disabled = false,
+    this.isVerified = false,
+    this.level = 'beginner',
     this.resetCode,
   });
 }
