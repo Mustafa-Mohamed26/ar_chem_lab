@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation(name: 'arcore_client', ext:'aar')
@@ -7,12 +8,12 @@ dependencies {
     implementation(name: 'UnityARCore', ext:'aar')
     implementation(name: 'unityandroidpermissions', ext:'aar')
     implementation project('xrmanifest.androidlib')
+
 }
 
 android {
     namespace "com.unity3d.player"
     ndkPath "C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/PlaybackEngines/AndroidPlayer/NDK"
-    ndkVersion "23.1.7779620"
     compileSdkVersion 36
     buildToolsVersion '34.0.0'
 
@@ -86,9 +87,7 @@ def BuildIl2Cpp(String workingDir, String configuration, String architecture, St
         environment "ANDROID_SDK_ROOT", getSdkDir()
     }
     delete workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.sym.so"
-    if (file(workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.dbg.so").exists()) {
-        ant.move(file: workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.dbg.so", tofile: workingDir + "/symbols/" + abi + "/libil2cpp.so")
-    }
+    ant.move(file: workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.dbg.so", tofile: workingDir + "/symbols/" + abi + "/libil2cpp.so")
 }
 
 android {
@@ -110,3 +109,6 @@ android {
         }
     }
 }
+
+
+
