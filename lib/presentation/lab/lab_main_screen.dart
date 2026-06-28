@@ -12,8 +12,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LabMainScreen extends StatelessWidget {
+class LabMainScreen extends StatefulWidget {
   const LabMainScreen({super.key});
+
+  @override
+  State<LabMainScreen> createState() => _LabMainScreenState();
+}
+
+class _LabMainScreenState extends State<LabMainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Ensure the user profile is loaded so the level-lock logic works correctly.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<AuthViewModel>().getProfile();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

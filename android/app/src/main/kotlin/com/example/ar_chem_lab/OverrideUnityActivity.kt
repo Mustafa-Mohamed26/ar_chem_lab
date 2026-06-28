@@ -16,7 +16,7 @@ class OverrideUnityActivity : UnityPlayerActivity() {
             android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                 com.unity3d.player.UnityPlayer.UnitySendMessage("FlutterBridge", "ReceiveSceneName", targetScene)
                 if (targetUserName != null) {
-                    com.unity3d.player.UnityPlayer.UnitySendMessage("FlutterBridge", "ReceiveUserName", targetUserName)
+                    com.unity3d.player.UnityPlayer.UnitySendMessage("FlutterBridge", "SetUserData", targetUserName)
                 }
             }, 1500)
         }
