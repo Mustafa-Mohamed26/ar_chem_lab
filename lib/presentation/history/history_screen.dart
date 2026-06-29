@@ -6,7 +6,9 @@ import 'package:ar_chem_lab/core/theme/app_styles.dart';
 import 'package:ar_chem_lab/presentation/history/experiment_data.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:ar_chem_lab/presentation/widget/history_card.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -19,6 +21,17 @@ class HistoryScreen extends StatefulWidget {
 class _HistoryScreenState extends State<HistoryScreen> {
   final TextEditingController _searchController = TextEditingController();
   int _selectedFilterIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Refresh user data every time this screen is navigated to.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<AuthViewModel>().getProfile();
+      }
+    });
+  }
 
   final List<String> _filters = ["All", "Successful", "Failed", "Recent"];
 

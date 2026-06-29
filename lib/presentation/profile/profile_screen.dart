@@ -12,8 +12,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
 import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Refresh user data every time this screen is navigated to.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<AuthViewModel>().getProfile();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +52,7 @@ class ProfileScreen extends StatelessWidget {
               String? email;
               String userLevel = "Beginner";
 
-              if (state is AuthInitial) {
-                // Usually the screen state is already ProfileSuccess from HomeScreen,
-                // but just in case we hit ProfileScreen directly.
-                context.read<AuthViewModel>().getProfile();
-              } else if (state is ProfileSuccess) {
+              if (state is ProfileSuccess) {
                 name = state.user.username.toUpperCase();
                 email = state.user.email;
                 final rawLevel = state.user.level;
