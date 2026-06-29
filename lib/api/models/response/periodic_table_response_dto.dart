@@ -85,6 +85,7 @@ class PeriodicTableResponseDto {
       atomicMass: atomicMass?.toString() ?? "",
       cpkHexColor: cpkHexColor,
       electronConfiguration: electronConfiguration,
+      electronicConfiguration: electronConfiguration ?? "",
       electronegativity: electronegativity,
       atomicRadius: atomicRadius,
       ionizationEnergy: ionizationEnergy,

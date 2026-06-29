@@ -1,8 +1,10 @@
 import 'package:ar_chem_lab/core/constants/app_assets.dart';
 import 'package:ar_chem_lab/core/routes/app_routes.dart';
+import 'package:ar_chem_lab/core/services/ar_unity_service.dart';
 import 'package:ar_chem_lab/core/services/view_history_service.dart';
 import 'package:ar_chem_lab/core/theme/app_padding.dart';
 import 'package:ar_chem_lab/core/theme/app_styles.dart';
+import 'package:ar_chem_lab/core/utils/dialog_helper.dart';
 import 'package:ar_chem_lab/presentation/home/widget/home_action_card.dart';
 import 'package:ar_chem_lab/presentation/home/widget/home_header.dart';
 import 'package:ar_chem_lab/presentation/home/widget/level_progress_card.dart';
@@ -65,13 +67,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               SizedBox(height: 20.h),
-              LevelProgressCard(
-                level: "Intermediate",
-                progress: 0.82,
-                helperText:
-                    "Complete 3 more challenges to unlock Organic Chemistry modules.",
-                onContinue: () {
-                  Navigator.pushNamed(context, AppRoutes.labMainScreen);
+              BlocBuilder<AuthViewModel, AuthState>(
+                builder: (context, state) {
+                  String level = "Beginner";
+                  if (state is ProfileSuccess) {
+                    final userLevel = state.user.level;
+                    if (userLevel.isNotEmpty) {
+                      level = "${userLevel[0].toUpperCase()}${userLevel.substring(1).toLowerCase()} Level";
+                    }
+                  }
+                  return LevelProgressCard(
+                    level: level,
+                    progress: 0.82,
+                    helperText:
+                        "Complete 3 more challenges to unlock Organic Chemistry modules.",
+                    onContinue: () {
+                      Navigator.pushNamed(context, AppRoutes.labMainScreen);
+                    },
+                  );
                 },
               ),
               SizedBox(height: 16.h),
@@ -80,8 +93,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 description: "Explore chemical reactions in augmented reality",
                 iconPath: AppAssets.testTubeImage,
                 actionIcon: Icons.play_arrow_rounded,
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.periodicTableScreen);
+                onTap: () async {
+                  final authState = context.read<AuthViewModel>().state;
+                  bool isExpert = false;
+                  String username = "Alchemist";
+                  if (authState is ProfileSuccess) {
+                    isExpert = authState.user.level.toLowerCase() == 'expert';
+                    username = authState.user.username;
+                  }
+                  if (isExpert) {
+                    await ARUnityService.launchUnity("ExpertScene", username);
+                  } else {
+                    DialogHelper.showErrorDialog(
+                      context: context,
+                      title: "Access Denied",
+                      desc: "You must be expert level to enter the My Lab.",
+                    );
+                  }
                 },
               ),
               SizedBox(height: 16.h),

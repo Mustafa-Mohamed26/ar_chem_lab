@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.ar" android:required="true" />
+    <uses-feature android:name="com.google.ar.core.depth" android:required="true" />
     <application
         android:label="ar_chem_lab"
         android:name="${applicationName}"
@@ -32,12 +37,13 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <activity
-            android:name="com.unity3d.player.UnityPlayerActivity"
+            android:name=".OverrideUnityActivity"
             android:theme="@style/UnityThemeSelector"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
             android:hardwareAccelerated="true"
+            android:process=":unityplayer"
             tools:replace="android:hardwareAccelerated,android:screenOrientation"
             android:exported="true" />
     </application>

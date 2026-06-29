@@ -230,8 +230,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _buildFooter(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
       children: [
         Text(
           "Already have an account? ",

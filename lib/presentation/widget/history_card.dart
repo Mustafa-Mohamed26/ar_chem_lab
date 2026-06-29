@@ -55,13 +55,18 @@ class HistoryCard extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      data.title,
-                      style: AppStyles.bold18whiteOrbitron.copyWith(
-                        fontSize: 17.sp,
+                    Flexible(
+                      child: Text(
+                        data.title,
+                        style: AppStyles.bold18whiteOrbitron.copyWith(
+                          fontSize: 17.sp,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    SizedBox(width: 8.w),
                     _buildStatusTag(statusText, statusColor),
                   ],
                 ),
@@ -139,11 +144,15 @@ class HistoryCard extends StatelessWidget {
             color: AppColors.redAccent,
           ),
           SizedBox(width: 6.w),
-          Text(
-            "Reason: ${data.reason ?? 'Unknown'}",
-            style: AppStyles.medium12InterWhite.copyWith(
-              color: AppColors.redAccent.withValues(alpha: 0.8),
-              fontSize: 11.sp,
+          Expanded(
+            child: Text(
+              "Reason: ${data.reason ?? 'Unknown'}",
+              style: AppStyles.medium12InterWhite.copyWith(
+                color: AppColors.redAccent.withValues(alpha: 0.8),
+                fontSize: 11.sp,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           ),
         ],

@@ -48,6 +48,9 @@ app.*.map.json
 .env
 
 # Unity Exports & Giant C++ Symbols
-/android/unityExport/unityLibrary/build/
-/android/unityExport/unityLibrary/symbols/
+/android/unityExport/**/build/
+/android/unityExport/**/outputs/
+/android/unityExport/**/symbols/
+/android/unityExport/**/*.apk
+/android/unityExport/**/*.aar
 **/*.dbg.so

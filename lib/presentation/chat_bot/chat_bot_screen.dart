@@ -34,6 +34,17 @@ class _ChatBotViewState extends State<ChatBotView> {
   final ScrollController _scrollController = ScrollController();
 
   @override
+  void initState() {
+    super.initState();
+    // Refresh user data every time this screen is navigated to.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<AuthViewModel>().getProfile();
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _messageController.dispose();
     _scrollController.dispose();
@@ -114,9 +125,6 @@ class _ChatBotViewState extends State<ChatBotView> {
             BlocBuilder<AuthViewModel, AuthState>(
               builder: (context, state) {
                 String name = "...";
-                if (state is AuthInitial) {
-                  context.read<AuthViewModel>().getProfile();
-                }
                 if (state is ProfileSuccess) {
                   name = state.user.username.toUpperCase();
                 } else if (state is AuthError) {

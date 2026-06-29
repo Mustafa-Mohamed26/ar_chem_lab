@@ -15,7 +15,10 @@ class ScreenTitle extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: AppStyles.bold20whiteOrbitron),
+            Expanded(
+              child: Text(title, style: AppStyles.bold20whiteOrbitron),
+            ),
+            SizedBox(width: 8.w),
             AppBackButton(),
           ],
         ),

@@ -18,16 +18,14 @@ class MainActivity : FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             if (call.method == "launchUnity") {
                 val targetScene = call.argument<String>("scene_name") ?: "LoadingScene"
+                val userName = call.argument<String>("user_name") ?: "Alchemist"
                 
                 // Launch the Unity Library natively
-                val intent = Intent(this, UnityPlayerActivity::class.java)
+                val intent = Intent(this, OverrideUnityActivity::class.java)
+                intent.putExtra("TARGET_SCENE", targetScene) // Pass the scene name here
+                intent.putExtra("TARGET_USER_NAME", userName) // Pass the user name here
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
-                
-                // Delay to ensure Unity initializes "LoadingScene" & "FlutterBridge" is loaded.
-                Handler(Looper.getMainLooper()).postDelayed({
-                    UnityPlayer.UnitySendMessage("FlutterBridge", "ReceiveSceneName", targetScene)
-                }, 1500)
                 
                 result.success(null)
             } else {

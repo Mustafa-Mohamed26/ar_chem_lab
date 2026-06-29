@@ -160,8 +160,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildOptionsRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Wrap(
+      alignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         Row(
           children: [
@@ -199,8 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildFooter(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         Text(
           "Don't have an account? ",

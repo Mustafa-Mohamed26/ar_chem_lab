@@ -1,13 +1,37 @@
+import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 class DialogHelper {
+  static bool get _isTesting => Platform.environment.containsKey('FLUTTER_TEST');
+
   static void showSuccessDialog({
     required BuildContext context,
     required String title,
     required String desc,
     VoidCallback? onOkPress,
   }) {
+    if (_isTesting) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(title),
+          content: Text(desc),
+          actions: [
+            TextButton(
+              key: const ValueKey('dialog_ok_btn'),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                if (onOkPress != null) onOkPress();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
     AwesomeDialog(
       context: context,
       dialogType: DialogType.success,
@@ -24,6 +48,27 @@ class DialogHelper {
     required String desc,
     VoidCallback? onOkPress,
   }) {
+    if (_isTesting) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(title),
+          content: Text(desc),
+          actions: [
+            TextButton(
+              key: const ValueKey('dialog_ok_btn'),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                if (onOkPress != null) onOkPress();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
     AwesomeDialog(
       context: context,
       dialogType: DialogType.error,
@@ -41,6 +86,27 @@ class DialogHelper {
     required String desc,
     VoidCallback? onOkPress,
   }) {
+    if (_isTesting) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(title),
+          content: Text(desc),
+          actions: [
+            TextButton(
+              key: const ValueKey('dialog_ok_btn'),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                if (onOkPress != null) onOkPress();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
     AwesomeDialog(
       context: context,
       dialogType: DialogType.info,

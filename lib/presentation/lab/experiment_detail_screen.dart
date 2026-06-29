@@ -7,6 +7,9 @@ import 'package:ar_chem_lab/presentation/lab/widgets/material_item.dart';
 import 'package:ar_chem_lab/presentation/widget/app_button.dart';
 import 'package:ar_chem_lab/presentation/widget/app_back_button.dart';
 import 'package:ar_chem_lab/core/services/ar_unity_service.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_view_model.dart';
+import 'package:ar_chem_lab/presentation/auth/cubit/auth_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,15 +32,20 @@ class ExperimentDetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Image.asset(AppAssets.appLogo, height: 46.h),
-                        SizedBox(width: 8.w),
-                        Text(
-                          "${_getExperienceLevel(experiment)} experiment",
-                          style: AppStyles.bold18whiteOrbitron,
-                        ),
-                      ],
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Image.asset(AppAssets.appLogo, height: 46.h),
+                          SizedBox(width: 8.w),
+                          Expanded(
+                            child: Text(
+                              "${_getExperienceLevel(experiment)} experiment",
+                              style: AppStyles.bold18whiteOrbitron,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const AppBackButton(),
                   ],
@@ -65,10 +73,21 @@ class ExperimentDetailScreen extends StatelessWidget {
                     AppButton(
                       text: "Start the Experiment", 
                       onTap: () async {
-                        String targetScene = experiment.title.toLowerCase().contains("intermediate")
-                            ? "IntermediateScene"
-                            : "BeginnerScene";
-                        await ARUnityService.launchUnity(targetScene);
+                        final authState = context.read<AuthViewModel>().state;
+                        String username = "Alchemist";
+                        if (authState is ProfileSuccess) {
+                          username = authState.user.username;
+                        }
+
+                        final String targetScene;
+                        switch (experiment.id) {
+                          case "e2":
+                            targetScene = "IntermediateScene";
+                            break;
+                          default:
+                            targetScene = "BeginnerScene";
+                        }
+                        await ARUnityService.launchUnity(targetScene, username);
                       }
                     ),
                     SizedBox(height: 24.h),
@@ -230,8 +249,12 @@ class ExperimentDetailScreen extends StatelessWidget {
   }
 
   String _getExperienceLevel(ExperimentEntity experiment) {
-    // Logic to determine level from metadata or pass it in
-    return "Beginner";
+    switch (experiment.id) {
+      case "e2":
+        return "Intermediate";
+      default:
+        return "Beginner";
+    }
   }
 
   IconData _getMaterialIcon(String iconName) {
