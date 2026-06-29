@@ -4216,7 +4216,7 @@ struct ShaderParams_t02D3FD70EC9DD6116F28E7C54650B6A9C473AEAB  : public RuntimeO
 struct ShaderParams_tC6BDBBC918CF4BE7B7EB05ACA637D903426253B4  : public RuntimeObject
 {
 };
-struct U3CLoadSceneWithProgressU3Ed__16_t0550E6A163B060FE3D79CB82EEA219DAE11E5B43  : public RuntimeObject
+struct U3CLoadSceneWithProgressU3Ed__17_t7111F57E6D4F60D33E0BD9E2E7675557FFCE5895  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
@@ -26827,6 +26827,7 @@ struct LiquidVolume_tE46AE58C536E56959E5AFE22911F70A26293BB9C_StaticFields
 };
 struct LoadingManager_tD9AE06049907FF29AD8E789E3D7F4AA3CD9C1DA0_StaticFields
 {
+	String_t* ___NextSceneToLoad;
 	String_t* ___U3CCurrentUserNameU3Ek__BackingField;
 };
 struct MessageListener_t50FA00662CCB169F065100293E953B3024E0BCAE_StaticFields
@@ -30931,7 +30932,7 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize7345 = { sizeof(U3CWaitUntil
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize7346;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize7346 = { sizeof(GoalManager_tC47AB5CB7FAE2370F36BD3B7A63168A9B9C449AC), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize7347;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize7347 = { sizeof(U3CLoadSceneWithProgressU3Ed__16_t0550E6A163B060FE3D79CB82EEA219DAE11E5B43), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize7347 = { sizeof(U3CLoadSceneWithProgressU3Ed__17_t7111F57E6D4F60D33E0BD9E2E7675557FFCE5895), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize7348;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize7348 = { sizeof(LoadingManager_tD9AE06049907FF29AD8E789E3D7F4AA3CD9C1DA0), -1, sizeof(LoadingManager_tD9AE06049907FF29AD8E789E3D7F4AA3CD9C1DA0_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize7349;

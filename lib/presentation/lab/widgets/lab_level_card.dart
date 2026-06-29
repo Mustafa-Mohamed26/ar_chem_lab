@@ -82,8 +82,6 @@ class LabLevelCard extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           if (isActive) ...[
-            _buildProgressBar(),
-            SizedBox(height: 20.h),
             AppButton(text: "Start the Experiment", onTap: onStart),
           ] else if (isLocked) ...[
             _buildPrerequisiteBox(),
@@ -117,25 +115,6 @@ class LabLevelCard extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-    );
-  }
-
-  Widget _buildProgressBar() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10.r),
-          child: LinearProgressIndicator(
-            value: level.progress,
-            backgroundColor: AppColors.gray,
-            valueColor: const AlwaysStoppedAnimation<Color>(
-              AppColors.lightBlue,
-            ),
-            minHeight: 8.h,
-          ),
-        ),
-      ],
     );
   }
 

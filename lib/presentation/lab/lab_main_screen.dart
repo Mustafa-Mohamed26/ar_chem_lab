@@ -150,7 +150,42 @@ class _LabMainScreenState extends State<LabMainScreen> {
             "Full access to the Quantum Lab. Design your own molecules, run sub-atomic stability tests, and contribute to the global leaderboard.",
         status: isIntermediateOpen ? LabLevelStatus.active : LabLevelStatus.locked,
         progress: 0.0,
-        experiments: const [],
+        experiments: [
+          ExperimentEntity(
+            id: "e2",
+            title: "Quantum Molecular Design",
+            description:
+                "Design and analyze molecular structures at the sub-atomic level using advanced AR simulations.",
+            time: "25 min",
+            exp: "6 Steps",
+            safety: ExperimentSafety.high,
+            materials: [
+              const ExperimentMaterial(name: "Beaker", icon: "beaker"),
+              const ExperimentMaterial(name: "Pipette", icon: "pipette"),
+              const ExperimentMaterial(name: "Spectrometer", icon: "spectrometer"),
+              const ExperimentMaterial(name: "Heat Source", icon: "heat"),
+            ],
+            path: [
+              const ExperimentStep(
+                title: "Prepare Compounds",
+                description:
+                    "Measure and prepare the required chemical compounds with precision.",
+              ),
+              const ExperimentStep(
+                title: "Initiate Reaction",
+                description:
+                    "Combine compounds and monitor the molecular interaction in real-time.",
+              ),
+              const ExperimentStep(
+                title: "Analyze Results",
+                description:
+                    "Use the spectrometer to analyze reaction byproducts and record findings.",
+              ),
+            ],
+            tip:
+                "Ensure proper calibration of the spectrometer before beginning the analysis phase.",
+          ),
+        ],
         prerequisite: "Beginner : Organic Synthesis",
       ),
     ];

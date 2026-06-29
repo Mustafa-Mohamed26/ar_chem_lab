@@ -32,15 +32,20 @@ class ExperimentDetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Image.asset(AppAssets.appLogo, height: 46.h),
-                        SizedBox(width: 8.w),
-                        Text(
-                          "${_getExperienceLevel(experiment)} experiment",
-                          style: AppStyles.bold18whiteOrbitron,
-                        ),
-                      ],
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Image.asset(AppAssets.appLogo, height: 46.h),
+                          SizedBox(width: 8.w),
+                          Expanded(
+                            child: Text(
+                              "${_getExperienceLevel(experiment)} experiment",
+                              style: AppStyles.bold18whiteOrbitron,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const AppBackButton(),
                   ],
@@ -74,9 +79,14 @@ class ExperimentDetailScreen extends StatelessWidget {
                           username = authState.user.username;
                         }
 
-                        String targetScene = experiment.title.toLowerCase().contains("intermediate")
-                            ? "IntermediateScene"
-                            : "BeginnerScene";
+                        final String targetScene;
+                        switch (experiment.id) {
+                          case "e2":
+                            targetScene = "IntermediateScene";
+                            break;
+                          default:
+                            targetScene = "BeginnerScene";
+                        }
                         await ARUnityService.launchUnity(targetScene, username);
                       }
                     ),
@@ -239,8 +249,12 @@ class ExperimentDetailScreen extends StatelessWidget {
   }
 
   String _getExperienceLevel(ExperimentEntity experiment) {
-    // Logic to determine level from metadata or pass it in
-    return "Beginner";
+    switch (experiment.id) {
+      case "e2":
+        return "Intermediate";
+      default:
+        return "Beginner";
+    }
   }
 
   IconData _getMaterialIcon(String iconName) {
